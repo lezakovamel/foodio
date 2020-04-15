@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import MainPage from "./components/pages/MainPage";
-import FoodDetail from "./components/pages/FoodDetail";
+import FoodDetail from "./components/food/FoodDetail";
 
 const Routes = () => {
   return (

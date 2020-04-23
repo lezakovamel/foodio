@@ -1,6 +1,5 @@
 import React from "react";
-import BaseTemplate from "./BaseTemplate";
-
+import BaseTemplate from "../templates/BaseTemplate";
 const MainPage = () => {
   return (
     <BaseTemplate title="MainPage">

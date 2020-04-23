@@ -1,5 +1,5 @@
 import React from "react";
-import BaseTemplate from "../pages/BaseTemplate";
+import BaseTemplate from "../templates/BaseTemplate";
 
 
 const FoodDetail = () => {

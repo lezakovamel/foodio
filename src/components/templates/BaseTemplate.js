@@ -3,10 +3,17 @@ import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
 
-const Wrapper = styled.div`
+const Base = styled.div`
   margin: auto;
   min-height: 100vh;
+`;
+
+const ContentWrapper = styled.div`
+  margin: auto;
   display: flex;
+  padding-top: 10vh;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Header = styled.header`
@@ -14,8 +21,8 @@ export const Header = styled.header`
   height: 10vh;
   background-color: ${(props) => props.theme.colors.primaryLight};
   color: ${(props) => props.theme.colors.primaryDark};
-  display:flex;
-  flex-wrap:wrap;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   position: fixed;
@@ -29,8 +36,8 @@ export const Footer = styled.footer`
   color: ${(props) => props.theme.colors.primaryDark};
   position: absolute;
   bottom: 0;
-  display:flex;
-  flex-wrap:wrap;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-content: center;
 `;
@@ -38,11 +45,11 @@ export const Footer = styled.footer`
 const BaseTemplate = ({ title, children }) => {
   return (
     <Theme>
-      <Wrapper>
+      <Base>
         <Header>{title}</Header>
-        {children}
+        <ContentWrapper>{children}</ContentWrapper>
         <Footer>Made with love and hate for css</Footer>
-      </Wrapper>
+      </Base>
     </Theme>
   );
 };

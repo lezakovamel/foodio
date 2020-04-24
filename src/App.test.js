@@ -1,13 +1,21 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import MainPage from './components/pages/MainPage';
+import React from "react";
+import { render } from "@testing-library/react";
+import MainPage from "./components/pages/MainPage";
 
-test('test main page components', () => {
-  const {getByTestId } = render(<MainPage />);
-  const card = getByTestId('testCard');
-  const header = getByTestId('testHeader');
-  const footer = getByTestId('testFooter');
+test("mainPage - test Card", () => {
+  const { getByTestId } = render(<MainPage />);
+  const card = getByTestId("testCard");
   expect(card).toBeInTheDocument();
+});
+
+test("mainPage - test Header", () => {
+  const { getByTestId } = render(<MainPage />);
+  const header = getByTestId("testHeader");
   expect(header).toBeInTheDocument();
+});
+
+test("mainPage - test Footer", () => {
+  const { getByTestId } = render(<MainPage />);
+  const footer = getByTestId("testFooter");
   expect(footer).toBeInTheDocument();
 });

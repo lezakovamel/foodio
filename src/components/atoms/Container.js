@@ -5,20 +5,19 @@ const breakpoints = (props) => props.theme.breakpoints;
 
 const ContainerDiv = styled.div`
   margin: auto;
-  width: 60vw;
+  box-sizing: border-box;
   display: flex;
-  margin-top: 10vh;
-  min-height: 80vh;
-  @media screen and (max-width: ${breakpoints.sm}) {
+  min-height: 90vh;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
     width: 95vw;
   }
-  @media screen and (min-width: ${breakpoints.sm}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.sm}) {
     width: 95vw;
   }
-  @media screen and (min-width: ${breakpoints.md}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     width: 80vw;
   }
-  @media screen and (min-width: ${breakpoints.lg}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
     width: 60vw;
   }
 `;

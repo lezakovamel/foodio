@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "@emotion/styled";
 import BaseTemplate from "../templates/BaseTemplate";
 import { P } from "../atoms/TextFields";
-import { Icon } from "../atoms/Icon";
 import { H1 } from "../atoms/Headlines";
 import IngredientsList from "../molecules/IngredientsList";
 import FoodActions from "../molecules/FoodActions";
+import FoodEdit from "../organisms/FoodEdit";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ const Ingredients = styled.div`
   bottom: 0;
   right: 0;
   display: flex;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
   flex-direction: column;
   flex-wrap: wrap;
   padding: 0px ${(props) => props.theme.padding.primary};
@@ -54,14 +54,20 @@ const Steps = styled.div`
 `;
 
 const FoodDetail = () => {
+  const [modalVisibility, setModalVisibility] = useState("none");
+  
+  const openEdit = () => setModalVisibility("block");
+  const closeEdit = () => setModalVisibility("none");
+
   return (
     <BaseTemplate title="_food_name_">
+      <FoodEdit visibility={modalVisibility} close={closeEdit}/>
       <Wrapper>
         <BaseInfo>
           <Img src="_img_src_from_search_api_" alt="_food_title_"></Img>
           <FoodActions />
           <Ingredients>
-            <H1>Ingredients</H1>
+            <H1 onClick={() => openEdit()}>Ingredients</H1>
             <IngredientsList>
               {
                 // TODO ingredients tile, p for debug

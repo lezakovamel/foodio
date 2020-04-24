@@ -12,6 +12,10 @@ const theme = {
     backgroundLight: "#fcebca",
     white: "#ffffff",
   },
+  padding: {
+    primary: "10px",
+    extended: "80px",
+  },
 };
 
 const Theme = ({ children }) => {

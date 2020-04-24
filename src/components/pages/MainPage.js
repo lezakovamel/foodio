@@ -1,6 +1,6 @@
 import React from "react";
 import BaseTemplate from "../templates/BaseTemplate";
-import FoodCard from "../organisms/foodCard/FoodCard";
+import FoodCard from "../molecules/FoodCard";
 const MainPage = () => {
   return (
     <BaseTemplate title="MainPage">

@@ -2,8 +2,8 @@ import React from "react";
 
 import styled from "@emotion/styled/macro";
 import "./FoodCard.scss";
-import { H3, H4 } from "../../atoms/Headlines";
-import { P } from "../../atoms/TextFields";
+import { H3, H4 } from "../atoms/Headlines";
+import { P } from "../atoms/TextFields";
 
 const Overlay = styled.div`
   width: 200px;
@@ -28,15 +28,15 @@ const Card = styled.div`
   height: 150px;
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.colors.backgroundLight};
   margin: 15px;
-  border: 4px solid ${(props) => props.theme.colors.primary};
+  border: 2px solid ${(props) => props.theme.colors.primary};
   border-radius: 10px;
   position: relative;
   &:hover {
     & ${Overlay} {
       visibility: visible;
-      opacity: 0.85;
+      opacity: 0.9;
+      cursor: pointer;
     }
   }
 `;

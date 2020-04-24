@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
 import { H1 } from "../atoms/Headlines";
+import Header from "../organisms/Header";
+import Footer from "../organisms/Footer";
 
 const Base = styled.div`
   margin: auto;
@@ -17,37 +19,13 @@ const ContentWrapper = styled.div`
   height: 100%;
 `;
 
-export const Header = styled.header`
-  width: 100vw;
-  height: 10vh;
-  border-bottom: 2px solid ${(props) => props.theme.colors.primaryLight} ;
-  color: ${(props) => props.theme.colors.primaryDark};
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  position: fixed;
-  z-index: "5";
-  top: "0";
-`;
-export const Footer = styled.footer`
-  width: 100vw;
-  height: 10vh;
-  border-top: 2px solid ${(props) => props.theme.colors.primaryLight} ;
-  color: ${(props) => props.theme.colors.primaryDark};
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-`;
-
 const BaseTemplate = ({ title, children }) => {
   return (
     <Theme>
       <Base>
-        <Header><H1>{title}</H1></Header>
+        <Header>
+          <H1>{title}</H1>
+        </Header>
         <ContentWrapper>{children}</ContentWrapper>
         <Footer>Made with love and hate for css</Footer>
       </Base>

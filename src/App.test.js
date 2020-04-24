@@ -1,9 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import MainPage from './components/pages/MainPage';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('test main page components', () => {
+  const {getByTestId } = render(<MainPage />);
+  const card = getByTestId('testCard');
+  const header = getByTestId('testHeader');
+  const footer = getByTestId('testFooter');
+  expect(card).toBeInTheDocument();
+  expect(header).toBeInTheDocument();
+  expect(footer).toBeInTheDocument();
 });

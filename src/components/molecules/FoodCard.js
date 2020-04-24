@@ -17,10 +17,9 @@ const Overlay = styled.div`
   z-index: 99;
   position: absolute;
   border-radius: 10px;
-
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.3s linear;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
 `;
 
 const Card = styled.div`

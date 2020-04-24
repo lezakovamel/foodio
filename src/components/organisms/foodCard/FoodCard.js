@@ -1,8 +1,27 @@
 import React from "react";
 
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 import "./FoodCard.scss";
-import { H4, H3 } from "../../atoms/Headlines";
+import { H3, H4 } from "../../atoms/Headlines";
+import { P } from "../../atoms/TextFields";
+
+const Overlay = styled.div`
+  width: 200px;
+  height: 150px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: ${(props) => props.theme.colors.white};
+  z-index: 99;
+  position: absolute;
+  border-radius: 10px;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+`;
 
 const Card = styled.div`
   width: 200px;
@@ -13,6 +32,13 @@ const Card = styled.div`
   margin: 15px;
   border: 4px solid ${(props) => props.theme.colors.primary};
   border-radius: 10px;
+  position: relative;
+  &:hover {
+    & ${Overlay} {
+      visibility: visible;
+      opacity: 0.85;
+    }
+  }
 `;
 
 const Placeholder = styled.div`
@@ -38,9 +64,13 @@ const Info = styled.div`
 const FoodCard = () => {
   return (
     <Card>
+      <Overlay>
+        <H4 centered>_prep_time_</H4>
+        <P centered>_xx_min_</P>
+      </Overlay>
       <Placeholder />
       <Info>
-        <H3>Pomazánečka</H3>
+        <H3>_food_desc_</H3>
       </Info>
     </Card>
   );

@@ -1,11 +1,12 @@
 import React from "react";
-import BaseTemplate from "./BaseTemplate";
-
+import BaseTemplate from "../templates/BaseTemplate";
+import FoodCard from "../molecules/FoodCard";
 const MainPage = () => {
   return (
     <BaseTemplate title="MainPage">
-      <div style={{ height: "80vh", paddingTop: "10vh" }}>Foodiojojooooo</div>
-    </BaseTemplate>
+      
+      <FoodCard></FoodCard>
+       </BaseTemplate>
   );
 };
 

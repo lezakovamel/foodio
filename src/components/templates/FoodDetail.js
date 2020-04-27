@@ -55,9 +55,9 @@ const FoodDetail = ({openEdit}) => {
     <Wrapper>
       <BaseInfo>
         <Img src="_img_src_from_search_api_" alt="_food_title_"></Img>
-        <FoodActions />
+        <FoodActions openEdit={openEdit} />
         <Ingredients>
-          <H1 onClick={() => openEdit()}>Ingredients</H1>
+          <H1>Ingredients</H1>
           <IngredientsList>
             {
               // TODO ingredients tile, p for debug

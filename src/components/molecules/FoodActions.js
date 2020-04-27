@@ -26,11 +26,11 @@ const IconBox = styled.div`
   flex-direction: row;
 `;
 
-const FoodActions = () => (
+const FoodActions = ({openEdit}) => (
   <Actions>
     <P>_prep_time_</P>
     <IconBox>
-      <Icon icon={faEdit} />
+      <Icon icon={faEdit} onClick={openEdit}/>
       <Icon icon={faHeart} />
     </IconBox>
   </Actions>

@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import styled from "@emotion/styled";
 import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
+import { ModalTypeEnum } from "../pages/FoodDetailPage";
 
 const FormWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const FormWrapper = styled.div`
   justify-content: center;
 `;
 
-const EditForm = () => {
+const FoodForm = ({ type, onAddNew, onEditSave }) => {
   const [title, setTitle] = useState("");
   const [preparationTime, setPreparationTime] = useState("");
   const [directions, setDirections] = useState("");
@@ -34,8 +35,16 @@ const EditForm = () => {
             <Input name="preparationTime" />
             <Input name="directions" />
             <Input name="ingredients" />
-
-            <Button>UPDATE FOOD</Button>
+            {/**
+             * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component
+             * handling is done via [type], this will tell you if you r going to Save edited or Add new
+             * [type] can also tell you wich properties fill onLoad, none if you r adding new food, all if you r going to edit food
+             */}
+            <Button
+              onClick={type === ModalTypeEnum.ADD_FOOD ? onAddNew : onEditSave}
+            >
+              {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
+            </Button>
           </FormWrapper>
         </form>
       )}
@@ -43,4 +52,4 @@ const EditForm = () => {
   );
 };
 
-export default EditForm;
+export default FoodForm;

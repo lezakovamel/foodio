@@ -3,24 +3,29 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import "./EditModal.scss";
+import "./FoodModal.scss";
 
-import EditForm from "../../organisms/EditForm";
+import FoodForm from "../../organisms/FoodForm";
 import { H1 } from "../../atoms/Headlines";
 import { Icon } from "../../atoms/Icon";
+import { ModalTypeEnum } from "../../pages/FoodDetailPage";
 
-const EditModal = ({ visibility, closeEdit }) => {
+const FoodModal = ({ visibility, type, closeEdit }) => {
   return (
     <Modal show={visibility} onHide={closeEdit} dialogClassName="modalWindow">
       <Modal.Header>
-        <H1>_food_name_</H1>
+        {type === ModalTypeEnum.ADD_FOOD ? (
+          <H1>Add food</H1>
+        ) : (
+          <H1>_food_name_</H1>
+        )}
         <Icon icon={faTimes} onClick={closeEdit} />
       </Modal.Header>
       <Modal.Body>
-        <EditForm />
+        <FoodForm type={type} />
       </Modal.Body>
     </Modal>
   );
 };
 
-export default EditModal;
+export default FoodModal;

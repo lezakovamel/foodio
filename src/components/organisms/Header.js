@@ -11,9 +11,11 @@ export const HeaderWrapper = styled.header`
   justify-content: center;
   align-content: center;
   position: fixed;
-  z-index: "5";
+  z-index: "1";
   top: "0";
 `;
-const Header = () => <HeaderWrapper data-testid='testHeader'/>;
+const Header = ({ children }) => (
+  <HeaderWrapper data-testid="testHeader">{children} </HeaderWrapper>
+);
 
 export default Header;

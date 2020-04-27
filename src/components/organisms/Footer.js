@@ -15,6 +15,8 @@ export const FooterWrapper = styled.footer`
   align-content: center;
 `;
 
-const Footer = () => <FooterWrapper data-testid="testFooter" />;
+const Footer = ({ children }) => (
+  <FooterWrapper data-testid="testFooter">{children}</FooterWrapper>
+);
 
 export default Footer;

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
 import { H1 } from "../atoms/Headlines";
 import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
+
+import { AccountBox } from "../organisms/AccountBox";
 
 const Base = styled.div`
   margin: auto;
@@ -19,12 +21,19 @@ const ContentWrapper = styled.div`
   height: 100%;
 `;
 
-const BaseTemplate = ({ title, children }) => {
+const HeaderTitle = styled.div`
+  margin-left: auto;
+`;
+
+const BaseTemplate = ({ title, onAccountClicked, children }) => {
   return (
     <Theme>
       <Base>
         <Header>
-          <H1>{title}</H1>
+          <HeaderTitle>
+            <H1>{title}</H1>
+          </HeaderTitle>
+          <AccountBox onAccountClicked={onAccountClicked} />
         </Header>
         <ContentWrapper>{children}</ContentWrapper>
         <Footer>Made with love and hate for css</Footer>

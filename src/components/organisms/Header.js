@@ -8,7 +8,6 @@ export const HeaderWrapper = styled.header`
   color: ${(props) => props.theme.colors.primaryDark};
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-content: center;
   position: fixed;
   z-index: "1";

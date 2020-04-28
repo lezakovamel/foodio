@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
-
-//JS Enum
-export const ModalTypeEnum = Object.freeze({ EDIT_FOOD: 1, ADD_FOOD: 2 });
+import { ModalTypeEnum } from "../../tools/Enums";
 
 const FoodDetailPage = () => {
   const [modalVisibility, setModalVisibility] = useState(false);

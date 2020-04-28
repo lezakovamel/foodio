@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import styled from "@emotion/styled";
 import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
-import { ModalTypeEnum } from "../pages/FoodDetailPage";
+import { ModalTypeEnum } from "../../tools/Enums";
 
 const FormWrapper = styled.div`
   display: flex;

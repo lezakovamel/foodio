@@ -5,7 +5,7 @@ import { faEdit, faHeart, faPlus } from "@fortawesome/free-solid-svg-icons";
 import styled from "@emotion/styled";
 import { Icon } from "../atoms/Icon";
 import { P } from "../atoms/TextFields";
-import { ModalTypeEnum } from "../pages/FoodDetailPage";
+import { ModalTypeEnum } from "../../tools/Enums";
 
 const Actions = styled.div`
   width: 40vw;

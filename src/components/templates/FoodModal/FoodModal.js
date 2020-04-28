@@ -8,7 +8,7 @@ import "./FoodModal.scss";
 import FoodForm from "../../organisms/FoodForm";
 import { H1 } from "../../atoms/Headlines";
 import { Icon } from "../../atoms/Icon";
-import { ModalTypeEnum } from "../../pages/FoodDetailPage";
+import { ModalTypeEnum } from "../../../tools/Enums";
 
 const FoodModal = ({ visibility, type, closeEdit }) => {
   return (

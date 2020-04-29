@@ -6,6 +6,7 @@ import { H1, H5 } from "../atoms/Headlines";
 import { Grid } from "../atoms/Grid";
 
 const SectionWrapper = styled.div`
+  padding-top: 10vh;
   min-height: 80vh;
   display: flex;
   flex-direction: column;

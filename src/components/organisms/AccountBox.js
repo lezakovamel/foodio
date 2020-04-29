@@ -8,7 +8,6 @@ import { UserContext } from "../../Control";
 import { H5 } from "../atoms/Headlines";
 
 const AccountBoxWrapper = styled.div`
-  margin-left: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;

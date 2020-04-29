@@ -16,13 +16,14 @@ const Base = styled.div`
 const ContentWrapper = styled.div`
   margin: auto;
   display: flex;
+  flex-direction: column;
   padding-top: 10vh;
   width: 100%;
   height: 100%;
 `;
 
 const HeaderTitle = styled.div`
-  margin-left: auto;
+  margin-left: 5vw;
 `;
 
 const BaseTemplate = ({ title, onAccountClicked, children }) => {

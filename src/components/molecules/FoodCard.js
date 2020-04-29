@@ -6,8 +6,8 @@ import { H3, H4 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 
 const Overlay = styled.div`
-  width: 200px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   display: flex;
   margin: auto;
   flex-direction: column;
@@ -24,14 +24,15 @@ const Overlay = styled.div`
 `;
 
 const Card = styled.div`
-  width: 200px;
-  height: 150px;
+  width: 30vw;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   margin: 15px;
   border: 2px solid ${(props) => props.theme.colors.primary};
   border-radius: 10px;
   position: relative;
+  margin: ${(props) => props.theme.padding.medium};
   &:hover {
     & ${Overlay} {
       visibility: visible;
@@ -44,12 +45,14 @@ const Card = styled.div`
 const Placeholder = styled.div`
   margin: auto;
   width: 100%;
-  height: 100px;
+  height: 100%;
   background-image: url(${process.env.PUBLIC_URL}/images/pasta.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: -25px;
+  background-size: contain;
+  background-position-y: -40px;
+  background-position: center;
   box-sizing: border-box;
+  padding: 5vh;
 `;
 
 const Info = styled.div`

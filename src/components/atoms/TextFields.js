@@ -8,3 +8,7 @@ export const P = styled.p`
 export const Label = styled.label`
   color: ${(props) => props.theme.colors.primaryDark};
 `;
+
+export const LogoTitle = styled.div`
+  font-size: 72px;
+`;

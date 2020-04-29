@@ -10,6 +10,9 @@ const MainPage = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", onScrollChanged);
+
+    titleRef.current.style.visibility = "hidden";
+    titleRef.current.style.opacity = "0";
   }, []);
 
   const onExploreFoodClicked = () => {

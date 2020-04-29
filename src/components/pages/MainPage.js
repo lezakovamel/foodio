@@ -22,7 +22,7 @@ const MainPage = () => {
   const onAccountClicked = () => {};
 
   return (
-    <BaseTemplate title="MainPage" onAccountClicked={onAccountClicked}>
+    <BaseTemplate title="" onAccountClicked={onAccountClicked}>
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       <CardSection reference={sectionRef} />
     </BaseTemplate>

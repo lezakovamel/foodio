@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import FoodCard from "../molecules/FoodCard";
-import { H1, H5 } from "../atoms/Headlines";
+import { H5 } from "../atoms/Headlines";
 import { Grid } from "../atoms/Grid";
 
 const SectionWrapper = styled.div`

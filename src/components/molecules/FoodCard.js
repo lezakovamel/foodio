@@ -45,10 +45,11 @@ const Placeholder = styled.div`
   margin: auto;
   width: 100%;
   height: 100px;
-  background-image: url(${process.env.PUBLIC_URL}/images/placeholder.png);
+  background-image: url(${process.env.PUBLIC_URL}/images/pasta.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-y: -45px;
+  background-position-y: -25px;
+  box-sizing: border-box;
 `;
 
 const Info = styled.div`

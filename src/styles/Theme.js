@@ -14,6 +14,7 @@ const theme = {
   },
   padding: {
     primary: "10px",
+    medium: "25px",
     extended: "80px",
   },
 };

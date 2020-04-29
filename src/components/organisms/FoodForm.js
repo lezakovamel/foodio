@@ -5,13 +5,7 @@ import styled from "@emotion/styled";
 import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
 import { ModalTypeEnum } from "../../tools/Enums";
-
-const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
+import { FormWrapper } from "../atoms/FormWrapper";
 
 const FoodForm = ({ type, onAddNew, onEditSave }) => {
   const [title, setTitle] = useState("");

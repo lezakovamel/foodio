@@ -37,12 +37,10 @@ const MainPage = () => {
     }
   };
 
-  const onAccountClicked = () => {};
 
   return (
     <BaseTemplate
       title="Foodio"
-      onAccountClicked={onAccountClicked}
       titleRef={titleRef}
     >
       <FoodioIntro onExploreClick={onExploreFoodClicked} />

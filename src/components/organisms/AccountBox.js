@@ -6,6 +6,7 @@ import { Icon } from "../atoms/Icon";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../Control";
 import { H5 } from "../atoms/Headlines";
+import { Link } from "react-router-dom";
 
 const AccountBoxWrapper = styled.div`
   display: flex;
@@ -15,12 +16,14 @@ const AccountBoxWrapper = styled.div`
   margin-right: 3vw;
 `;
 
-export const AccountBox = ({ onAccountClicked }) => {
+export const AccountBox = ({ onAccountClicked, loginRoute }) => {
   const { user } = useContext(UserContext);
   return (
     <AccountBoxWrapper>
       <H5>{user.name}</H5>
-      <Icon icon={faUser} onClick={onAccountClicked} />
+      <Link to={loginRoute}>
+        <Icon icon={faUser} onClick={onAccountClicked} />
+      </Link>
     </AccountBoxWrapper>
   );
 };

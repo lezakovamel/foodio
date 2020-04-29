@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
@@ -7,6 +7,7 @@ import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
 
 import { AccountBox } from "../organisms/AccountBox";
+import { UserContext } from "../../Control";
 
 const Base = styled.div`
   margin: auto;
@@ -19,7 +20,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   padding-top: 10vh;
   width: 100%;
-  height: 100%;
+  min-height: 90vh;
 `;
 
 export const HeaderTitle = styled.div`
@@ -28,7 +29,14 @@ export const HeaderTitle = styled.div`
   transition: visibility 0s, opacity 0.2s linear;
 `;
 
-const BaseTemplate = ({ title, onAccountClicked, titleRef, children }) => {
+const BaseTemplate = ({ title, titleRef, children }) => {
+  const { user } = useContext(UserContext);
+  const [loginRoute, setLoginRoute] = useState("login");
+
+  const onLoginClicked = () => {
+    setLoginRoute(user.name !== "" ? "profile" : "login");
+  };
+
   return (
     <Theme>
       <Base>
@@ -36,7 +44,10 @@ const BaseTemplate = ({ title, onAccountClicked, titleRef, children }) => {
           <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>
-          <AccountBox onAccountClicked={onAccountClicked} />
+          <AccountBox
+            onAccountClicked={onLoginClicked}
+            loginRoute={loginRoute}
+          />
         </Header>
         <ContentWrapper>{children}</ContentWrapper>
         <Footer>Made with love and hate for css</Footer>

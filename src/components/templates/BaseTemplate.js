@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
@@ -22,16 +22,18 @@ const ContentWrapper = styled.div`
   height: 100%;
 `;
 
-const HeaderTitle = styled.div`
+export const HeaderTitle = styled.div`
   margin-left: 5vw;
+  visibility: ${(props) => props.visibility};
+  transition: visibility 0s, opacity 0.2s linear;
 `;
 
-const BaseTemplate = ({ title, onAccountClicked, children }) => {
+const BaseTemplate = ({ title, onAccountClicked, titleRef, children }) => {
   return (
     <Theme>
       <Base>
         <Header>
-          <HeaderTitle>
+          <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>
           <AccountBox onAccountClicked={onAccountClicked} />

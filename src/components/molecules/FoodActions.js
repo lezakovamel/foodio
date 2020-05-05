@@ -1,10 +1,11 @@
 import React from "react";
 
-import { faEdit, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faHeart, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "@emotion/styled";
 import { Icon } from "../atoms/Icon";
 import { P } from "../atoms/TextFields";
+import { ModalTypeEnum } from "../../tools/Enums";
 
 const Actions = styled.div`
   width: 40vw;
@@ -26,11 +27,12 @@ const IconBox = styled.div`
   flex-direction: row;
 `;
 
-const FoodActions = () => (
+const FoodActions = ({ openEdit }) => (
   <Actions>
     <P>_prep_time_</P>
     <IconBox>
-      <Icon icon={faEdit} />
+      <Icon icon={faPlus} onClick={() => openEdit(ModalTypeEnum.ADD_FOOD)} />
+      <Icon icon={faEdit} onClick={() => openEdit(ModalTypeEnum.EDIT_FOOD)} />
       <Icon icon={faHeart} />
     </IconBox>
   </Actions>

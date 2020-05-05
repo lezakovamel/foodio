@@ -14,6 +14,7 @@ const theme = {
   },
   padding: {
     primary: "10px",
+    medium: "25px",
     extended: "80px",
   },
   breakpoints: {
@@ -26,7 +27,6 @@ const theme = {
 };
 
 const Theme = ({ children }) => {
-  console.log(theme);
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 

@@ -6,5 +6,5 @@ export const Grid = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  align-content: space-around;
+  align-content: space-between;
 `;

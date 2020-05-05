@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
@@ -32,6 +32,24 @@ export const HeaderTitle = styled.div`
 const BaseTemplate = ({ title, titleRef, children }) => {
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScrollChanged);
+
+    titleRef.current.style.visibility = "hidden";
+    titleRef.current.style.opacity = "0";
+  }, []);
+
+  const onScrollChanged = (event) => {
+    if (window.scrollY >= window.innerHeight) {
+      titleRef.current.style.visibility = "visible";
+      titleRef.current.style.opacity = "1";
+    }
+    if (window.scrollY <= window.innerHeight) {
+      titleRef.current.style.visibility = "hidden";
+      titleRef.current.style.opacity = "0";
+    }
+  };
 
   const onLoginClicked = () => {
     setLoginRoute(user.name !== "" ? "profile" : "login");

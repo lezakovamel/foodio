@@ -8,12 +8,6 @@ const MainPage = () => {
   const sectionRef = useRef();
   const titleRef = useRef();
 
-  useEffect(() => {
-    window.addEventListener("scroll", onScrollChanged);
-
-    titleRef.current.style.visibility = "hidden";
-    titleRef.current.style.opacity = "0";
-  }, []);
 
   const onExploreFoodClicked = () => {
     {
@@ -25,18 +19,6 @@ const MainPage = () => {
       }
     }
   };
-
-  const onScrollChanged = (event) => {
-    if (window.scrollY >= window.innerHeight) {
-      titleRef.current.style.visibility = "visible";
-      titleRef.current.style.opacity = "1";
-    }
-    if (window.scrollY <= window.innerHeight) {
-      titleRef.current.style.visibility = "hidden";
-      titleRef.current.style.opacity = "0";
-    }
-  };
-
 
   return (
     <BaseTemplate

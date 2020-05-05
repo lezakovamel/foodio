@@ -6,8 +6,6 @@ import CardSection from "../organisms/CardSection";
 
 const MainPage = () => {
   const sectionRef = useRef();
-  const titleRef = useRef();
-
 
   const onExploreFoodClicked = () => {
     {
@@ -23,7 +21,6 @@ const MainPage = () => {
   return (
     <BaseTemplate
       title="Foodio"
-      titleRef={titleRef}
     >
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       <CardSection reference={sectionRef} />

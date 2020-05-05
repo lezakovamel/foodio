@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 
 import Theme from "../../styles/Theme";
@@ -29,7 +29,8 @@ export const HeaderTitle = styled.div`
   transition: visibility 0s, opacity 0.2s linear;
 `;
 
-const BaseTemplate = ({ title, titleRef, children }) => {
+const BaseTemplate = ({ title, children }) => {
+  const titleRef = useRef();
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
 

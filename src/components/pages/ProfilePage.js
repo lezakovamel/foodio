@@ -10,22 +10,13 @@ import firebase from "../../Firebase";
 import ThemeSwitcher from "../molecules/ThemeSwitcher";
 
 const ProfilePage = () => {
-  const { user ,userId} = useContext(UserContext);
+  const { user, userId } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   let favourites = useFavourites(user, setLoading, setError);
 
   const fullName = user.name !== "" ? `${user.name} ${user.surname}` : null;
-
-  const _propName = (prop, value) => {
-    for (var i in prop) {
-      if (prop[i] == value) {
-        return i;
-      }
-    }
-    return false;
-  };
 
   const onRemoveFromFavourites = (foodId) => {
     setLoading(true);
@@ -45,8 +36,9 @@ const ProfilePage = () => {
       });
   };
 
-  const onSwitchTheme = () => {
+  const onSwitchTheme = (wantedTheme) => {
     setLoading(true);
+
     firebase
       .firestore()
       .collection("users")
@@ -58,11 +50,7 @@ const ProfilePage = () => {
             : ThemeTypeEnum.LIGHT,
       })
       .then((_) => {
-        const currentTheme = _propName(ThemeTypeEnum, user.theme);
-        user.theme =
-          currentTheme === ThemeTypeEnum[1]
-            ? ThemeTypeEnum.DARK
-            : ThemeTypeEnum.LIGHT;
+        user.theme = wantedTheme;
         setLoading(false);
       });
   };

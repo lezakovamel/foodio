@@ -5,6 +5,7 @@ import { TitleWrapper } from "../atoms/TitleWrapper";
 import { Icon } from "../atoms/Icon";
 import { H5 } from "../atoms/Headlines";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { ThemeTypeEnum } from "../../tools/Enums";
 
 const SwitcherWrapper = styled.div`
   display: flex;
@@ -17,8 +18,8 @@ const ThemeSwitcher = ({ onSwitchTheme }) => {
       <TitleWrapper>
         <H5>Switch theme</H5>
       </TitleWrapper>
-      <Icon icon={faSun} onClick={onSwitchTheme} />
-      <Icon icon={faMoon} onClick={onSwitchTheme} />
+      <Icon icon={faSun} onClick={() => onSwitchTheme(ThemeTypeEnum.LIGHT)} />
+      <Icon icon={faMoon} onClick={() => onSwitchTheme(ThemeTypeEnum.DARK)} />
     </SwitcherWrapper>
   );
 };

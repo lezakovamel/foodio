@@ -17,8 +17,17 @@ const MainPage = () => {
     }
   };
 
+  const onSearchSubmit = (query) => {
+    //value is search query e.g. "Špagety"
+    console.log(query);
+  };
+
   return (
-    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN}>
+    <BaseTemplate
+      title="Foodio"
+      pageType={PageTypeEnum.MAIN}
+      onSearchSubmit={onSearchSubmit}
+    >
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       <CardSection reference={sectionRef} />
     </BaseTemplate>

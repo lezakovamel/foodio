@@ -70,7 +70,7 @@ const FoodCard = ({ title, prepTime }) => {
     <Card data-testid="testCard">
       <Overlay>
         <H4 centered>Preparation time</H4>
-        <P centered>{prepTime}m</P>
+        <P centered>{prepTime} minutes</P>
       </Overlay>
       <Placeholder />
       <Info>

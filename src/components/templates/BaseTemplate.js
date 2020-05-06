@@ -8,7 +8,7 @@ import Footer from "../organisms/Footer";
 
 import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
-import { PageTypeEnum } from "../../tools/Enums";
+import { PageTypeEnum, ThemeTypeEnum } from "../../tools/Enums";
 import { Icon } from "../atoms/Icon";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "../atoms/FormFields";
@@ -16,6 +16,7 @@ import { Input } from "../atoms/FormFields";
 const Base = styled.div`
   margin: auto;
   min-height: 100vh;
+  background-color: ${(props) => props.theme.colors.background};
 `;
 
 const ContentWrapper = styled.div`
@@ -86,7 +87,13 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
   };
 
   return (
-    <Theme>
+    <Theme
+      themeType={
+        user.theme === ThemeTypeEnum["LIGHT"]
+          ? ThemeTypeEnum.LIGHT
+          : ThemeTypeEnum.DARK
+      }
+    >
       <Base>
         <Header>
           <HeaderTitle ref={titleRef}>

@@ -10,7 +10,7 @@ import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
 
 const FoodDetailPage = () => {
-  const { user } = useContext(UserContext);
+  const { user, userId } = useContext(UserContext);
   const { id } = useParams();
   const [modalVisibility, setModalVisibility] = useState(false);
   const [modalType, setModalType] = useState(ModalTypeEnum.ADD_FOOD);
@@ -39,7 +39,7 @@ const FoodDetailPage = () => {
       await firebase
         .firestore()
         .collection("users")
-        .doc(user.uid)
+        .doc(userId)
         .update({
           favourite: firebase.firestore.FieldValue.arrayUnion("__food_id__"),
         });

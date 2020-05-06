@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 import { PageTypeEnum } from "../../tools/Enums";
 
 const LoginPage = () => {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setUserId } = useContext(UserContext);
   const { push } = useHistory();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -26,7 +26,10 @@ const LoginPage = () => {
         .collection("users")
         .doc(uid)
         .get()
-        .then((doc) => doc.data());
+        .then((doc) => {
+          setUserId(doc.id);
+          return doc.data();
+        });
 
       if (user !== null) {
         setUser(user);

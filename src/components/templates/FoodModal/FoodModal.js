@@ -11,7 +11,7 @@ import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 
-const FoodModal = ({ visibility, type, closeEdit }) => {
+const FoodModal = ({ visibility, type, closeEdit, message }) => {
   const title = () => {
     switch (type) {
       case ModalTypeEnum.ADD_FOOD:
@@ -20,6 +20,8 @@ const FoodModal = ({ visibility, type, closeEdit }) => {
         return "__food_name__";
       case ModalTypeEnum.NOT_LOGGED:
         return "Error";
+      case ModalTypeEnum.FAV_ADDED:
+        return "Yuch";
       default:
         break;
     }
@@ -31,8 +33,11 @@ const FoodModal = ({ visibility, type, closeEdit }) => {
         <Icon icon={faTimes} onClick={closeEdit} />
       </Modal.Header>
       <Modal.Body>
-       {type !== ModalTypeEnum.NOT_LOGGED ?  <FoodForm type={type} />: <P>
-         Please, log in for saving your favourite foods.</P>}
+        {type === ModalTypeEnum.ADD_FOOD || type === ModalTypeEnum.EDIT_FOOD ? (
+          <FoodForm type={type} />
+        ) : (
+          <P>{message}</P>
+        )}
       </Modal.Body>
     </Modal>
   );

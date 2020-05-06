@@ -8,6 +8,7 @@ import Footer from "../organisms/Footer";
 
 import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
+import { PageTypeEnum } from "../../tools/Enums";
 
 const Base = styled.div`
   margin: auto;
@@ -29,18 +30,18 @@ export const HeaderTitle = styled.div`
   transition: visibility 0s, opacity 0.2s linear;
 `;
 
-//TODO determine pageType for visibility , main not visible, other visible
-
 const BaseTemplate = ({ title, pageType, children }) => {
   const titleRef = useRef();
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
 
   useEffect(() => {
-    window.addEventListener("scroll", onScrollChanged);
+    if (pageType === PageTypeEnum.MAIN) {
+      window.addEventListener("scroll", onScrollChanged);
 
-    titleRef.current.style.visibility = "hidden";
-    titleRef.current.style.opacity = "0";
+      titleRef.current.style.visibility = "hidden";
+      titleRef.current.style.opacity = "0";
+    }
   }, []);
 
   const onScrollChanged = (event) => {

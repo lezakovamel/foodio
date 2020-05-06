@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
-import { ModalTypeEnum } from "../../tools/Enums";
+import { ModalTypeEnum, PageTypeEnum } from "../../tools/Enums";
 
 const FoodDetailPage = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -16,7 +16,7 @@ const FoodDetailPage = () => {
   const closeEdit = (type) => setModalVisibility(false);
 
   return (
-    <BaseTemplate title="_food_name_">
+    <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
       <FoodModal
         visibility={modalVisibility}
         type={modalType}

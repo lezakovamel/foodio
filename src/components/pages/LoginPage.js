@@ -5,6 +5,7 @@ import LoginForm from "../organisms/LoginForm";
 import firebase from "../../Firebase";
 import { UserContext } from "../../Control";
 import { useHistory } from "react-router";
+import { PageTypeEnum } from "../../tools/Enums";
 
 const LoginPage = () => {
   const { setUser } = useContext(UserContext);
@@ -30,7 +31,7 @@ const LoginPage = () => {
   };
 
   return (
-    <BaseTemplate title="Login">
+    <BaseTemplate title="Login" pageType={PageTypeEnum.LOGIN}>
       <LoginForm onLogin={onLogin} />
     </BaseTemplate>
   );

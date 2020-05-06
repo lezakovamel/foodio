@@ -1,21 +1,22 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Icon } from "../atoms/Icon";
-import { faCross } from "@fortawesome/free-solid-svg-icons";
 import { LogoTitle } from "../atoms/TextFields";
 
 const NotFoundWrapper = styled.div`
   display: flex;
+  margin: auto;
+  color: ${(props) => props.theme.colors.primaryLight};
+  box-sizing: border-box;
+  padding: 0px 10vw;
 `;
 
 const NotFoundText = () => {
   return (
-    <NotFoundText>
-      <Icon icon={faCross} />
-      <LogoTitle>
-        Page is not found or you are forbiden to se its content
+    <NotFoundWrapper>
+      <LogoTitle centered>
+        Page is not found or you are forbiden to see its content
       </LogoTitle>
-    </NotFoundText>
+    </NotFoundWrapper>
   );
 };
 export default NotFoundText;

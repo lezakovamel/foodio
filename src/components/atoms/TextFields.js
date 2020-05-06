@@ -11,4 +11,5 @@ export const Label = styled.label`
 
 export const LogoTitle = styled.div`
   font-size: 72px;
+  text-align: ${(props) => (props.centered ? `center` : `left`)};
 `;

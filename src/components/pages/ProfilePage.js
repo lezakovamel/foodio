@@ -13,9 +13,11 @@ const ProfilePage = () => {
   const [error, setError] = useState(false);
 
   const favourites = useFavourites(user, setLoading, setError);
+  const fullName = user.name !== "" ? `${user.name} ${user.surname}` : null;
+
   return (
     <BaseTemplate
-      title={`${user.name} ${user.surname}`}
+      title={fullName !== null ? fullName : ""}
       pageType={PageTypeEnum.PROFILE}
     >
       {!error ? (

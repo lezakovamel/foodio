@@ -65,16 +65,16 @@ const Info = styled.div`
 `;
 
 //TODO on hover create white ovrelay with opacity, at overlay show cooking time
-const FoodCard = () => {
+const FoodCard = ({ title, prepTime }) => {
   return (
     <Card data-testid="testCard">
       <Overlay>
-        <H4 centered>_prep_time_</H4>
-        <P centered>_xx_min_</P>
+        <H4 centered>Preparation time</H4>
+        <P centered>{prepTime}m</P>
       </Overlay>
       <Placeholder />
       <Info>
-        <H3>_food_desc_</H3>
+        <H3>{title}</H3>
       </Info>
     </Card>
   );

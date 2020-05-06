@@ -17,18 +17,23 @@ const TitleWrapper = styled.div`
   margin: ${(props) => props.theme.padding.medium};
 `;
 
-const CardSection = ({ reference }) => {
+const CardSection = ({ reference, title, data }) => {
+  const renderCards = () =>
+    data &&
+    data.map((food) => (
+      <FoodCard
+        key={food._id}
+        title={food.title}
+        prepTime={food.preparationTime}
+      />
+    ));
+
   return (
     <SectionWrapper ref={reference}>
       <TitleWrapper>
-        <H5>Choose žrádýlko</H5>
+        <H5>{title}</H5>
       </TitleWrapper>
-      <Grid>
-        <FoodCard />
-        <FoodCard />
-        <FoodCard />
-        <FoodCard />
-      </Grid>
+      <Grid>{renderCards()}</Grid>
     </SectionWrapper>
   );
 };

@@ -17,14 +17,17 @@ const TitleWrapper = styled.div`
   margin: ${(props) => props.theme.padding.medium};
 `;
 
-const CardSection = ({ reference, title, data }) => {
+const CardSection = ({ reference, title, data, isProfile, onIconClick }) => {
   const renderCards = () =>
     data &&
     data.map((food) => (
       <FoodCard
         key={food._id}
+        id={food._id}
         title={food.title}
         prepTime={food.preparationTime}
+        isProfile={isProfile}
+        onIconClick={onIconClick}
       />
     ));
 

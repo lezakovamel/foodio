@@ -4,6 +4,8 @@ import styled from "@emotion/styled/macro";
 import "./FoodCard.scss";
 import { H3, H4 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
+import { Icon } from "../atoms/Icon";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Overlay = styled.div`
   width: 100%;
@@ -64,11 +66,15 @@ const Info = styled.div`
   justify-content: center;
 `;
 
-//TODO on hover create white ovrelay with opacity, at overlay show cooking time
-const FoodCard = ({ title, prepTime }) => {
+const FoodCard = ({ title, prepTime, isProfile, id, onIconClick }) => {
   return (
     <Card data-testid="testCard">
       <Overlay>
+        {!isProfile ? (
+          <div />
+        ) : (
+          <Icon icon={faTimes} onClick={() => onIconClick(id)} />
+        )}
         <H4 centered>Preparation time</H4>
         <P centered>{prepTime} minutes</P>
       </Overlay>

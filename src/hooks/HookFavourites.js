@@ -23,5 +23,7 @@ export function useFavourites(user, setLoading, setError) {
     return () => getFavourites();
   }, []);
 
+  console.log(favourites);
+
   return favourites;
 }

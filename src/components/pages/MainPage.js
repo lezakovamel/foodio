@@ -29,7 +29,7 @@ const MainPage = () => {
       onSearchSubmit={onSearchSubmit}
     >
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
-      <CardSection reference={sectionRef} title="Choose žrádýlko" />
+      <CardSection reference={sectionRef} title="Choose žrádýlko" isProfile={false}/>
     </BaseTemplate>
   );
 };

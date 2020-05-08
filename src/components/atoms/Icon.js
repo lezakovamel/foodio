@@ -5,12 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const IconWrapper = styled.div`
   box-sizing: border-box;
+  margin: auto;
   padding: ${(props) => props.theme.padding.primary};
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 export const Icon = ({ icon, onClick }) => (
   <IconWrapper>
-    <FontAwesomeIcon icon={icon} size="2x" color="#F2C12E" onClick={onClick}/>
+    <FontAwesomeIcon icon={icon} size="2x" color="#F2C12E" onClick={onClick} />
   </IconWrapper>
 );

@@ -13,9 +13,17 @@ const InputField = styled.input`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};
+  &:focus {
+    outline: 2px solid ${(props) => props.theme.colors.primary};
+  }
+  &::selection {
+    background: ${(props) => props.theme.colors.primaryLight};
+  }
 `;
 export const Input = ({ name, type, value, setValue }) => {
+
   //TODO function for capitalizing first letter
   return (
     <InputWrapper>

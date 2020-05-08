@@ -7,7 +7,8 @@ import { ThemeTypeEnum } from "./tools/Enums";
 
 const App = () => {
   const [user, setUser] = useState({ name: "", theme: ThemeTypeEnum.LIGHT });
-  const userValue = { user, setUser };
+  const [userId, setUserId] = useState(null);
+  const userValue = { user, setUser, userId, setUserId };
 
   return (
     <UserContext.Provider value={userValue}>

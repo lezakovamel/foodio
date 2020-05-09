@@ -3,6 +3,7 @@ import React from "react";
 import styled from "@emotion/styled/macro";
 import "./FoodCard.scss";
 import { H3, H4 } from "../atoms/Headlines";
+import { useHistory } from "react-router-dom";
 import { P } from "../atoms/TextFields";
 
 const Overlay = styled.div`
@@ -64,9 +65,11 @@ const Info = styled.div`
 `;
 
 //TODO on hover create white ovrelay with opacity, at overlay show cooking time
-const FoodCard = () => {
+const FoodCard = ({ id, title, preparationTime, slug, lastModifiedDate }) => {
+  const { push } = useHistory();
+  const handleGoToRecipeDetail = (recipeId) => push(`/recipe/${recipeId}`);
   return (
-    <Card data-testid="testCard">
+    <Card data-testid="testCard" onClick={() => handleGoToRecipeDetail(1)}>
       <Overlay>
         <H4 centered>_prep_time_</H4>
         <P centered>_xx_min_</P>

@@ -17,16 +17,13 @@ const TitleWrapper = styled.div`
   margin: ${(props) => props.theme.padding.medium};
 `;
 
-const CardSection = ({ reference }) => {
+const CardSection = ({ reference, data }) => {
   return (
     <SectionWrapper ref={reference}>
       <TitleWrapper>
         <H5>Choose žrádýlko</H5>
       </TitleWrapper>
       <Grid>
-        <FoodCard />
-        <FoodCard />
-        <FoodCard />
         <FoodCard />
       </Grid>
     </SectionWrapper>

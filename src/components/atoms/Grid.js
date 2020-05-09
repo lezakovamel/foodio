@@ -4,7 +4,7 @@ export const Grid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: auto;
+  margin: 0 auto 0 auto;
   /*flex-direction: row;
   justify-content: space-evenly;
   align-items: center;

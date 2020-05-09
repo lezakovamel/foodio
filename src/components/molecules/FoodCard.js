@@ -32,6 +32,7 @@ const Card = styled.div`
   /*border-radius: 10px;*/
   position: relative;
   overflow: hidden;
+  background-color: ${(props) => props.theme.colors.primary};
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   &:hover {
@@ -43,7 +44,7 @@ const Card = styled.div`
   }
   @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
     margin-bottom: ${(props) => props.theme.padding.primary};
-    width: 150px;
+    width: 48%;
     height: 175px;
   }
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
@@ -69,10 +70,18 @@ const Placeholder = styled.div`
 const Info = styled.div`
   width: 100%;
   height: 90px;
-  background-color: ${(props) => props.theme.colors.white};
-  opacity: 0.5;
+  color:white !important;
+  /*background-color: ${(props) => props.theme.colors.white};
+  opacity: 0.5;*/
   display: flex;
   justify-content: center;
+  margin:auto;
+
+  h3{
+    color:white !important;
+    margin-bottom:none !important;
+    margin:auto !important;
+  }
 `;
 
 //TODO on hover create white ovrelay with opacity, at overlay show cooking time
@@ -98,7 +107,7 @@ const FoodCard = ({
       </Overlay>
       <Placeholder />
       <Info>
-        <H3>{title}</H3>
+        <H3>Tu title:{title}</H3>
       </Info>
     </Card>
   );

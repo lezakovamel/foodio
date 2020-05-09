@@ -8,7 +8,7 @@ const ContainerDiv = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  min-height: 90vh;
+  margin-bottom:10vh;
   @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
     width: 95vw;
   }

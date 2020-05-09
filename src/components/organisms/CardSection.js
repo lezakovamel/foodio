@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import FoodCard from "../molecules/FoodCard";
-import { H5 } from "../atoms/Headlines";
+import { H2 } from "../atoms/Headlines";
 import { Grid } from "../atoms/Grid";
 import { TitleWrapper } from "../atoms/TitleWrapper";
 import Container from "../atoms/Container";
@@ -37,12 +37,12 @@ const CardSection = ({
     ));
   return (
     <SectionWrapper ref={reference}>
-      <TitleWrapper>
-        <H5>{title}</H5>
-      </TitleWrapper>
       <Grid>{renderCards()}</Grid>
 
       <Container>
+        <TitleWrapper>
+          <H2>{title}</H2>
+        </TitleWrapper>
         <Grid>
           <FoodCard />
           <FoodCard />

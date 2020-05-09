@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 export const HeaderWrapper = styled.header`
-  width: 100%;
+  width: 100vw;
   height: 10vh;
   border-bottom: 2px solid ${(props) => props.theme.colors.primaryLight};
   color: ${(props) => props.theme.colors.primaryDark};

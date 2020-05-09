@@ -25,7 +25,7 @@ const MainPage = () => {
 
   const handleChange = (event) => setRecipeName(event.target.value);
 
-  useEffect(() => {
+  /*useEffect(() => {
     window.addEventListener("scroll", onScrollChanged);
 
     titleRef.current.style.visibility = "hidden";
@@ -39,8 +39,16 @@ const MainPage = () => {
         top: sectionRef.current.offsetTop,
       });
     }
-  };
+  };*/
 
+  const onExploreFoodClicked = () => {
+    if (sectionRef.current) {
+      window.scrollTo({
+        behavior: "smooth",
+        top: sectionRef.current.offsetTop,
+      });
+    }
+  };
   const onSearchSubmit = (query) => {
     //value is search query e.g. "Špagety"
     console.log(query);
@@ -60,9 +68,11 @@ const MainPage = () => {
       console.log(data);
 
       setRecipesData({ ...recipesData, data: data, isLoading: false });
+      console.log(data[1].slug);
     } catch ({ message }) {
       setRecipesData({ ...recipesData, isLoading: false, error: message });
     }
+    
   };
 
   const renderRecipes = () => {
@@ -72,6 +82,8 @@ const MainPage = () => {
     if (recipesData.message) {
       return <p>{recipeData.message}</p>;
     }
+    
+
     /*return data.map(
       ({ id, title, preparationTime, slug, lastModifiedDate }) => (
         <FoodCard
@@ -102,17 +114,21 @@ const MainPage = () => {
     }
   };*/
   return (
-    <BaseTemplate title="Foodio" titleRef={titleRef}>
+    <BaseTemplate title="Foodio" /*titleRef={titleRef}*/>
       <SearchBar handleChange={handleChange} recipeName={recipeName} />
-    <BaseTemplate
+      {/*</BaseTemplate><BaseTemplate
       title="Foodio"
       pageType={PageTypeEnum.MAIN}
       onSearchSubmit={onSearchSubmit}
-    >
+    >*/}
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       <CardSection reference={sectionRef} />
       {renderRecipes()}
-      <CardSection reference={sectionRef} title="Choose žrádýlko" isProfile={false}/>
+      <CardSection
+        reference={sectionRef}
+        title="Choose žrádýlko"
+        isProfile={false}
+      />
     </BaseTemplate>
   );
 };

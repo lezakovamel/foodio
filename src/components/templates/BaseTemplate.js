@@ -34,6 +34,9 @@ export const HeaderTitle = styled.div`
 
 const SearchBar = styled.div`
   display: flex;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
+  }
 `;
 
 const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {

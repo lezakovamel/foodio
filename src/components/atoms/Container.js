@@ -7,6 +7,7 @@ const ContainerDiv = styled.div`
   margin: auto;
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
   min-height: 90vh;
   @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
     width: 95vw;

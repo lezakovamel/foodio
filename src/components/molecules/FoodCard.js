@@ -5,6 +5,8 @@ import "./FoodCard.scss";
 import { H3, H4 } from "../atoms/Headlines";
 import { useHistory } from "react-router-dom";
 import { P } from "../atoms/TextFields";
+import { Icon } from "../atoms/Icon";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Overlay = styled.div`
   width: 100%;
@@ -71,12 +73,17 @@ const FoodCard = ({ id, title, preparationTime, slug, lastModifiedDate }) => {
   return (
     <Card data-testid="testCard" onClick={() => handleGoToRecipeDetail(1)}>
       <Overlay>
-        <H4 centered>_prep_time_</H4>
-        <P centered>_xx_min_</P>
+        {!isProfile ? (
+          <div />
+        ) : (
+          <Icon icon={faTimes} onClick={() => onIconClick(id)} />
+        )}
+        <H4 centered>Preparation time</H4>
+        <P centered>{prepTime} minutes</P>
       </Overlay>
       <Placeholder />
       <Info>
-        <H3>_food_desc_</H3>
+        <H3>{title}</H3>
       </Info>
     </Card>
   );

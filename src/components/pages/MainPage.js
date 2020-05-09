@@ -6,10 +6,10 @@ import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";
 import SearchBar from "../molecules/SearchBar";
 import FoodCard from "../molecules/FoodCard";
+import { PageTypeEnum } from "../../tools/Enums";
 
 const MainPage = () => {
   const sectionRef = useRef();
-  const titleRef = useRef();
 
   const [recipeData, setRecipeData] = useState({
     cards: [],
@@ -33,25 +33,17 @@ const MainPage = () => {
   }, []);
 
   const onExploreFoodClicked = () => {
-    {
-      if (sectionRef.current) {
-        window.scrollTo({
-          behavior: "smooth",
-          top: sectionRef.current.offsetTop,
-        });
-      }
+    if (sectionRef.current) {
+      window.scrollTo({
+        behavior: "smooth",
+        top: sectionRef.current.offsetTop,
+      });
     }
   };
 
-  const onScrollChanged = (event) => {
-    if (window.scrollY >= window.innerHeight) {
-      titleRef.current.style.visibility = "visible";
-      titleRef.current.style.opacity = "1";
-    }
-    if (window.scrollY <= window.innerHeight) {
-      titleRef.current.style.visibility = "hidden";
-      titleRef.current.style.opacity = "0";
-    }
+  const onSearchSubmit = (query) => {
+    //value is search query e.g. "Špagety"
+    console.log(query);
   };
   const { push } = useHistory();
   useEffect(() => {
@@ -112,9 +104,15 @@ const MainPage = () => {
   return (
     <BaseTemplate title="Foodio" titleRef={titleRef}>
       <SearchBar handleChange={handleChange} recipeName={recipeName} />
+    <BaseTemplate
+      title="Foodio"
+      pageType={PageTypeEnum.MAIN}
+      onSearchSubmit={onSearchSubmit}
+    >
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       <CardSection reference={sectionRef} />
       {renderRecipes()}
+      <CardSection reference={sectionRef} title="Choose žrádýlko" isProfile={false}/>
     </BaseTemplate>
   );
 };

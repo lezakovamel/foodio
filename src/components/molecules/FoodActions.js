@@ -27,13 +27,13 @@ const IconBox = styled.div`
   flex-direction: row;
 `;
 
-const FoodActions = ({ openEdit }) => (
+const FoodActions = ({ openEdit, onFavouriteClicked }) => (
   <Actions>
     <P>_prep_time_</P>
     <IconBox>
       <Icon icon={faPlus} onClick={() => openEdit(ModalTypeEnum.ADD_FOOD)} />
       <Icon icon={faEdit} onClick={() => openEdit(ModalTypeEnum.EDIT_FOOD)} />
-      <Icon icon={faHeart} />
+      <Icon icon={faHeart} onClick={onFavouriteClicked} />
     </IconBox>
   </Actions>
 );

@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.header`
   height: 10vh;
   border-bottom: 2px solid ${(props) => props.theme.colors.primaryLight};
   color: ${(props) => props.theme.colors.primaryDark};
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.background};
   display: flex;
   flex-wrap: wrap;
   align-content: center;

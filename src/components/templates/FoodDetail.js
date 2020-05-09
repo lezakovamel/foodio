@@ -50,12 +50,15 @@ const Steps = styled.div`
   box-sizing: border-box;
 `;
 
-const FoodDetail = ({openEdit}) => {
+const FoodDetail = ({ openModal, onFavouriteClicked }) => {
   return (
     <Wrapper>
       <BaseInfo>
         <Img src="_img_src_from_search_api_" alt="_food_title_"></Img>
-        <FoodActions openEdit={openEdit} />
+        <FoodActions
+          openEdit={openModal}
+          onFavouriteClicked={onFavouriteClicked}
+        />
         <Ingredients>
           <H1>Ingredients</H1>
           <IngredientsList>

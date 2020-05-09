@@ -7,7 +7,7 @@ export const FooterWrapper = styled.footer`
   height: 10vh;
   border-top: 2px solid ${(props) => props.theme.colors.primaryLight};
   color: ${(props) => props.theme.colors.primaryDark};
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.background};
   position: relative;
   bottom: 0;
   display: flex;

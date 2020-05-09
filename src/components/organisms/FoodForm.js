@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 
-import styled from "@emotion/styled";
 import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
 import { ModalTypeEnum } from "../../tools/Enums";

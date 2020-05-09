@@ -5,6 +5,7 @@ export const FormWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  align-content:center;
   margin: auto;
   justify-self: center;
   height: 100%;

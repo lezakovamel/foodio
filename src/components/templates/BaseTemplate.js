@@ -27,9 +27,13 @@ const ContentWrapper = styled.div`
   min-height: 90vh;
 `;
 export const HeaderTitle = styled.div`
-  margin-left: 5vw;
+  margin: auto 0 auto 3vw;
   visibility: ${(props) => props.visibility};
   transition: visibility 0s, opacity 0.2s linear;
+  h1 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
 `;
 
 const SearchBar = styled.div`

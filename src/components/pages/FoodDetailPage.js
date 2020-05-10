@@ -8,14 +8,19 @@ import { UserContext } from "../../Control";
 import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
+import {useGetData} from "../../hooks/HookGetDetail";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
-  const { id } = useParams();
+  const { slug } = useParams();
+
+  console.log(`Slug ${slug}`);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [modalType, setModalType] = useState(ModalTypeEnum.ADD_FOOD);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+const volani = useGetData(slug);
 
   const openModal = (type, message) => {
     setModalType(type);
@@ -52,15 +57,20 @@ const FoodDetailPage = () => {
   };
 
   return (
-    <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
+    <BaseTemplate title="title" pageType={PageTypeEnum.DETAIL}>
       <FoodModal
         visibility={modalVisibility}
         type={modalType}
         closeEdit={closeEdit}
         message={message}
       />
-      {!loading ? (
+      {loading ? (
         <FoodDetail
+          key={volani.slug}
+          title={volani.title}
+          prepTime={volani.prepTime}
+          slug={volani.slug}
+          lastModifiedDate={volani.lastModifiedDate}
           openModal={openModal}
           onFavouriteClicked={onFavouriteClicked}
         />

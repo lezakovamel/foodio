@@ -1,4 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import axios from "axios";
 
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
@@ -8,7 +10,8 @@ import { UserContext } from "../../Control";
 import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
-import {useGetData} from "../../hooks/HookGetDetail";
+import { useGetData } from "../../hooks/HookGetDetail";
+import { useGetIngredients } from "../../hooks/HookGetIngredients";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
@@ -23,12 +26,13 @@ const FoodDetailPage = () => {
   });
   const [loading, setLoading] = useState(false);
 
-const volani = useGetData(slug);
+  const volani = useGetData(slug);
+  useGetIngredients();
 
   const openModal = (type, message) => {
     setModalData({ type: type, visibility: true, message: message });
   };
-  const onModalClose = (type) => setModalData({visibility:false});
+  const onModalClose = (type) => setModalData({ visibility: false });
 
   const onFavouriteClicked = () => {
     user.name !== ""
@@ -52,7 +56,7 @@ const volani = useGetData(slug);
       openModal(ModalTypeEnum.FAV_ADDED, "Food was added to favourites!");
       setLoading(false);
     } catch (error) {
-      setModalData({message: error.message});
+      setModalData({ message: error.message });
       setLoading(false);
     }
   };
@@ -61,7 +65,6 @@ const volani = useGetData(slug);
     <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
       {!loading ? (
-
         <FoodDetail
           key={volani.slug}
           title={volani.title}

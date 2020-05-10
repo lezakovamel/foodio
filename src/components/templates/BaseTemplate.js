@@ -10,7 +10,7 @@ import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
 import { PageTypeEnum, ThemeTypeEnum, ModalTypeEnum } from "../../tools/Enums";
 import { Icon } from "../atoms/Icon";
-import { faSearch, faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "../atoms/FormFields";
 import { ActionBox } from "../organisms/ActionBox";
 import FoodModal from "./FoodModal/FoodModal";
@@ -133,7 +133,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     >
       <Base>
         <Header>
-          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef}/>
+          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
           <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import styled from "@emotion/styled";
 
 import { Icon } from "../atoms/Icon";
-import { faUser, faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const ActionBoxWrapper = styled.div`
   display: flex;
@@ -16,8 +16,8 @@ const ActionBoxWrapper = styled.div`
 export const ActionBox = ({ onDispalySearchClicked, onAddFoodClicked }) => {
   return (
     <ActionBoxWrapper>
-        <Icon icon={faSearch} onClick={onDispalySearchClicked} />
-        <Icon icon={faPlus} onClick={onAddFoodClicked} />
+      <Icon icon={faSearch} onClick={onDispalySearchClicked} />
+      <Icon icon={faPlus} onClick={onAddFoodClicked} />
     </ActionBoxWrapper>
   );
 };

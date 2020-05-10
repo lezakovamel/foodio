@@ -3,8 +3,10 @@ import styled from "@emotion/styled";
 export const Grid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto 0 auto;
+  /*flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  align-content: space-between;
+  align-content: space-between;*/
 `;

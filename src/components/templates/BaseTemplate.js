@@ -18,7 +18,6 @@ const Base = styled.div`
   min-height: 100vh;
   background-color: ${(props) => props.theme.colors.background};
 `;
-
 const ContentWrapper = styled.div`
   margin: auto;
   display: flex;
@@ -27,15 +26,21 @@ const ContentWrapper = styled.div`
   width: 100%;
   min-height: 90vh;
 `;
-
 export const HeaderTitle = styled.div`
-  margin-left: 5vw;
+  margin: auto 0 auto 3vw;
   visibility: ${(props) => props.visibility};
   transition: visibility 0s, opacity 0.2s linear;
+  h1 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
 `;
 
 const SearchBar = styled.div`
   display: flex;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
+  }
 `;
 
 const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {

@@ -5,8 +5,6 @@ import "./FoodCard.scss";
 import { H3, H4 } from "../atoms/Headlines";
 import { useHistory } from "react-router-dom";
 import { P } from "../atoms/TextFields";
-import { Icon } from "../atoms/Icon";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Overlay = styled.div`
   width: 100%;

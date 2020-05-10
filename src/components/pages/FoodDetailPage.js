@@ -12,17 +12,17 @@ import Loading from "../atoms/Loading/Loading";
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
   const { id } = useParams();
-  const [modalVisibility, setModalVisibility] = useState(false);
-  const [modalType, setModalType] = useState(ModalTypeEnum.ADD_FOOD);
+  const [modalData, setModalData] = useState({
+    type: ModalTypeEnum.ADD_FOOD,
+    visibility: false,
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const openModal = (type, message) => {
-    setModalType(type);
-    setModalVisibility(true);
-    setMessage(message);
+    setModalData({ type: type, visibility: true, message: message });
   };
-  const closeEdit = (type) => setModalVisibility(false);
+  const onModalClose = (type) => setModalData({visibility:false});
 
   const onFavouriteClicked = () => {
     user.name !== ""
@@ -46,19 +46,14 @@ const FoodDetailPage = () => {
       openModal(ModalTypeEnum.FAV_ADDED, "Food was added to favourites!");
       setLoading(false);
     } catch (error) {
-      setMessage(error.message);
+      setModalData({message: error.message});
       setLoading(false);
     }
   };
 
   return (
     <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
-      <FoodModal
-        visibility={modalVisibility}
-        type={modalType}
-        closeEdit={closeEdit}
-        message={message}
-      />
+      <FoodModal data={modalData} onClose={onModalClose} />
       {!loading ? (
         <FoodDetail
           openModal={openModal}

@@ -47,7 +47,8 @@ const SearchBar = styled.div`
   }
 `;
 
-const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
+
+const BaseTemplate = ({ title, pageType,  onSearchChanged, children }) => {
   const titleRef = useRef();
   const searchRef = useRef();
   const backRef = useRef();
@@ -71,7 +72,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
       searchRef.current.style.visibility = "hidden";
       searchRef.current.style.opacity = "0";
     } else {
-      searchRef.current.style.visibility = "hidden";
+      searchRef.current.style.display = "hidden";
       searchRef.current.style.opacity = "0";
       backRef.current.style.display = "none";
     }
@@ -122,7 +123,6 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
       history.goBack();
     }
   };
-
   return (
     <Theme
       themeType={
@@ -133,13 +133,17 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     >
       <Base>
         <Header>
-          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef}/>
+          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
           <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>
           <SearchBar ref={searchRef}>
-            <Icon icon={faSearch} />
-            <Input type="text" value={searchQuery} setValue={setSearchQuery} />
+            <Input
+              type="text"
+              value={searchQuery}
+              setValue={setSearchQuery}
+              onChange={onSearchChanged}
+            />
           </SearchBar>
           <ActionBox
             onAddFoodClicked={onAddFoodClicked}

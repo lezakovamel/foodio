@@ -19,14 +19,13 @@ const MainPage = () => {
       });
     }
   };
-  const onSearchSubmit = (query) => {
-    //value is search query e.g. "Špagety"
-    console.log(query);
+  const onSearchChanged = (query) => {
+   setReci
   };
   return (
     <BaseTemplate
       title="Foodio"
-      /*titleRef={titleRef}*/ onSearchSubmit={onSearchSubmit}
+      /*titleRef={titleRef}*/
     >
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       {!recipeData.isLoading ? (

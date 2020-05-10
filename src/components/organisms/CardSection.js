@@ -23,9 +23,9 @@ const CardSection = ({ reference, title, data, isProfile, onIconClick }) => {
         key={food._id}
         id={food._id}
         title={food.title}
-        /*prepTime={food.preparationTime}
+        prepTime={food.preparationTime}
         isProfile={isProfile}
-        onIconClick={onIconClick}*/
+        onIconClick={onIconClick}
       />
     ));
   return (

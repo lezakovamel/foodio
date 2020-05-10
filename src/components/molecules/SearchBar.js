@@ -10,10 +10,13 @@ const SearchbarWrapper = styled.div`
 const SearchBar = ({ handleChange, recipeName }) => {
   return (
     <SearchbarWrapper>
-      <input onChange={handleChange} value={recipeName}></input>
-      <button>
-        <SearchIcon />
-      </button>
+      <input
+        onChange={handleChange}
+        value={recipeName}
+        onFocus={() => {
+          alert("now");
+        }}
+      ></input>
     </SearchbarWrapper>
   );
 };

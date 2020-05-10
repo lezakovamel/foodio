@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../Control";
 import BaseTemplate from "../templates/BaseTemplate";
 import { PageTypeEnum, ThemeTypeEnum } from "../../tools/Enums";
@@ -28,7 +28,7 @@ const ProfilePage = () => {
         favourite: firebase.firestore.FieldValue.arrayRemove(foodId),
       })
       .then((_) => {
-        user.favourite = user.favourite.filter((value) => value != foodId);
+        user.favourite = user.favourite.filter((value) => value !== foodId);
         favourites = favourites.filter((value) =>
           user.favourite.includes(value._id)
         );

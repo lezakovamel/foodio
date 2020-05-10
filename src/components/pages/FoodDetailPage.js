@@ -12,22 +12,23 @@ import {useGetData} from "../../hooks/HookGetDetail";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
+
   const { slug } = useParams();
 
-  console.log(`Slug ${slug}`);
-  const [modalVisibility, setModalVisibility] = useState(false);
-  const [modalType, setModalType] = useState(ModalTypeEnum.ADD_FOOD);
+  const { id } = useParams();
+  const [modalData, setModalData] = useState({
+    type: ModalTypeEnum.ADD_FOOD,
+    visibility: false,
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
 const volani = useGetData(slug);
 
   const openModal = (type, message) => {
-    setModalType(type);
-    setModalVisibility(true);
-    setMessage(message);
+    setModalData({ type: type, visibility: true, message: message });
   };
-  const closeEdit = (type) => setModalVisibility(false);
+  const onModalClose = (type) => setModalData({visibility:false});
 
   const onFavouriteClicked = () => {
     user.name !== ""
@@ -51,20 +52,16 @@ const volani = useGetData(slug);
       openModal(ModalTypeEnum.FAV_ADDED, "Food was added to favourites!");
       setLoading(false);
     } catch (error) {
-      setMessage(error.message);
+      setModalData({message: error.message});
       setLoading(false);
     }
   };
 
   return (
-    <BaseTemplate title="title" pageType={PageTypeEnum.DETAIL}>
-      <FoodModal
-        visibility={modalVisibility}
-        type={modalType}
-        closeEdit={closeEdit}
-        message={message}
-      />
-      {loading ? (
+    <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
+      <FoodModal data={modalData} onClose={onModalClose} />
+      {!loading ? (
+
         <FoodDetail
           key={volani.slug}
           title={volani.title}

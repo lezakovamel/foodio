@@ -22,8 +22,7 @@ const InputField = styled.input`
     background: ${(props) => props.theme.colors.primaryLight};
   }
 `;
-export const Input = ({ name, type, value, setValue }) => {
-
+export const Input = ({ name, type, value, setValue, onChange }) => {
   //TODO function for capitalizing first letter
   return (
     <InputWrapper>
@@ -32,7 +31,12 @@ export const Input = ({ name, type, value, setValue }) => {
         name={name}
         type={type}
         value={value}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => {
+          setValue(event.target.value);
+          if (onChange !== undefined) {
+            onChange(event.target.value);
+          }
+        }}
       ></InputField>
     </InputWrapper>
   );

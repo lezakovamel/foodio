@@ -14,10 +14,12 @@ const AccountBoxWrapper = styled.div`
   margin: auto 3vw auto 0;
 `;
 
-export const AccountBox = ({ onAccountClicked }) => {
+export const AccountBox = ({ onAccountClicked, loginRoute }) => {
   return (
     <AccountBoxWrapper>
-      <Icon icon={faUser} onClick={onAccountClicked} />
+      <Link to={loginRoute}>
+        <Icon icon={faUser} onClick={onAccountClicked} />
+      </Link>
     </AccountBoxWrapper>
   );
 };

@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 
-import {push} from "react-router-dom"
-
 import Theme from "../../styles/Theme";
 import { H1 } from "../atoms/Headlines";
 import Header from "../organisms/Header";
@@ -54,6 +52,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
   const searchRef = useRef();
   const backRef = useRef();
   const { user } = useContext(UserContext);
+  const [loginRoute, setLoginRoute] = useState("login");
   const [searchQuery, setSearchQuery] = useState("");
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
@@ -61,8 +60,6 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     message: "",
   });
   const history = useHistory();
-  
-  const { push } = useHistory();
 
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
@@ -108,7 +105,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
   };
 
   const onLoginClicked = () => {
-   push(user.name !== "" ? "/profile" : "/login");
+    setLoginRoute(user.name !== "" ? "profile" : "login");
   };
 
   const openModal = (type, message) => {
@@ -136,7 +133,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     >
       <Base>
         <Header>
-          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
+          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef}/>
           <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>
@@ -150,6 +147,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
           />
           <AccountBox
             onAccountClicked={onLoginClicked}
+            loginRoute={loginRoute}
           />
         </Header>
         <ContentWrapper>

@@ -25,6 +25,7 @@ const theme = {
     lg: "992px",
     xl: "1200px",
   },
+  isDark: false,
 };
 
 const darkTheme = {
@@ -42,6 +43,7 @@ const darkTheme = {
     medium: "25px",
     extended: "80px",
   },
+  isDark: true,
 };
 
 const Theme = ({ children, themeType }) => {

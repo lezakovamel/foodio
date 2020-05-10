@@ -11,16 +11,28 @@ const IntroWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
-  padding-bottom: 20vh;
-  padding-top: 15vh;
+  background-image: url(${process.env.PUBLIC_URL}/images/pattern.jpg);
+`;
+const IntroOverlay = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(7px);
 `;
 
 const TitleBox = styled.div`
-  width: 60%;
-  height: 100%;
+  margin: auto;
+  width: 500px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-content: center;
+  background-color: ${(props) => props.theme.colors.primary};
+  background-image: url(${process.env.PUBLIC_URL}/images/food-pattern.png);
+  background-blend-mode: soft-light;
+  outline: 2px solid ${(props) => props.theme.colors.white};
+  outline-offset: -15px;
 `;
 
 const ImageBox = styled.div`
@@ -33,12 +45,14 @@ const ImageBox = styled.div`
 const FoodioIntro = ({ onExploreClick }) => {
   return (
     <IntroWrapper>
-      <TitleBox>
-        <FoodioTitle onExploreClick={onExploreClick} />
-      </TitleBox>
-      <ImageBox>
+      <IntroOverlay>
+        <TitleBox>
+          <FoodioTitle onExploreClick={onExploreClick} />
+        </TitleBox>
+        {/*<ImageBox>
         <IntroImages />
-      </ImageBox>
+      </ImageBox>*/}
+      </IntroOverlay>
     </IntroWrapper>
   );
 };

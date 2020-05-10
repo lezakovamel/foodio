@@ -1,22 +1,22 @@
 import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
 import styled from "@emotion/styled";
+import { Input } from "../atoms/FormFields";
+
 const SearchbarWrapper = styled.div`
   display: flex;
   border: 2px solid ${(props) => props.theme.colors.primaryLight};
   border-radius: 5px;
   width: fit-content;
 `;
-const SearchBar = ({ handleChange, recipeName }) => {
+const SearchBar = ({ search, setSearch, onSearchChange }) => {
   return (
     <SearchbarWrapper>
-      <input
-        onChange={handleChange}
-        value={recipeName}
-        onFocus={() => {
-          alert("now");
-        }}
-      ></input>
+      <Input
+        type="text"
+        setValue={setSearch}
+        value={search}
+        onChange={onSearchChange}
+      />
     </SearchbarWrapper>
   );
 };

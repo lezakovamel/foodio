@@ -5,6 +5,8 @@ import "./FoodCard.scss";
 import { H3, H4 } from "../atoms/Headlines";
 import { useHistory } from "react-router-dom";
 import { P } from "../atoms/TextFields";
+import { Icon } from "@material-ui/core";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Overlay = styled.div`
   width: 100%;
@@ -100,6 +102,7 @@ const FoodCard = ({
         {!isProfile ? (
           <div />
         ) : (
+          //is for removing from favourites e.g. ProfilePage onRemoveFromFavourites
           <Icon icon={faTimes} onClick={() => onIconClick(slug)} />
         )}
         <H4 centered>Preparation time</H4>

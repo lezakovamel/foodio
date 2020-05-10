@@ -3,7 +3,6 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { LogoTitle, P } from "../atoms/TextFields";
-import { SizedBox } from "../atoms/SizedBox";
 import { TitleButton } from "../atoms/Buttons";
 
 const TitleWrapper = styled.p`
@@ -27,7 +26,7 @@ const FoodioTitle = ({ onExploreClick }) => {
     <TitleWrapper>
       <LogoTitle>FOODIO</LogoTitle>
       <Hr />
-      <p>Best žrádelník you will ever see.</p>
+      <P>Best žrádelník you will ever see.</P>
       <Hr />
       <TitleButton onClick={onExploreClick}>EXPLORE FOODS</TitleButton>
     </TitleWrapper>

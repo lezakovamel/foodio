@@ -14,8 +14,7 @@ const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
 
   const { slug } = useParams();
-
-  const { id } = useParams();
+  
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
     visibility: false,

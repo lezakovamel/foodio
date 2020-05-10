@@ -4,7 +4,7 @@ import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";
 import Loading from "../atoms/Loading/Loading";
 
-import {useGetData} from '../../hooks/HookGetRecipes'
+import { useGetData } from "../../hooks/HookGetRecipes";
 
 const MainPage = () => {
   const sectionRef = useRef();
@@ -18,9 +18,6 @@ const MainPage = () => {
         top: sectionRef.current.offsetTop,
       });
     }
-  };
-  const onSearchChanged = (query) => {
-   setReci
   };
   return (
     <BaseTemplate

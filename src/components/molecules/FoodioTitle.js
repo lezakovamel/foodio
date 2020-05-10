@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 import { LogoTitle, P } from "../atoms/TextFields";
 import { SizedBox } from "../atoms/SizedBox";
-import { Button } from "../atoms/Buttons";
+import { TitleButton } from "../atoms/Buttons";
 
 const TitleWrapper = styled.p`
   display: flex;
@@ -29,7 +29,7 @@ const FoodioTitle = ({ onExploreClick }) => {
       <Hr />
       <p>Best žrádelník you will ever see.</p>
       <Hr />
-      <Button onClick={onExploreClick}>EXPLORE FOODS</Button>
+      <TitleButton onClick={onExploreClick}>EXPLORE FOODS</TitleButton>
     </TitleWrapper>
   );
 };

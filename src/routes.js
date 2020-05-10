@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import MainPage from "./components/pages/MainPage";
 import FoodDetailPage from "./components/pages/FoodDetailPage";
@@ -13,7 +13,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route path="/food/:id" component={FoodDetailPage} />
+        <Route exact path="/food/:id" component={FoodDetailPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/profile" component={ProfilePage} />
       </Switch>

@@ -19,10 +19,12 @@ const CardSection = ({
   reference,
   title,
   data,
-  /*isProfile,
+  isProfile,
   onIconClick,
-  data,*/
+
 }) => {
+
+
   const renderCards = () =>
     data &&
     data.map((food) => (
@@ -30,27 +32,20 @@ const CardSection = ({
         key={food._id}
         id={food._id}
         title={food.title}
-        /*prepTime={food.preparationTime}
+        prepTime={food.preparationTime}
         isProfile={isProfile}
-        onIconClick={onIconClick}*/
+        onIconClick={onIconClick}
       />
     ));
+
   return (
     <SectionWrapper ref={reference}>
-      <Grid>{renderCards()}</Grid>
 
       <Container>
         <TitleWrapper>
           <H2>{title}</H2>
         </TitleWrapper>
-        <Grid>
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-        </Grid>
+        <Grid>{renderCards()}</Grid>
       </Container>
     </SectionWrapper>
   );

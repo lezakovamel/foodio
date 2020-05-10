@@ -7,20 +7,15 @@ import CardSection from "../organisms/CardSection";
 import SearchBar from "../molecules/SearchBar";
 import FoodCard from "../molecules/FoodCard";
 import { PageTypeEnum } from "../../tools/Enums";
+import Loading from '../atoms/Loading/Loading'
+
+import {useGetData} from '../../hooks/HookFavourites'
 
 const MainPage = () => {
   const sectionRef = useRef();
 
-  const [recipeData, setRecipeData] = useState({
-    cards: [],
-    isLoading: false,
-    error: "",
-  });
-  const [recipesData, setRecipesData] = useState({
-    cards: [],
-    isLoading: false,
-    error: "",
-  });
+const recipeData = useGetData();
+
   const [recipeName, setRecipeName] = useState("");
 
   const handleChange = (event) => setRecipeName(event.target.value);
@@ -54,35 +49,15 @@ const MainPage = () => {
     console.log(query);
   };
   const { push } = useHistory();
-  useEffect(() => {
-    getRecipes();
-  }, []);
 
-  const getRecipes = async () => {
-    try {
-      setRecipesData({ ...recipesData, isLoading: true });
-
-      const result = await axios(`https://exercise.cngroup.dk/api/recipes`);
-      console.log(result.data);
-      const data = result.data;
-      console.log(data);
-
-      setRecipesData({ ...recipesData, data: data, isLoading: false });
-      console.log(data[1].slug);
-    } catch ({ message }) {
-      setRecipesData({ ...recipesData, isLoading: false, error: message });
-    }
-    
-  };
 
   const renderRecipes = () => {
-    if (recipesData.isLoading) {
-      return <p>imagine some spinning circle here...</p>;
+    if (recipeData.isLoading) {
+      return <Loading>imagine some spinning circle here...</Loading>;
     }
-    if (recipesData.message) {
+    if (recipeData.message) {
       return <p>{recipeData.message}</p>;
     }
-    
 
     /*return data.map(
       ({ id, title, preparationTime, slug, lastModifiedDate }) => (
@@ -122,13 +97,17 @@ const MainPage = () => {
       onSearchSubmit={onSearchSubmit}
     >*/}
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
-      <CardSection reference={sectionRef} />
-      {renderRecipes()}
-      <CardSection
-        reference={sectionRef}
-        title="Choose žrádýlko"
-        isProfile={false}
-      />
+
+      {!recipeData.isLoading ? (
+       
+              <CardSection
+                title="Choose žrádýlko"
+                data={recipeData.cards}
+                isProfile={false}
+              />
+          ) : (
+            <Loading />
+          )}
     </BaseTemplate>
   );
 };

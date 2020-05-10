@@ -18,11 +18,6 @@ const MainPage = () => {
     isLoading: false,
     error: "",
   });
-  const [recipesData, setRecipesData] = useState({
-    cards: [],
-    isLoading: false,
-    error: "",
-  });
   const [recipeName, setRecipeName] = useState("");
 
   const handleChange = (event) => setRecipeName(event.target.value);
@@ -103,34 +98,8 @@ const recipeData = useGetData();
       setRecipeData({ ...recipesData, isLoading: false, error: message });
     }
   };*/
-      console.log(data[1].slug);
-    } catch ({ message }) {
-      setRecipesData({ ...recipesData, isLoading: false, error: message });
-    
-  };
 
-  const renderRecipes = () => {
-    if (recipesData.isLoading) {
-      return <p>imagine some spinning circle here...</p>;
-    if (recipesData.message) {
-      return <p>{recipeData.message}</p>;
-    }
-    
 
-    /*return data.map(
-      ({ id, title, preparationTime, slug, lastModifiedDate }) => (
-        <FoodCard
-          key={id}
-          title={title}
-          preparationTime={preparationTime}
-          slug={slug}
-          lastModifiedDate={lastModifiedDate}
-        />
-      )
-    );*/
-    /*<FoodCard data={recipesData.data} />
-        {console.log(recipesData.data)}*/
-  };
 
   /*const handleSearch = async () => {
     try {

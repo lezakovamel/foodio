@@ -15,16 +15,7 @@ const SectionWrapper = styled.div`
   background-color: #efefef;
 `;
 
-const CardSection = ({
-  reference,
-  title,
-  data,
-  isProfile,
-  onIconClick,
-
-}) => {
-
-
+const CardSection = ({ reference, title, data, isProfile, onIconClick }) => {
   const renderCards = () =>
     data &&
     data.map((food) => (
@@ -39,20 +30,11 @@ const CardSection = ({
     ));
   return (
     <SectionWrapper ref={reference}>
-
-      <Container>
       <Container>
         <TitleWrapper>
           <H2>{title}</H2>
         </TitleWrapper>
         <Grid>{renderCards()}</Grid>
-      </Container>
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-        </Grid>
       </Container>
     </SectionWrapper>
   );

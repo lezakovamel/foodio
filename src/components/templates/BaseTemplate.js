@@ -80,7 +80,7 @@ const BaseTemplate = ({ title, pageType,  onSearchChanged, children }) => {
       if (event.keyCode === 13) {
         event.preventDefault();
         //TODO resolve empty text on submit, useEffect blocking ?
-        onSearchSubmit(searchQuery);
+        //onSearchSubmit(searchQuery);
       }
     });
   }, []);

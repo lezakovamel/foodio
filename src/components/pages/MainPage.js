@@ -20,7 +20,7 @@ const MainPage = () => {
     }
   };
   const onSearchChanged = (query) => {
-   setReci
+ 
   };
   return (
     <BaseTemplate

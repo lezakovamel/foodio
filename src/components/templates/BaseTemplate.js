@@ -10,10 +10,12 @@ import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
 import { PageTypeEnum, ThemeTypeEnum, ModalTypeEnum } from "../../tools/Enums";
 import { Icon } from "../atoms/Icon";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faBackward } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "../atoms/FormFields";
 import { ActionBox } from "../organisms/ActionBox";
 import FoodModal from "./FoodModal/FoodModal";
+import { useHistory } from "react-router";
+import { BackButton } from "../atoms/Buttons";
 
 const Base = styled.div`
   margin: auto;
@@ -48,6 +50,7 @@ const SearchBar = styled.div`
 const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
   const titleRef = useRef();
   const searchRef = useRef();
+  const backRef = useRef();
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,6 +59,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     visibility: false,
     message: "",
   });
+  const history = useHistory();
 
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
@@ -69,6 +73,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     } else {
       searchRef.current.style.visibility = "hidden";
       searchRef.current.style.opacity = "0";
+      backRef.current.style.display = "none";
     }
     searchRef.current.addEventListener("keyup", function (event) {
       if (event.keyCode === 13) {
@@ -112,6 +117,12 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     openModal(ModalTypeEnum.ADD_FOOD, "Add food.");
   };
 
+  const onBackwardClicked = () => {
+    if (pageType !== PageTypeEnum.MAIN) {
+      history.goBack();
+    }
+  };
+
   return (
     <Theme
       themeType={
@@ -122,6 +133,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     >
       <Base>
         <Header>
+          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef}/>
           <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>

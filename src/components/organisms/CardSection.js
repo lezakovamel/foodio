@@ -24,6 +24,8 @@ const CardSection = ({ reference, title, data, isProfile, onIconClick }) => {
         id={food._id}
         title={food.title}
         prepTime={food.preparationTime}
+        slug={food.slug}
+        lastModifiedDate={food.lastModifiedDate}
         isProfile={isProfile}
         onIconClick={onIconClick}
       />

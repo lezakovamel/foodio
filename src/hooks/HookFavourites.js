@@ -27,7 +27,7 @@ export function useFavourites(user, setLoading, setError) {
   return favourites;
 }
 
-export function useGetData() {
+/*export function useGetData() {
   const [recipeData, setRecipeData] = useState({
     cards: [],
     isLoading: true,
@@ -53,5 +53,5 @@ export function useGetData() {
 
   return recipeData;
 
-}
+}*/
 

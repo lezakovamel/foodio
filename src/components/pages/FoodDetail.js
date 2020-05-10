@@ -80,15 +80,15 @@ const Actions = styled.div`
 
 const Ingreditens = styled.div``;
 
-const FoodDetail = () => (
-  <BaseTemplate title="_food_name_">
+const FoodDetail = ({ id, title, prepTime, slug, lastModifiedDate }) => (
+  <BaseTemplate title={title}>
     <Container>
       <Wrapper>
         <Row>
           <Img>_img_</Img>
           <Column>
             <PrepActions>
-              <Prep>_prep_time_</Prep>
+              <Prep>{prepTime}</Prep>
               <Actions>_food_actions_</Actions>
             </PrepActions>
             <Ingreditens>_ingreditens_</Ingreditens>

@@ -86,22 +86,24 @@ const Info = styled.div`
 const FoodCard = ({
   id,
   title,
-  preparationTime,
+  prepTime,
   slug,
-  lastModifiedDate /*, prepTime, isProfile, onIconClick */,
+  lastModifiedDate,
+  isProfile,
+  onIconClick,
 }) => {
   const { push } = useHistory();
-  const handleGoToRecipeDetail = (recipeId) => push(`/recipe/${recipeId}`);
+  const handleGoToRecipeDetail = (slug) => push(`/food/${slug}`);
   return (
-    <Card data-testid="testCard" onClick={() => handleGoToRecipeDetail(1)}>
+    <Card data-testid="testCard" onClick={() => handleGoToRecipeDetail(slug)}>
       <Overlay>
-        {/*{!isProfile ? (
+        {!isProfile ? (
           <div />
         ) : (
-          <Icon icon={faTimes} onClick={() => onIconClick(id)} />
-        )}*/}
+          <Icon icon={faTimes} onClick={() => onIconClick(slug)} />
+        )}
         <H4 centered>Preparation time</H4>
-        <P centered>{/*{prepTime}*/} minutes</P>
+        <P centered> {prepTime} minutes</P>
       </Overlay>
       <Placeholder />
       <Info>

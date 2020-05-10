@@ -4,7 +4,7 @@ import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";
 import Loading from "../atoms/Loading/Loading";
 
-import { useGetData } from "../../hooks/HookFavourites";
+import {useGetData} from '../../hooks/HookGetRecipes'
 
 const MainPage = () => {
   const sectionRef = useRef();

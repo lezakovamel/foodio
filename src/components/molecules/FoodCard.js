@@ -84,7 +84,7 @@ const Info = styled.div`
   }
 `;
 
-const FoodCard = ({ title, prepTime, isProfile, id, onIconClick }) => {
+//TODO on hover create white ovrelay with opacity, at overlay show cooking time
 const FoodCard = ({
   id,
   title,

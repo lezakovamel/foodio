@@ -19,10 +19,12 @@ const CardSection = ({
   reference,
   title,
   data,
-  /*isProfile,
+  isProfile,
   onIconClick,
-  data,*/
+
 }) => {
+
+
   const renderCards = () =>
     data &&
     data.map((food) => (
@@ -37,14 +39,14 @@ const CardSection = ({
     ));
   return (
     <SectionWrapper ref={reference}>
-      <Grid>{renderCards()}</Grid>
 
+      <Container>
       <Container>
         <TitleWrapper>
           <H2>{title}</H2>
         </TitleWrapper>
-        <Grid>
-          <FoodCard />
+        <Grid>{renderCards()}</Grid>
+      </Container>
           <FoodCard />
           <FoodCard />
           <FoodCard />

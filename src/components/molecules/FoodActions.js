@@ -1,6 +1,6 @@
 import React from "react";
 
-import { faEdit, faHeart, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "@emotion/styled";
 import { Icon } from "../atoms/Icon";
@@ -31,7 +31,6 @@ const FoodActions = ({ openEdit, onFavouriteClicked }) => (
   <Actions>
     <P>_prep_time_</P>
     <IconBox>
-      <Icon icon={faPlus} onClick={() => openEdit(ModalTypeEnum.ADD_FOOD)} />
       <Icon icon={faEdit} onClick={() => openEdit(ModalTypeEnum.EDIT_FOOD)} />
       <Icon icon={faHeart} onClick={onFavouriteClicked} />
     </IconBox>

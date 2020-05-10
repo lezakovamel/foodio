@@ -8,10 +8,14 @@ import Footer from "../organisms/Footer";
 
 import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
-import { PageTypeEnum, ThemeTypeEnum } from "../../tools/Enums";
+import { PageTypeEnum, ThemeTypeEnum, ModalTypeEnum } from "../../tools/Enums";
 import { Icon } from "../atoms/Icon";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "../atoms/FormFields";
+import { ActionBox } from "../organisms/ActionBox";
+import FoodModal from "./FoodModal/FoodModal";
+import { useHistory } from "react-router";
+import { BackButton } from "../atoms/Buttons";
 
 const Base = styled.div`
   margin: auto;
@@ -46,9 +50,16 @@ const SearchBar = styled.div`
 const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
   const titleRef = useRef();
   const searchRef = useRef();
+  const backRef = useRef();
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
   const [searchQuery, setSearchQuery] = useState("");
+  const [modalData, setModalData] = useState({
+    type: ModalTypeEnum.ADD_FOOD,
+    visibility: false,
+    message: "",
+  });
+  const history = useHistory();
 
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
@@ -62,6 +73,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     } else {
       searchRef.current.style.visibility = "hidden";
       searchRef.current.style.opacity = "0";
+      backRef.current.style.display = "none";
     }
     searchRef.current.addEventListener("keyup", function (event) {
       if (event.keyCode === 13) {
@@ -87,8 +99,28 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     }
   };
 
+  const onDispalySearchClicked = () => {
+    searchRef.current.style.visibility = "visible";
+    searchRef.current.style.opacity = "1";
+  };
+
   const onLoginClicked = () => {
     setLoginRoute(user.name !== "" ? "profile" : "login");
+  };
+
+  const openModal = (type, message) => {
+    setModalData({ type: type, visibility: true, message: message });
+  };
+  const onModalClose = (type) => setModalData({ visibility: false });
+
+  const onAddFoodClicked = () => {
+    openModal(ModalTypeEnum.ADD_FOOD, "Add food.");
+  };
+
+  const onBackwardClicked = () => {
+    if (pageType !== PageTypeEnum.MAIN) {
+      history.goBack();
+    }
   };
 
   return (
@@ -101,6 +133,7 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
     >
       <Base>
         <Header>
+          <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
           <HeaderTitle ref={titleRef}>
             <H1>{title}</H1>
           </HeaderTitle>
@@ -108,12 +141,19 @@ const BaseTemplate = ({ title, pageType, onSearchSubmit, children }) => {
             <Icon icon={faSearch} />
             <Input type="text" value={searchQuery} setValue={setSearchQuery} />
           </SearchBar>
+          <ActionBox
+            onAddFoodClicked={onAddFoodClicked}
+            onDispalySearchClicked={onDispalySearchClicked}
+          />
           <AccountBox
             onAccountClicked={onLoginClicked}
             loginRoute={loginRoute}
           />
         </Header>
-        <ContentWrapper>{children}</ContentWrapper>
+        <ContentWrapper>
+          <FoodModal data={modalData} onClose={onModalClose} />
+          {children}
+        </ContentWrapper>
         <Footer>Made with love and hate for css</Footer>
       </Base>
     </Theme>

@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const breakpoints = (props) => props.theme.breakpoints;
-
 const ContainerDiv = styled.div`
   margin: auto;
   box-sizing: border-box;

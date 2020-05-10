@@ -11,9 +11,9 @@ import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 
-const FoodModal = ({ visibility, type, closeEdit, message }) => {
+const FoodModal = ({ data, onClose }) => {
   const title = () => {
-    switch (type) {
+    switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
         return "Add food";
       case ModalTypeEnum.EDIT_FOOD:
@@ -27,16 +27,16 @@ const FoodModal = ({ visibility, type, closeEdit, message }) => {
     }
   };
   return (
-    <Modal show={visibility} onHide={closeEdit} dialogClassName="modalWindow">
+    <Modal show={data.visibility} onHide={onClose} dialogClassName="modalWindow">
       <Modal.Header>
         <H1>{title()}</H1>
-        <Icon icon={faTimes} onClick={closeEdit} />
+        <Icon icon={faTimes} onClick={onClose} />
       </Modal.Header>
       <Modal.Body>
-        {type === ModalTypeEnum.ADD_FOOD || type === ModalTypeEnum.EDIT_FOOD ? (
-          <FoodForm type={type} />
+        {data.type === ModalTypeEnum.ADD_FOOD || data.type === ModalTypeEnum.EDIT_FOOD ? (
+          <FoodForm type={data.type} />
         ) : (
-          <P>{message}</P>
+          <P>{data.message}</P>
         )}
       </Modal.Body>
     </Modal>

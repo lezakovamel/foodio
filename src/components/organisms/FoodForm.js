@@ -66,7 +66,7 @@ const FoodForm = ({ type, onAddNew, onEditSave }) => {
              * handling is done via [type], this will tell you if you r going to Save edited or Add new
              * [type] can also tell you wich properties fill onLoad, none if you r adding new food, all if you r going to edit food
              */}
-            <Button type="submit">
+            <Button type="submit" onClick={handleSubmit}>
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
             </Button>
           </FormWrapper>

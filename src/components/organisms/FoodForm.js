@@ -10,12 +10,6 @@ import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import styled from "@emotion/styled";
 
-const OptionWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 2em;
-`;
-
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(15),
   preparationTime: yup.number().required("Please fill preparation time"),
@@ -31,6 +25,10 @@ const FoodForm = ({
   const [preparationTime, setPreparationTime] = useState("");
   const [directions, setDirections] = useState("");
   const [ingredients, setIngredients] = useState([]);
+
+  const [newRecept, setNewRecept] = useState({title, preparationTime, directions, ingredients});
+
+
 
   return (
     <Formik
@@ -54,7 +52,12 @@ const FoodForm = ({
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <FormWrapper>
-            <Input name="title" type="text" value={title} setValue={setTitle} />
+            <Input
+              name="title"
+              type="text"
+              value={title}
+              setValue={setTitle}
+            />
             <Input
               name="preparationTime"
               type="text"
@@ -74,14 +77,6 @@ const FoodForm = ({
               setValue={setIngredients}
               //options ={ingredients}
             />
-            <OptionWrapper>
-              <input type="checkbox" name="cb" id="cb1" />
-              <label for="cb1">Check this</label>
-              <input type="checkbox" name="cb" id="cb2" />
-              <label for="cb2">... and this...</label>
-              <input type="checkbox" name="cb" id="cb3" />
-              <label for="cb3">and maybe this</label>
-            </OptionWrapper>
             {/**
              * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component
              * handling is done via [type], this will tell you if you r going to Save edited or Add new

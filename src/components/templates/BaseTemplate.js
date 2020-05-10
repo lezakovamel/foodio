@@ -47,8 +47,7 @@ const SearchBar = styled.div`
   }
 `;
 
-
-const BaseTemplate = ({ title, pageType,  onSearchChanged, children }) => {
+const BaseTemplate = ({ title, pageType, onSearchChanged, children }) => {
   const titleRef = useRef();
   const searchRef = useRef();
   const backRef = useRef();
@@ -158,7 +157,7 @@ const BaseTemplate = ({ title, pageType,  onSearchChanged, children }) => {
           <FoodModal data={modalData} onClose={onModalClose} />
           {children}
         </ContentWrapper>
-        <Footer>Made with love and hate for css</Footer>
+        <Footer>AV2MW 2020</Footer>
       </Base>
     </Theme>
   );

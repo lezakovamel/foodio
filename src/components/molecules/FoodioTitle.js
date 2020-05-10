@@ -6,7 +6,7 @@ import { LogoTitle, P } from "../atoms/TextFields";
 import { SizedBox } from "../atoms/SizedBox";
 import { TitleButton } from "../atoms/Buttons";
 
-const TitleWrapper = styled.p`
+const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   vertical-align: middle;
@@ -27,7 +27,7 @@ const FoodioTitle = ({ onExploreClick }) => {
     <TitleWrapper>
       <LogoTitle>FOODIO</LogoTitle>
       <Hr />
-      <p>Best žrádelník you will ever see.</p>
+      <p>Nějaký ten žrádelník.</p>
       <Hr />
       <TitleButton onClick={onExploreClick}>EXPLORE FOODS</TitleButton>
     </TitleWrapper>

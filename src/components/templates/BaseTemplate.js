@@ -57,8 +57,11 @@ const BaseTemplate = ({ title, pageType, children }) => {
       //default state
       titleRef.current.style.visibility = "hidden";
       titleRef.current.style.opacity = "0";
-    } else {
+      console.log("yes");
+      
       backRef.current.style.display = "none";
+    } else {
+      backRef.current.style.display = "inline-block";
     }
   }, []);
 

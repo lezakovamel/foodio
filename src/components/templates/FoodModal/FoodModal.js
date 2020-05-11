@@ -12,6 +12,9 @@ import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 
 const FoodModal = ({ data, onClose }) => {
+
+  //hook na get ingredienci
+
   const title = () => {
     switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
@@ -34,7 +37,9 @@ const FoodModal = ({ data, onClose }) => {
       </Modal.Header>
       <Modal.Body>
         {data.type === ModalTypeEnum.ADD_FOOD || data.type === ModalTypeEnum.EDIT_FOOD ? (
-          <FoodForm type={data.type} />
+          <FoodForm type={data.type} 
+          //ingredients={ingredients}
+          />
         ) : (
           <P>{data.message}</P>
         )}

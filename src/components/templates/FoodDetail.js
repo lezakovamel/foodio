@@ -4,86 +4,128 @@ import { H1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
-
-const Wrapper = styled.div`
-  width: 100%;
-  min-height: 80vh;
+import Ingredient from "../molecules/Ingredient";
+import { Grid } from "../atoms/Grid";
+import Container from "../atoms/Container";
+const FoodWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-image: url(${process.env.PUBLIC_URL}/images/pattern.jpg);
+`;
+
+const FoodOverlay = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  padding: ${(props) => props.theme.padding.medium};
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(7px);
+`;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    flex-direction: column;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-direction: row;
+  }
 `;
 
 const BaseInfo = styled.div`
-  width: 80vw;
-  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
   margin: auto;
-  position: relative;
   box-sizing: border-box;
 `;
 
+const ImgWrapper = styled.div`
+  height: 100%;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 100%;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    width: 500px;
+  }
+`;
 const Img = styled.img`
-  min-width: 40vw;
-  min-height: 40vh;
-  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 `;
 
 const Ingredients = styled.div`
-  width: 60vw;
-  min-height: 30vh;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   display: flex;
-  background-color: ${(props) => props.theme.colors.white};
+  width: fill-available;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 0px ${(props) => props.theme.padding.primary};
+  padding: ${(props) => props.theme.padding.medium};
   box-sizing: border-box;
-  border-left: 2px solid ${(props) => props.theme.colors.primary};
-  border-top: 2px solid ${(props) => props.theme.colors.primary};
 `;
 
 const Steps = styled.div`
-  width: 80vw;
-  min-height: 20vh;
+  height: fit-content;
   margin: auto;
+
+  background-color: rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    padding: ${(props) => props.theme.padding.medium};
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: ${(props) => props.theme.padding.extended};
+  }
 `;
 
-//DOPLN CO V DETAILU PREDAVAS A VYKRESLI TO TU 
-const FoodDetail = ({ openModal, onFavouriteClicked }) => {
+const FoodDetail = ({
+  openModal,
+  onFavouriteClicked,
+  key,
+  title,
+  slug,
+  preparationTime,
+  lastModifiedDate,
+  directions,
+  ingredients,
+}) => {
+  const renderIngredients = () =>
+    ingredients &&
+    ingredients.map((ingredient) => (
+      <Ingredient ingredient={ingredient.name} />
+    ));
   return (
-    <Wrapper>
-      <BaseInfo>
-        <Img src="_img_src_from_search_api_" alt="_food_title_"></Img>
-        <FoodActions
-          openEdit={openModal}
-          onFavouriteClicked={onFavouriteClicked}
-        />
-        <Ingredients>
-          <H1>Ingredients</H1>
-          <IngredientsList>
-            {
-              // TODO ingredients tile, p for debug
-            }
-            <P>_ing1_</P>
-            <P>_ing2_</P>
-            <P>_ing3_</P>
-            <P>_ing4_</P>
-            <P>_ing5_</P>
-          </IngredientsList>
-        </Ingredients>
-      </BaseInfo>
-      <Steps>
-        {
-          //TODO step tiles & list, just for debug
-        }
-        <P>_step1_</P>
-        <P>_step1_</P>
-        <P>_step1_</P>
-        <P>_step1_</P>
-      </Steps>
-    </Wrapper>
+    <Container>
+      <FoodWrapper>
+        <FoodOverlay>
+          <BaseInfo>
+            <FoodActions
+              openEdit={openModal}
+              onFavouriteClicked={onFavouriteClicked}
+              preparationTime={preparationTime}
+            />
+            {console.log(preparationTime)}
+            <Wrapper>
+              <ImgWrapper>
+                <Img
+                  src="https://media.mnn.com/assets/images/2019/11/a_pile_of_junk_food_burgers_pizza.jpg"
+                  alt={title}
+                />
+              </ImgWrapper>
+
+              <Ingredients>
+                <H1>Ingredients</H1>
+                <IngredientsList>{renderIngredients()}</IngredientsList>
+              </Ingredients>
+            </Wrapper>
+          </BaseInfo>
+          <Steps>
+            <P>Steps</P>
+            <P>{directions}</P>
+          </Steps>
+        </FoodOverlay>
+      </FoodWrapper>
+    </Container>
   );
 };
 

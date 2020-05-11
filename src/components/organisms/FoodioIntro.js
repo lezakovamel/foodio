@@ -11,6 +11,7 @@ const IntroWrapper = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   background-image: url(${process.env.PUBLIC_URL}/images/pattern.jpg);
+  background-attachment: fixed;
 `;
 const IntroOverlay = styled.div`
   display: flex;
@@ -33,8 +34,6 @@ const TitleBox = styled.div`
   outline: 2px solid ${(props) => props.theme.colors.white};
   outline-offset: -15px;
 `;
-
-
 
 const FoodioIntro = ({ onExploreClick }) => {
   return (

@@ -13,7 +13,7 @@ import Loading from "../atoms/Loading/Loading";
 import { useGetData } from "../../hooks/HookGetDetail";
 import { useGetIngredients } from "../../hooks/HookGetIngredients";
 
-import mock from '../../mock.json'
+import mock from "../../mock.json";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
@@ -26,11 +26,12 @@ const FoodDetailPage = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  
+
+  const [mockRecipes, setMockRecipes] = useState(MockRecipes);
+
   //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
-  const volani = useGetData(slug);
   useGetIngredients();
 
   const openModal = (type, message) => {
@@ -66,19 +67,24 @@ const FoodDetailPage = () => {
   };
 
   return (
-    <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
+    <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
+      {console.log(recipeData.directions)}
       {!loading ? (
         //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
-        <FoodDetail
-          key={mock.slug}
-          title={mock.title}
-          prepTime={mock.prepTime}
-          slug={mock.slug}
-          lastModifiedDate={mock.lastModifiedDate}
-          openModal={openModal}
-          onFavouriteClicked={onFavouriteClicked}
-        />
+        <>
+          <FoodDetail
+            key={recipeData.slug}
+            title={recipeData.title}
+            preparationTime={recipeData.preparationTime}
+            ingredients={recipeData.ingredients}
+            slug={recipeData.slug}
+            directions={recipeData.directions}
+            lastModifiedDate={recipeData.lastModifiedDate}
+            openModal={openModal}
+            onFavouriteClicked={onFavouriteClicked}
+          />
+        </>
       ) : (
         <Loading />
       )}

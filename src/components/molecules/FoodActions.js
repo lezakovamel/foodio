@@ -8,13 +8,13 @@ import { P } from "../atoms/TextFields";
 import { ModalTypeEnum } from "../../tools/Enums";
 
 const Actions = styled.div`
-  width: 40vw;
-  height: 7vh;
-  position: absolute;
+  margin-left: auto;
+  margin-bottom: ${(props) => props.theme.padding.medium};
   top: 0;
   right: 0;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
   align-content: center;
   box-sizing: border-box;
@@ -27,9 +27,9 @@ const IconBox = styled.div`
   flex-direction: row;
 `;
 
-const FoodActions = ({ openEdit, onFavouriteClicked }) => (
+const FoodActions = ({ openEdit, onFavouriteClicked, preparationTime }) => (
   <Actions>
-    <P>_prep_time_</P>
+    <P>Preparation time: {preparationTime} min.</P>
     <IconBox>
       <Icon icon={faEdit} onClick={() => openEdit(ModalTypeEnum.EDIT_FOOD)} />
       <Icon icon={faHeart} onClick={onFavouriteClicked} />

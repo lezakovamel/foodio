@@ -49,8 +49,8 @@ const Card = styled.div`
   }
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-bottom: ${(props) => props.theme.padding.medium};
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
   }
 `;
 

@@ -10,7 +10,6 @@ const ActionBoxWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-content: center;
-  margin: auto 3vw auto 0;
 `;
 
 export const ActionBox = ({ onDispalySearchClicked, onAddFoodClicked }) => {

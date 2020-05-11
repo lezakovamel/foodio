@@ -8,7 +8,6 @@ import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
-import styled from "@emotion/styled";
 
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(15),
@@ -18,17 +17,13 @@ const validationSchema = yup.object({
 const FoodForm = ({
   type,
   onAddNew,
-  onEditSave,
+  onEditSave,data
   //ingredients
 }) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState("");
   const [directions, setDirections] = useState("");
   const [ingredients, setIngredients] = useState([]);
-
-  const [newRecept, setNewRecept] = useState({title, preparationTime, directions, ingredients});
-
-
 
   return (
     <Formik

@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-
-import axios from "axios";
+import React, { useState, useContext } from "react";
 
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
@@ -12,8 +10,6 @@ import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
 import { useGetData } from "../../hooks/HookGetDetail";
 import { useGetIngredients } from "../../hooks/HookGetIngredients";
-
-import mock from "../../mock.json";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
@@ -27,15 +23,18 @@ const FoodDetailPage = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const [mockRecipes, setMockRecipes] = useState(MockRecipes);
-
   //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
   useGetIngredients();
 
-  const openModal = (type, message) => {
-    setModalData({ type: type, visibility: true, message: message });
+  const openModal = (type, message, payload) => {
+    setModalData({
+      type: type,
+      visibility: true,
+      message: message,
+      payload: payload,
+    });
   };
   const onModalClose = (type) => setModalData({ visibility: false });
 
@@ -44,7 +43,8 @@ const FoodDetailPage = () => {
       ? addFoodToFavourite()
       : openModal(
           ModalTypeEnum.NOT_LOGGED,
-          "Please, log in for saving your favourite foods."
+          "Please, log in for saving your favourite foods.",
+          recipeData
         );
   };
 
@@ -71,7 +71,6 @@ const FoodDetailPage = () => {
       <FoodModal data={modalData} onClose={onModalClose} />
       {console.log(recipeData.directions)}
       {!loading ? (
-        //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
         <>
           <FoodDetail
             key={recipeData.slug}

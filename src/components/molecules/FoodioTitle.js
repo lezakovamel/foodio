@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 
-import { LogoTitle, P } from "../atoms/TextFields";
+import { LogoTitle } from "../atoms/TextFields";
 import { TitleButton } from "../atoms/Buttons";
 
 const TitleWrapper = styled.div`

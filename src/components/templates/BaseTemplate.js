@@ -43,15 +43,15 @@ const IconsWrapper = styled.div`
   flex-direction: row;
 `;
 
-const BaseTemplate = ({ title, pageType, children }) => {
+const BaseTemplate = ({ title, pageType, data, children }) => {
   const backRef = useRef();
-  const { push } = useHistory();
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
     visibility: false,
     message: "",
+    payload: null,
   });
   const history = useHistory();
 
@@ -63,21 +63,26 @@ const BaseTemplate = ({ title, pageType, children }) => {
     }
   }, []);
 
-  const onDispalySearchClicked = () => {
-    push("/search");
-  };
-
   const onLoginClicked = () => {
     setLoginRoute(user.name !== "" ? "profile" : "login");
   };
 
-  const openModal = (type, message) => {
-    setModalData({ type: type, visibility: true, message: message });
+  const openModal = (type, message, payload) => {
+    setModalData({
+      type: type,
+      visibility: true,
+      message: message,
+      payload: payload,
+    });
   };
   const onModalClose = (type) => setModalData({ visibility: false });
 
   const onAddFoodClicked = () => {
     openModal(ModalTypeEnum.ADD_FOOD, "Add food.");
+  };
+
+  const onSearchClicked = () => {
+    openModal(ModalTypeEnum.SEARCH, "Search.", data);
   };
 
   const onBackwardClicked = () => {
@@ -102,7 +107,8 @@ const BaseTemplate = ({ title, pageType, children }) => {
           <IconsWrapper>
             <ActionBox
               onAddFoodClicked={onAddFoodClicked}
-              onDispalySearchClicked={onDispalySearchClicked}
+              onSearchClicked={onSearchClicked}
+              pageType={pageType}
             />
             <AccountBox
               onAccountClicked={onLoginClicked}

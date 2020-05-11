@@ -21,7 +21,7 @@ const MainPage = () => {
     }
   };
   return (
-    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN}>
+    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN} data={recipeData.cards}>
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       {!recipeData.isLoading ? (
         <CardSection

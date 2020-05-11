@@ -1,12 +1,13 @@
 import React from "react";
+
 import styled from "@emotion/styled";
 import { H1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
 import Ingredient from "../molecules/Ingredient";
-import { Grid } from "../atoms/Grid";
 import Container from "../atoms/Container";
+
 const FoodWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -89,6 +90,14 @@ const FoodDetail = ({
   directions,
   ingredients,
 }) => {
+  //const steps = directions.replace(/.(?=\d. )/g,"SICKDOPE");
+
+  const linedDirections = () => {
+    return directions !== undefined
+      ? directions.replace(/\s(?=\d. )/g, "\n")
+      : "";
+  };
+
   const renderIngredients = () =>
     ingredients &&
     ingredients.map((ingredient) => (
@@ -121,7 +130,7 @@ const FoodDetail = ({
           </BaseInfo>
           <Steps>
             <P>Steps</P>
-            <P>{directions}</P>
+            <P>{linedDirections(directions)}</P>
           </Steps>
         </FoodOverlay>
       </FoodWrapper>

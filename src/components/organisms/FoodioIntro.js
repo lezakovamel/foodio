@@ -2,7 +2,6 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import FoodioTitle from "../molecules/FoodioTitle";
-import IntroImages from "../molecules/IntroImages";
 
 const IntroWrapper = styled.div`
   height: 100vh;
@@ -35,12 +34,7 @@ const TitleBox = styled.div`
   outline-offset: -15px;
 `;
 
-const ImageBox = styled.div`
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
+
 
 const FoodioIntro = ({ onExploreClick }) => {
   return (
@@ -49,9 +43,6 @@ const FoodioIntro = ({ onExploreClick }) => {
         <TitleBox>
           <FoodioTitle onExploreClick={onExploreClick} />
         </TitleBox>
-        {/*<ImageBox>
-        <IntroImages />
-      </ImageBox>*/}
       </IntroOverlay>
     </IntroWrapper>
   );

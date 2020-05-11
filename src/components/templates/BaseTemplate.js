@@ -9,9 +9,6 @@ import Footer from "../organisms/Footer";
 import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
 import { PageTypeEnum, ThemeTypeEnum, ModalTypeEnum } from "../../tools/Enums";
-import { Icon } from "../atoms/Icon";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Input } from "../atoms/FormFields";
 import { ActionBox } from "../organisms/ActionBox";
 import FoodModal from "./FoodModal/FoodModal";
 import { useHistory } from "react-router";
@@ -40,20 +37,11 @@ export const HeaderTitle = styled.div`
   }
 `;
 
-const SearchBar = styled.div`
-  display: flex;
-  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
-    display: none;
-  }
-`;
-
-const BaseTemplate = ({ title, pageType, onSearchChanged, children }) => {
-  const titleRef = useRef();
-  const searchRef = useRef();
+const BaseTemplate = ({ title, pageType, children }) => {
   const backRef = useRef();
+  const { push } = useHistory();
   const { user } = useContext(UserContext);
   const [loginRoute, setLoginRoute] = useState("login");
-  const [searchQuery, setSearchQuery] = useState("");
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
     visibility: false,
@@ -63,45 +51,14 @@ const BaseTemplate = ({ title, pageType, onSearchChanged, children }) => {
 
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
-      window.addEventListener("scroll", onScrollChanged);
-
-      //default state
-      titleRef.current.style.visibility = "hidden";
-      titleRef.current.style.opacity = "0";
-      searchRef.current.style.visibility = "hidden";
-      searchRef.current.style.opacity = "0";
-    } else {
-      searchRef.current.style.display = "hidden";
-      searchRef.current.style.opacity = "0";
       backRef.current.style.display = "none";
+    } else {
+      backRef.current.style.display = "inline-block";
     }
-    searchRef.current.addEventListener("keyup", function (event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        //TODO resolve empty text on submit, useEffect blocking ?
-        //onSearchSubmit(searchQuery);
-      }
-    });
   }, []);
 
-  const onScrollChanged = (event) => {
-    if (window.scrollY >= window.innerHeight) {
-      titleRef.current.style.visibility = "visible";
-      titleRef.current.style.opacity = "1";
-      searchRef.current.style.visibility = "visible";
-      searchRef.current.style.opacity = "1";
-    }
-    if (window.scrollY <= window.innerHeight) {
-      titleRef.current.style.visibility = "hidden";
-      titleRef.current.style.opacity = "0";
-      searchRef.current.style.visibility = "hidden";
-      searchRef.current.style.opacity = "0";
-    }
-  };
-
   const onDispalySearchClicked = () => {
-    searchRef.current.style.visibility = "visible";
-    searchRef.current.style.opacity = "1";
+    push("/search");
   };
 
   const onLoginClicked = () => {
@@ -133,17 +90,9 @@ const BaseTemplate = ({ title, pageType, onSearchChanged, children }) => {
       <Base>
         <Header>
           <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
-          <HeaderTitle ref={titleRef}>
+          <HeaderTitle>
             <H1>{title}</H1>
           </HeaderTitle>
-          <SearchBar ref={searchRef}>
-            <Input
-              type="text"
-              value={searchQuery}
-              setValue={setSearchQuery}
-              onChange={onSearchChanged}
-            />
-          </SearchBar>
           <ActionBox
             onAddFoodClicked={onAddFoodClicked}
             onDispalySearchClicked={onDispalySearchClicked}

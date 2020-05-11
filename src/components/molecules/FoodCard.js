@@ -5,7 +5,7 @@ import "./FoodCard.scss";
 import { H3, H4 } from "../atoms/Headlines";
 import { useHistory } from "react-router-dom";
 import { P } from "../atoms/TextFields";
-import { Icon } from "../atoms/Icon";
+import { Icon } from "@material-ui/core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Overlay = styled.div`
@@ -17,7 +17,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-content: center;
   background-color: ${(props) => props.theme.colors.white};
-  z-index: 99;
+  z-index: 1;
   position: absolute;
   /*border-radius: 10px;*/
   visibility: hidden;
@@ -102,6 +102,7 @@ const FoodCard = ({
         {!isProfile ? (
           <div />
         ) : (
+          //is for removing from favourites e.g. ProfilePage onRemoveFromFavourites
           <Icon icon={faTimes} onClick={() => onIconClick(slug)} />
         )}
         <H4 centered>Preparation time</H4>
@@ -109,7 +110,7 @@ const FoodCard = ({
       </Overlay>
       <Placeholder />
       <Info>
-        <H3>Tu title:{title}</H3>
+        <H3>{title}</H3>
       </Info>
     </Card>
   );

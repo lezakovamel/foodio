@@ -13,18 +13,22 @@ import Loading from "../atoms/Loading/Loading";
 import { useGetData } from "../../hooks/HookGetDetail";
 import { useGetIngredients } from "../../hooks/HookGetIngredients";
 
+import mock from '../../mock.json'
+
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
 
   const { slug } = useParams();
 
-  const { id } = useParams();
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
     visibility: false,
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  
+  //Data se v hooku nesetnou je pouzit mock json
+  const recipeData = useGetData(slug);
 
   const volani = useGetData(slug);
   useGetIngredients();
@@ -65,13 +69,13 @@ const FoodDetailPage = () => {
     <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
       {!loading ? (
-
+        //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
         <FoodDetail
-          key={volani.slug}
-          title={volani.title}
-          prepTime={volani.prepTime}
-          slug={volani.slug}
-          lastModifiedDate={volani.lastModifiedDate}
+          key={mock.slug}
+          title={mock.title}
+          prepTime={mock.prepTime}
+          slug={mock.slug}
+          lastModifiedDate={mock.lastModifiedDate}
           openModal={openModal}
           onFavouriteClicked={onFavouriteClicked}
         />

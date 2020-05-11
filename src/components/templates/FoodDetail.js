@@ -50,6 +50,7 @@ const Steps = styled.div`
   box-sizing: border-box;
 `;
 
+//DOPLN CO V DETAILU PREDAVAS A VYKRESLI TO TU 
 const FoodDetail = ({ openModal, onFavouriteClicked }) => {
   return (
     <Wrapper>

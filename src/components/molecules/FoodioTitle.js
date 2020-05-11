@@ -3,7 +3,6 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { LogoTitle, P } from "../atoms/TextFields";
-import { SizedBox } from "../atoms/SizedBox";
 import { TitleButton } from "../atoms/Buttons";
 
 const TitleWrapper = styled.div`

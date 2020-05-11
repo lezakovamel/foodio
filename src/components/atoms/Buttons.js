@@ -40,7 +40,7 @@ export const TitleButton = styled.button`
 `;
 
 const BackButtonWrapper = styled.div`
-  margin: auto;
+  margin: 0;
 `;
 
 export const BackButton = ({ onBackwardClicked, backRef }) => {

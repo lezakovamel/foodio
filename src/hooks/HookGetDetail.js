@@ -9,12 +9,9 @@ export function useGetData(slug) {
   useEffect(() => {
     axios(url)
       .then((response) => {
-        console.log(response.data);
         setRecipeData({ ...response.data });
-        console.log(recipeData);
       })
       .catch((error) => {});
-
   }, []);
 
   return recipeData;

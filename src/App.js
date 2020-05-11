@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.scss";
 
-function App() {
+import Routes from "./routes";
+import { UserContext } from "./Control";
+import { ThemeTypeEnum } from "./tools/Enums";
+
+const App = () => {
+  const [user, setUser] = useState({ name: "", theme: ThemeTypeEnum.LIGHT });
+  const [userId, setUserId] = useState(null);
+  const userValue = { user, setUser, userId, setUserId };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={userValue}>
+      <Routes />
+    </UserContext.Provider>
   );
-}
+};
 
 export default App;

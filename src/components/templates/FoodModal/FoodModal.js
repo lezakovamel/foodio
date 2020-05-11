@@ -11,7 +11,6 @@ import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
-import SearchComponent from "../../molecules/SearchComponent";
 
 const FoodModal = ({ data, onClose }) => {  
   const title = () => {

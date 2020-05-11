@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.header`
   align-content: center;
   justify-content: space-between;
   position: fixed;
-  z-index: 1;
+  z-index: 50;
   top: 0;
   margin: auto;
   box-sizing: border-box;

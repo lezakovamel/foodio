@@ -17,7 +17,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-content: center;
   background-color: ${(props) => props.theme.colors.white};
-  z-index: 99;
+  z-index: 1;
   position: absolute;
   /*border-radius: 10px;*/
   visibility: hidden;

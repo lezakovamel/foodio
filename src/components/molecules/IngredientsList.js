@@ -22,7 +22,7 @@ const IngredientUl = styled.ul`
       transition: 0.2s ease-in-out;
     }
   }
-  li:nth-of-type(2) {
+  li:nth-of-type(odd) {
     color: white;
     background: ${(props) => props.theme.colors.primaryLight};
     :hover {

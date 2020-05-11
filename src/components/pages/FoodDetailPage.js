@@ -70,6 +70,7 @@ const FoodDetailPage = () => {
   return (
     <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
+      {console.log(recipeData.directions)}
       {!loading ? (
         //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
         <>

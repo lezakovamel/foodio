@@ -9,12 +9,14 @@ import { Grid } from "../atoms/Grid";
 import Container from "../atoms/Container";
 const FoodWrapper = styled.div`
   display: flex;
+  width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-image: url(${process.env.PUBLIC_URL}/images/pattern.jpg);
 `;
 
 const FoodOverlay = styled.div`
   box-sizing: border-box;
+  width: 100%;
   padding: ${(props) => props.theme.padding.medium};
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(7px);
@@ -40,8 +42,13 @@ const BaseInfo = styled.div`
 `;
 
 const ImgWrapper = styled.div`
-  width: 500px;
   height: 100%;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 100%;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    width: 500px;
+  }
 `;
 const Img = styled.img`
   height: 100%;
@@ -63,7 +70,12 @@ const Steps = styled.div`
 
   background-color: rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
-  padding: ${(props) => props.theme.padding.extended};
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    padding: ${(props) => props.theme.padding.medium};
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: ${(props) => props.theme.padding.extended};
+  }
 `;
 
 const FoodDetail = ({

@@ -106,7 +106,7 @@ const BaseTemplate = ({ title, pageType, children }) => {
           <FoodModal data={modalData} onClose={onModalClose} />
           {children}
         </ContentWrapper>
-        <Footer>Made with love and hate for css</Footer>
+        <Footer>AV2MW 2020</Footer>
       </Base>
     </Theme>
   );

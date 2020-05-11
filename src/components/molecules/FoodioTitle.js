@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import { LogoTitle, P } from "../atoms/TextFields";
 import { TitleButton } from "../atoms/Buttons";
 
-const TitleWrapper = styled.p`
+const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   vertical-align: middle;
@@ -26,7 +26,7 @@ const FoodioTitle = ({ onExploreClick }) => {
     <TitleWrapper>
       <LogoTitle>FOODIO</LogoTitle>
       <Hr />
-      <P>Best žrádelník you will ever see.</P>
+      <p>Nějaký ten žrádelník.</p>
       <Hr />
       <TitleButton onClick={onExploreClick}>EXPLORE FOODS</TitleButton>
     </TitleWrapper>

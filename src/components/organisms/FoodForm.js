@@ -8,17 +8,27 @@ import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
+import styled from "@emotion/styled";
 
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(15),
   preparationTime: yup.number().required("Please fill preparation time"),
 });
 
-const FoodForm = ({ type, onAddNew, onEditSave }) => {
+const FoodForm = ({
+  type,
+  onAddNew,
+  onEditSave,
+  //ingredients
+}) => {
   const [title, setTitle] = useState("");
   const [preparationTime, setPreparationTime] = useState("");
   const [directions, setDirections] = useState("");
-  const [ingredients, setIngredients] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+
+  const [newRecept, setNewRecept] = useState({title, preparationTime, directions, ingredients});
+
+
 
   return (
     <Formik
@@ -31,10 +41,10 @@ const FoodForm = ({ type, onAddNew, onEditSave }) => {
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         console.log("btn bitch");
-        
+
         setSubmitting(true);
         console.log(data);
-        type === ModalTypeEnum.ADD_FOOD ? onAddNew() : onEditSave();
+        type === ModalTypeEnum.ADD_FOOD ? onAddNew(data) : onEditSave(data);
         setSubmitting(false);
         resetForm();
       }}
@@ -42,7 +52,12 @@ const FoodForm = ({ type, onAddNew, onEditSave }) => {
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <FormWrapper>
-            <Input name="title" type="text" value={title} setValue={setTitle} />
+            <Input
+              name="title"
+              type="text"
+              value={title}
+              setValue={setTitle}
+            />
             <Input
               name="preparationTime"
               type="text"
@@ -60,6 +75,7 @@ const FoodForm = ({ type, onAddNew, onEditSave }) => {
               type="text"
               value={ingredients}
               setValue={setIngredients}
+              //options ={ingredients}
             />
             {/**
              * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component

@@ -1,4 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import axios from "axios";
 
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
@@ -9,6 +11,7 @@ import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
 import { useGetData } from "../../hooks/HookGetDetail";
+import { useGetIngredients } from "../../hooks/HookGetIngredients";
 
 import mock from '../../mock.json'
 
@@ -26,6 +29,9 @@ const FoodDetailPage = () => {
   
   //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
+
+  const volani = useGetData(slug);
+  useGetIngredients();
 
   const openModal = (type, message) => {
     setModalData({ type: type, visibility: true, message: message });

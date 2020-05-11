@@ -8,9 +8,9 @@ export const FormWrapper = styled.div`
   align-content: center;
   margin: auto;
   justify-self: center;
-  height: 100%;
+  height: fit-content;
   background-image: url(${process.env.PUBLIC_URL}/images/${(props) => (props.theme.isDark ? "dark" : "light")}.svg);
-  background-size: initial;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 5;

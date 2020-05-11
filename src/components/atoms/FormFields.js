@@ -4,14 +4,14 @@ import { Label } from "./TextFields";
 
 const InputWrapper = styled.div`
   width: 40%;
-  height: 5vh;
+  height: fit-content;
   box-sizing: border-box;
   margin: ${(props) => props.theme.padding.primary};
 `;
 
 const InputField = styled.input`
   width: 100%;
-  height: 100%;
+  height: 40px;
   box-sizing: border-box;
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};

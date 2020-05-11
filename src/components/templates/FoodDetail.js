@@ -7,50 +7,65 @@ import IngredientsList from "../molecules/IngredientsList";
 import Ingredient from "../molecules/Ingredient";
 import { Grid } from "../atoms/Grid";
 import Container from "../atoms/Container";
-
-const Wrapper = styled.div`
-  width: 100%;
-  min-height: 80vh;
+const FoodWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-image: url(${process.env.PUBLIC_URL}/images/pattern.jpg);
+`;
+
+const FoodOverlay = styled.div`
+  box-sizing: border-box;
+  padding: ${(props) => props.theme.padding.medium};
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(7px);
+`;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    flex-direction: column;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-direction: row;
+  }
 `;
 
 const BaseInfo = styled.div`
-  width: 80vw;
-  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  /*width: 80vw;
+  min-height: 50vh;*/
   margin: auto;
-  position: relative;
   box-sizing: border-box;
 `;
 
+const ImgWrapper = styled.div`
+  width: 500px;
+  height: 100%;
+`;
 const Img = styled.img`
-  min-width: 40vw;
-  min-height: 40vh;
-  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 `;
 
 const Ingredients = styled.div`
-  width: 60vw;
-  min-height: 30vh;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   display: flex;
-  background-color: ${(props) => props.theme.colors.white};
+  width: fill-available;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 0px ${(props) => props.theme.padding.primary};
+  padding: ${(props) => props.theme.padding.medium};
   box-sizing: border-box;
-  border-left: 2px solid ${(props) => props.theme.colors.primary};
-  border-top: 2px solid ${(props) => props.theme.colors.primary};
 `;
 
 const Steps = styled.div`
-  width: 80vw;
-  min-height: 20vh;
+  height: fit-content;
   margin: auto;
+
+  background-color: rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
+  padding: ${(props) => props.theme.padding.extended};
 `;
 
 //DOPLN CO V DETAILU PREDAVAS A VYKRESLI TO TU
@@ -72,24 +87,37 @@ const FoodDetail = ({
       <Ingredient ingredient={ingredient.name} />
     ));
   return (
-    <Wrapper>
-      <BaseInfo>
-        <Img src="_img_src_from_search_api_" alt={title}></Img>
-        {console.log(preparationTime)}
-        <FoodActions
-          openEdit={openModal}
-          onFavouriteClicked={onFavouriteClicked}
-          preparationTime={preparationTime}
-        />
-        <Ingredients>
-          <H1>Ingredients</H1>
-          <IngredientsList>{renderIngredients()}</IngredientsList>
-        </Ingredients>
-      </BaseInfo>
-      <Steps>
-        <P>{directions}</P>
-      </Steps>
-    </Wrapper>
+    <Container>
+      <FoodWrapper>
+        <FoodOverlay>
+          <BaseInfo>
+            <FoodActions
+              openEdit={openModal}
+              onFavouriteClicked={onFavouriteClicked}
+              preparationTime={preparationTime}
+            />
+            {console.log(preparationTime)}
+            <Wrapper>
+              <ImgWrapper>
+                <Img
+                  src="https://media.mnn.com/assets/images/2019/11/a_pile_of_junk_food_burgers_pizza.jpg"
+                  alt={title}
+                />
+              </ImgWrapper>
+
+              <Ingredients>
+                <H1>Ingredients</H1>
+                <IngredientsList>{renderIngredients()}</IngredientsList>
+              </Ingredients>
+            </Wrapper>
+          </BaseInfo>
+          <Steps>
+            <P>Steps</P>
+            <P>{directions}</P>
+          </Steps>
+        </FoodOverlay>
+      </FoodWrapper>
+    </Container>
   );
 };
 

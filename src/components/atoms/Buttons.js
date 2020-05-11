@@ -45,6 +45,7 @@ export const TitleButton = styled.button`
 
 const BackButtonWrapper = styled.div`
   margin: 0;
+  margin-left: 3vw;
 `;
 
 export const BackButton = ({ onBackwardClicked, backRef }) => {

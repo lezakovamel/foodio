@@ -37,6 +37,12 @@ export const HeaderTitle = styled.div`
   }
 `;
 
+const IconsWrapper = styled.div`
+  width: auto;
+  display: flex;
+  flex-direction: row;
+`;
+
 const BaseTemplate = ({ title, pageType, children }) => {
   const backRef = useRef();
   const { push } = useHistory();
@@ -93,14 +99,16 @@ const BaseTemplate = ({ title, pageType, children }) => {
           <HeaderTitle>
             <H1>{title}</H1>
           </HeaderTitle>
-          <ActionBox
-            onAddFoodClicked={onAddFoodClicked}
-            onDispalySearchClicked={onDispalySearchClicked}
-          />
-          <AccountBox
-            onAccountClicked={onLoginClicked}
-            loginRoute={loginRoute}
-          />
+          <IconsWrapper>
+            <ActionBox
+              onAddFoodClicked={onAddFoodClicked}
+              onDispalySearchClicked={onDispalySearchClicked}
+            />
+            <AccountBox
+              onAccountClicked={onLoginClicked}
+              loginRoute={loginRoute}
+            />
+          </IconsWrapper>
         </Header>
         <ContentWrapper>
           <FoodModal data={modalData} onClose={onModalClose} />

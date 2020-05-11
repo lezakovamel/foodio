@@ -35,8 +35,6 @@ const Wrapper = styled.div`
 const BaseInfo = styled.div`
   display: flex;
   flex-direction: column;
-  /*width: 80vw;
-  min-height: 50vh;*/
   margin: auto;
   box-sizing: border-box;
 `;
@@ -67,8 +65,6 @@ const Steps = styled.div`
   box-sizing: border-box;
   padding: ${(props) => props.theme.padding.extended};
 `;
-
-//DOPLN CO V DETAILU PREDAVAS A VYKRESLI TO TU
 
 const FoodDetail = ({
   openModal,

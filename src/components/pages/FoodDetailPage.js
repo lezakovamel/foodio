@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-
-import axios from "axios";
+import React, { useState, useContext } from "react";
 
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
@@ -30,8 +28,13 @@ const FoodDetailPage = () => {
 
   useGetIngredients();
 
-  const openModal = (type, message ,payload) => {
-    setModalData({ type: type, visibility: true, message: message, payload: payload });
+  const openModal = (type, message, payload) => {
+    setModalData({
+      type: type,
+      visibility: true,
+      message: message,
+      payload: payload,
+    });
   };
   const onModalClose = (type) => setModalData({ visibility: false });
 
@@ -40,7 +43,8 @@ const FoodDetailPage = () => {
       ? addFoodToFavourite()
       : openModal(
           ModalTypeEnum.NOT_LOGGED,
-          "Please, log in for saving your favourite foods.",recipeData
+          "Please, log in for saving your favourite foods.",
+          recipeData
         );
   };
 
@@ -65,9 +69,7 @@ const FoodDetailPage = () => {
   return (
     <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
-      {console.log(recipeData.directions)}
       {!loading ? (
-        //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
         <>
           <FoodDetail
             key={recipeData.slug}

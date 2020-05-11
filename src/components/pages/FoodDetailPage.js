@@ -23,10 +23,8 @@ const FoodDetailPage = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-
-  console.log(mock);
   
-  //Data se v hooku nesetnou
+  //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
   const openModal = (type, message) => {
@@ -65,6 +63,7 @@ const FoodDetailPage = () => {
     <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
       {!loading ? (
+        //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
         <FoodDetail
           key={mock.slug}
           title={mock.title}

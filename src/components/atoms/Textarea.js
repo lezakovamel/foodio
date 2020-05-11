@@ -11,7 +11,7 @@ const TextareaWrapper = styled.div`
 
 const TextareaField = styled.textarea`
   width: 100%;
-  height: 40px;
+  height: 200px;
   box-sizing: border-box;
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};

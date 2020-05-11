@@ -66,13 +66,14 @@ const FoodForm = ({
               value={directions}
               setValue={setDirections}
             />
-            <Input
+            {/*<Input
               name="ingredients"
               type="text"
               value={ingredients}
               setValue={setIngredients}
               //options ={ingredients}
-            />
+            />*/}
+
             {/**
              * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component
              * handling is done via [type], this will tell you if you r going to Save edited or Add new

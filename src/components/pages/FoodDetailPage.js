@@ -12,7 +12,6 @@ import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
 import { useGetData } from "../../hooks/HookGetDetail";
 import { useGetIngredients } from "../../hooks/HookGetIngredients";
-import MockRecipes from "../../mock.json";
 
 import mock from "../../mock.json";
 

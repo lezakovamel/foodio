@@ -66,10 +66,22 @@ const FoodDetailPage = () => {
     }
   };
 
+  const onEditClicked = () => {
+    openModal(ModalTypeEnum.EDIT_FOOD, "", recipeData);
+  };
+
+  const onEditSubmit = (title, preparationTime, directions, ingredients) => {
+    //odeslani na api
+    console.log(`nejaky title: ${title}`);
+  };
+
   return (
     <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
-      <FoodModal data={modalData} onClose={onModalClose} />
-      {console.log(recipeData.directions)}
+      <FoodModal
+        data={modalData}
+        onClose={onModalClose}
+        onEditSave={onEditSubmit}
+      />
       {!loading ? (
         <>
           <FoodDetail
@@ -80,7 +92,7 @@ const FoodDetailPage = () => {
             slug={recipeData.slug}
             directions={recipeData.directions}
             lastModifiedDate={recipeData.lastModifiedDate}
-            openModal={openModal}
+            onEditClicked={onEditClicked}
             onFavouriteClicked={onFavouriteClicked}
           />
         </>

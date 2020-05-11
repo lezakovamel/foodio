@@ -80,7 +80,7 @@ const Steps = styled.div`
 `;
 
 const FoodDetail = ({
-  openModal,
+  onEditClicked,
   onFavouriteClicked,
   key,
   title,
@@ -109,7 +109,7 @@ const FoodDetail = ({
         <FoodOverlay>
           <BaseInfo>
             <FoodActions
-              openEdit={openModal}
+              openEdit={onEditClicked}
               onFavouriteClicked={onFavouriteClicked}
               preparationTime={preparationTime}
             />

@@ -31,7 +31,7 @@ const FoodActions = ({ openEdit, onFavouriteClicked, preparationTime }) => (
   <Actions>
     <P>Preparation time: {preparationTime} min.</P>
     <IconBox>
-      <Icon icon={faEdit} onClick={() => openEdit(ModalTypeEnum.EDIT_FOOD)} />
+      <Icon icon={faEdit} onClick={openEdit} />
       <Icon icon={faHeart} onClick={onFavouriteClicked} />
     </IconBox>
   </Actions>

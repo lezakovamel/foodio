@@ -14,10 +14,8 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
 
-  
-  let favourites = useFavourites( setLoading, setError);
-console.log(favourites);
 
+  let favourites = useFavourites( setLoading, setError);
 
   let favourites = useFavourites( setLoading, setError);
 

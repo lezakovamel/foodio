@@ -110,7 +110,7 @@ const FoodCard = ({
       </Overlay>
       <Placeholder />
       <Info>
-        <H3>Tu title:{title}</H3>
+        <H3>{title}</H3>
       </Info>
     </Card>
   );

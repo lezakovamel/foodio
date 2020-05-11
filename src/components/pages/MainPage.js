@@ -30,6 +30,7 @@ const MainPage = () => {
           title="Choose žrádýlko"
           data={recipeData.cards}
           isProfile={false}
+          reference={sectionRef}
         />
       ) : (
         <Loading />

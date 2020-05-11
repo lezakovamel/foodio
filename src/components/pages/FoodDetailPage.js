@@ -30,8 +30,6 @@ const FoodDetailPage = () => {
 
   const [mockRecipes, setMockRecipes] = useState(MockRecipes);
 
- 
-
   //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
@@ -83,6 +81,7 @@ const FoodDetailPage = () => {
           preparationTime={mockRecipes.preparationTime}
           ingredients={mockRecipes.ingredients}
           slug={mockRecipes.slug}
+          directions={mockRecipes.directions}
           lastModifiedDate={mockRecipes.lastModifiedDate}
           openModal={openModal}
           onFavouriteClicked={onFavouriteClicked}

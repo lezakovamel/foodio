@@ -16,6 +16,7 @@ export const Button = styled.button`
 `;
 export const TitleButton = styled.button`
   margin: auto;
+
   box-sizing: border-box;
   height: 5vh;
   margin-top: 3vh;
@@ -25,6 +26,9 @@ export const TitleButton = styled.button`
   border: 2px solid ${(props) => props.theme.colors.primary};
   backdrop-filter: blur(2px);
   transition: 0.3s ease-in-out;
+  :focus {
+    outline: 0;
+  }
   :hover {
     background-color: rgba(255, 255, 255, 0.8);
     transition: 0.3s ease-in-out;

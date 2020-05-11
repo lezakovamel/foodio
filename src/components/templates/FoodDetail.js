@@ -6,6 +6,7 @@ import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
 import Ingredient from "../molecules/Ingredient";
 import { Grid } from "../atoms/Grid";
+import Container from "../atoms/Container";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -62,6 +63,7 @@ const FoodDetail = ({
   slug,
   preparationTime,
   lastModifiedDate,
+  directions,
   ingredients,
 }) => {
   const renderIngredients = () =>
@@ -85,14 +87,7 @@ const FoodDetail = ({
         </Ingredients>
       </BaseInfo>
       <Steps>
-        {
-          //TODO step tiles & list, just for debug
-        }
-
-        <P>_step1_</P>
-        <P>_step1_</P>
-        <P>_step1_</P>
-        <P>_step1_</P>
+        <P>{directions}</P>
       </Steps>
     </Wrapper>
   );

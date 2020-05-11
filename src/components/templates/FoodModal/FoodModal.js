@@ -47,6 +47,11 @@ const FoodModal = ({ data, onClose }) => {
     }
   };
 
+      default:
+        break;
+    }
+  };
+
   return (
     <Modal
       show={data.visibility}

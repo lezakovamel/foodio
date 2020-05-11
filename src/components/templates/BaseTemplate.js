@@ -38,7 +38,6 @@ export const HeaderTitle = styled.div`
 `;
 
 const BaseTemplate = ({ title, pageType, children }) => {
-  const titleRef = useRef();
   const backRef = useRef();
   const { push } = useHistory();
   const { user } = useContext(UserContext);
@@ -52,29 +51,11 @@ const BaseTemplate = ({ title, pageType, children }) => {
 
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
-      window.addEventListener("scroll", onScrollChanged);
-
-      //default state
-      titleRef.current.style.visibility = "hidden";
-      titleRef.current.style.opacity = "0";
-      console.log("yes");
-      
       backRef.current.style.display = "none";
     } else {
       backRef.current.style.display = "inline-block";
     }
   }, []);
-
-  const onScrollChanged = (event) => {
-    if (window.scrollY >= window.innerHeight) {
-      titleRef.current.style.visibility = "visible";
-      titleRef.current.style.opacity = "1";
-    }
-    if (window.scrollY <= window.innerHeight) {
-      titleRef.current.style.visibility = "hidden";
-      titleRef.current.style.opacity = "0";
-    }
-  };
 
   const onDispalySearchClicked = () => {
     push("/search");
@@ -109,7 +90,7 @@ const BaseTemplate = ({ title, pageType, children }) => {
       <Base>
         <Header>
           <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
-          <HeaderTitle ref={titleRef}>
+          <HeaderTitle>
             <H1>{title}</H1>
           </HeaderTitle>
           <ActionBox

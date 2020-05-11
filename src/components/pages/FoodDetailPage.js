@@ -65,6 +65,7 @@ const FoodDetailPage = () => {
     <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
       {!loading ? (
+
         <FoodDetail
           key={volani.slug}
           title={volani.title}

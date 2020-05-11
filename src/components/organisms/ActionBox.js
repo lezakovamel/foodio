@@ -12,10 +12,10 @@ const ActionBoxWrapper = styled.div`
   align-content: center;
 `;
 
-export const ActionBox = ({ onDispalySearchClicked, onAddFoodClicked }) => {
+export const ActionBox = ({ onSearchClicked, onAddFoodClicked, hasSearch }) => {
   return (
     <ActionBoxWrapper>
-      <Icon icon={faSearch} onClick={onDispalySearchClicked} />
+      {hasSearch ? <Icon icon={faSearch} onClick={onSearchClicked} /> : <div />}
       <Icon icon={faPlus} onClick={onAddFoodClicked} />
     </ActionBoxWrapper>
   );

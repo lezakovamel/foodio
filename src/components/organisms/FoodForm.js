@@ -18,10 +18,10 @@ const validationSchema = yup.object({
 const FoodForm = ({
   type,
   onAddNew,
-  onEditSave,
+  onEditSave,data
   //ingredients
 }) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState("");
   const [directions, setDirections] = useState("");
   const [ingredients, setIngredients] = useState([]);

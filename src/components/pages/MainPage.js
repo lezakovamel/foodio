@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";
 import Loading from "../atoms/Loading/Loading";
 
 import { useGetData } from "../../hooks/HookGetRecipes";
-import { PageTypeEnum } from "../../tools/Enums";
+import { PageTypeEnum, ModalTypeEnum } from "../../tools/Enums";
 
 const MainPage = () => {
   const sectionRef = useRef();
@@ -21,7 +21,7 @@ const MainPage = () => {
     }
   };
   return (
-    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN}>
+    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN} data={recipeData.cards}>
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       {!recipeData.isLoading ? (
         <CardSection

@@ -33,7 +33,6 @@ const FoodDetailPage = () => {
   //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
-  const volani = useGetData(slug);
   useGetIngredients();
 
   const openModal = (type, message) => {
@@ -69,23 +68,23 @@ const FoodDetailPage = () => {
   };
 
   return (
-    <BaseTemplate title={mockRecipes.title} pageType={PageTypeEnum.DETAIL}>
+    <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
-      {console.log(mockRecipes.preparationTime)}
       {!loading ? (
         //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
-
-        <FoodDetail
-          key={mockRecipes.slug}
-          title={mockRecipes.title}
-          preparationTime={mockRecipes.preparationTime}
-          ingredients={mockRecipes.ingredients}
-          slug={mockRecipes.slug}
-          directions={mockRecipes.directions}
-          lastModifiedDate={mockRecipes.lastModifiedDate}
-          openModal={openModal}
-          onFavouriteClicked={onFavouriteClicked}
-        />
+        <>
+          <FoodDetail
+            key={recipeData.slug}
+            title={recipeData.title}
+            preparationTime={recipeData.preparationTime}
+            ingredients={recipeData.ingredients}
+            slug={recipeData.slug}
+            directions={recipeData.directions}
+            lastModifiedDate={recipeData.lastModifiedDate}
+            openModal={openModal}
+            onFavouriteClicked={onFavouriteClicked}
+          />
+        </>
       ) : (
         <Loading />
       )}

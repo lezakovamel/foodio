@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
+
 import BaseTemplate from "../templates/BaseTemplate";
 import LoginForm from "../organisms/LoginForm";
-
 import firebase from "../../Firebase";
 import { UserContext } from "../../Control";
 import { useHistory } from "react-router";
@@ -33,7 +33,7 @@ const LoginPage = () => {
 
       if (user !== null) {
         setUser(user);
-        setLoading(false);
+        setLoading(false);        
         push(`/profile`);
       }
     } catch (error) {

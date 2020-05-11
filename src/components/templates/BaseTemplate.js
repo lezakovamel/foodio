@@ -46,7 +46,7 @@ const IconsWrapper = styled.div`
 const BaseTemplate = ({ title, pageType, data, children }) => {
   const backRef = useRef();
   const { user } = useContext(UserContext);
-  const [loginRoute, setLoginRoute] = useState("login");
+  const { push } = useHistory();
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
     visibility: false,
@@ -64,7 +64,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
   }, []);
 
   const onLoginClicked = () => {
-    setLoginRoute(user.name !== "" ? "profile" : "login");
+    push(user.surname !== undefined ? "/profile" : "/login");
   };
 
   const openModal = (type, message, payload) => {
@@ -110,10 +110,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
               onSearchClicked={onSearchClicked}
               pageType={pageType}
             />
-            <AccountBox
-              onAccountClicked={onLoginClicked}
-              loginRoute={loginRoute}
-            />
+            <AccountBox onAccountClicked={onLoginClicked} />
           </IconsWrapper>
         </Header>
         <ContentWrapper>

@@ -17,7 +17,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-content: center;
   background-color: ${(props) => props.theme.colors.white};
-  z-index: 1;
+  z-index: 80;
   position: absolute;
   /*border-radius: 10px;*/
   visibility: hidden;
@@ -84,7 +84,6 @@ const Info = styled.div`
   }
 `;
 
-//TODO on hover create white ovrelay with opacity, at overlay show cooking time
 const FoodCard = ({
   id,
   title,

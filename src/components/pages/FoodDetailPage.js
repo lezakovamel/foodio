@@ -23,7 +23,6 @@ const FoodDetailPage = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
   useGetIngredients();

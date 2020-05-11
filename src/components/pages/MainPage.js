@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";

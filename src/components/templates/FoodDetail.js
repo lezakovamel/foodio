@@ -4,6 +4,8 @@ import { H1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
+import Ingredient from "../molecules/Ingredient";
+import { Grid } from "../atoms/Grid";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -50,34 +52,43 @@ const Steps = styled.div`
   box-sizing: border-box;
 `;
 
-//DOPLN CO V DETAILU PREDAVAS A VYKRESLI TO TU 
-const FoodDetail = ({ openModal, onFavouriteClicked }) => {
+//DOPLN CO V DETAILU PREDAVAS A VYKRESLI TO TU
+
+const FoodDetail = ({
+  openModal,
+  onFavouriteClicked,
+  key,
+  title,
+  slug,
+  preparationTime,
+  lastModifiedDate,
+  ingredients,
+}) => {
+  const renderIngredients = () =>
+    ingredients &&
+    ingredients.map((ingredient) => (
+      <Ingredient ingredient={ingredient.name} />
+    ));
   return (
     <Wrapper>
       <BaseInfo>
-        <Img src="_img_src_from_search_api_" alt="_food_title_"></Img>
+        <Img src="_img_src_from_search_api_" alt={title}></Img>
+        {console.log(preparationTime)}
         <FoodActions
           openEdit={openModal}
           onFavouriteClicked={onFavouriteClicked}
+          preparationTime={preparationTime}
         />
         <Ingredients>
           <H1>Ingredients</H1>
-          <IngredientsList>
-            {
-              // TODO ingredients tile, p for debug
-            }
-            <P>_ing1_</P>
-            <P>_ing2_</P>
-            <P>_ing3_</P>
-            <P>_ing4_</P>
-            <P>_ing5_</P>
-          </IngredientsList>
+          <IngredientsList>{renderIngredients()}</IngredientsList>
         </Ingredients>
       </BaseInfo>
       <Steps>
         {
           //TODO step tiles & list, just for debug
         }
+
         <P>_step1_</P>
         <P>_step1_</P>
         <P>_step1_</P>

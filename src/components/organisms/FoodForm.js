@@ -9,6 +9,7 @@ import { Textarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import { Button } from "antd";
+import MultiSelect from "react-multi-select-component";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -28,11 +29,13 @@ const FoodForm = ({
   onEditSave,
   data,
 }) => {
+
   const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState(data.preparationTime);
   const [directions, setDirections] = useState(data.directions);
   const [ingredients, setIngredients] = useState([]);
 
+  const [selected, setSelected] = useState([]);
   return (
     <Formik
       initialValues={{
@@ -74,6 +77,13 @@ const FoodForm = ({
                 value={directions}
                 setValue={setDirections}
               />
+      <MultiSelect
+        options={data.ingredients}
+        value={selected}
+        onChange={setSelected}
+        labelledBy={"Select"}
+      />
+
               {/*<Input
 
               name="ingredients"
@@ -83,11 +93,6 @@ const FoodForm = ({
               //options ={ingredients}
             />*/}
 
-            </InputsWrapper>
-
-                {
-                  //button is not submiting for some reason
-                }
             <Button htmlType="submit"  >
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
             </Button>

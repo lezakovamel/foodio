@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import axios from "axios";
 
 import Theme from "../../styles/Theme";
-import { H1 } from "../atoms/Headlines";
+import { DeskH1 } from "../atoms/Headlines";
 import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
 
@@ -128,7 +128,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
         <Header>
           <BackButton onBackwardClicked={onBackwardClicked} backRef={backRef} />
           <HeaderTitle>
-            <H1>{title}</H1>
+            <DeskH1>{title}</DeskH1>
           </HeaderTitle>
           <IconsWrapper>
             <ActionBox

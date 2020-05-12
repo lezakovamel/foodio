@@ -4,6 +4,7 @@ import BaseTemplate from "../templates/BaseTemplate";
 import axios from "axios";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
+import { MobH1 } from "../atoms/Headlines";
 import { ModalTypeEnum, PageTypeEnum } from "../../tools/Enums";
 import { UserContext } from "../../Control";
 import { useHistory } from "react-router";
@@ -73,7 +74,6 @@ const FoodDetailPage = () => {
   };
   const onDeleteClicked = async () => {
     try {
-      //http 500?
       await axios.delete(
         `https://exercise.cngroup.dk/api/recipes/${recipeData._id}`
       );

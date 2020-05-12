@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import { H1 } from "../atoms/Headlines";
+import { H1, MobH1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
@@ -108,6 +108,7 @@ const FoodDetail = ({
     <Container>
       <FoodWrapper>
         <FoodOverlay>
+          <MobH1>{title}</MobH1>
           <BaseInfo>
             <FoodActions
               openEdit={onEditClicked}

@@ -21,3 +21,19 @@ export const H6 = styled.h6`
   color: ${(props) => props.theme.colors.primaryDark};
   text-align: ${(props) => (props.centered ? `center` : `left`)};
 `;
+
+export const DeskH1 = styled.h1`
+  color: ${(props) => props.theme.colors.primaryDark};
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    display: none;
+    text-align: ${(props) => (props.centered ? `center` : `left`)};
+  }
+`;
+
+export const MobH1 = styled.h1`
+  color: ${(props) => props.theme.colors.primaryDark};
+  text-align: center;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    display: none;
+  }
+`;

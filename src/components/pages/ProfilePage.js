@@ -17,8 +17,6 @@ const ProfilePage = () => {
 
   let favourites = useFavourites( setLoading, setError);
 
-  let favourites = useFavourites( setLoading, setError);
-
   const fullName = user.name !== "" ? `${user.name} ${user.surname}` : null;
 
   const onRemoveFromFavourites = (foodId) => {

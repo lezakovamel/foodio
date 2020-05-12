@@ -29,6 +29,8 @@ const FoodForm = ({
   data,
   //ingredients
 }) => {
+  console.log(data);
+
   const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState(data.preparationTime);
   const [directions, setDirections] = useState(data.directions);
@@ -56,6 +58,7 @@ const FoodForm = ({
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <FormWrapper>
+
             <InputsWrapper>
               <Input
                 name="title"
@@ -77,6 +80,7 @@ const FoodForm = ({
                 setValue={setDirections}
               />
               {/*<Input
+
               name="ingredients"
               type="text"
               value={ingredients}
@@ -84,12 +88,8 @@ const FoodForm = ({
               //options ={ingredients}
             />*/}
 
-              {/**
-               * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component
-               * handling is done via [type], this will tell you if you r going to Save edited or Add new
-               * [type] can also tell you wich properties fill onLoad, none if you r adding new food, all if you r going to edit food
-               */}
             </InputsWrapper>
+
             <Button type="submit" onClick={handleSubmit}>
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
             </Button>

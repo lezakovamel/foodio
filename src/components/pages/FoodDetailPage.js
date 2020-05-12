@@ -95,15 +95,17 @@ const FoodDetailPage = () => {
         preparationTime,
         directions,
         ingredients
+
       );
       push("/");
     } catch (error) {
       console.log("error", error);
     }
   };
+
   const onEditSubmit = (title, preparationTime, directions, ingredients) => {
     //odeslani na api
-    handleEdit(title, preparationTime, directions, ingredients);
+
     console.log(`nejaky title: ${title}`);
   };
 

@@ -7,6 +7,9 @@ const TextareaWrapper = styled.div`
   height: fit-content;
   box-sizing: border-box;
   margin: ${(props) => props.theme.padding.primary};
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 90%;
+  }
 `;
 
 const TextareaField = styled.textarea`

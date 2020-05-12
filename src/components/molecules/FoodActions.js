@@ -1,6 +1,6 @@
 import React from "react";
 
-import { faEdit, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "@emotion/styled";
 import { Icon } from "../atoms/Icon";
@@ -27,12 +27,18 @@ const IconBox = styled.div`
   flex-direction: row;
 `;
 
-const FoodActions = ({ openEdit, onFavouriteClicked, preparationTime }) => (
+const FoodActions = ({
+  openEdit,
+  onFavouriteClicked,
+  preparationTime,
+  onDeleteClicked,
+}) => (
   <Actions>
     <P>Preparation time: {preparationTime} min.</P>
     <IconBox>
-      <Icon icon={faEdit} onClick={() => openEdit(ModalTypeEnum.EDIT_FOOD)} />
+      <Icon icon={faEdit} onClick={openEdit} />
       <Icon icon={faHeart} onClick={onFavouriteClicked} />
+      <Icon icon={faTrash} onClick={onDeleteClicked} />
     </IconBox>
   </Actions>
 );

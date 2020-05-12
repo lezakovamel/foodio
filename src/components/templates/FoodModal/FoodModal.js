@@ -18,7 +18,7 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
       case ModalTypeEnum.ADD_FOOD:
         return "Add food";
       case ModalTypeEnum.EDIT_FOOD:
-        return "__food_name__";
+        return data.payload.title;
       case ModalTypeEnum.NOT_LOGGED:
         return "Error";
       case ModalTypeEnum.FAV_ADDED:
@@ -37,7 +37,7 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
           <FoodForm type={data.type} data={data.payload} onAddNew={onAddNew} />
         );
       case ModalTypeEnum.EDIT_FOOD:
-        return <FoodForm type={data.type} />;
+        return <FoodForm type={data.type} data={data.payload} onEditSave={onEditSave} />;
       case ModalTypeEnum.NOT_LOGGED:
         return <P>{data.message}</P>;
       case ModalTypeEnum.FAV_ADDED:

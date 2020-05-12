@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
+import axios from "axios";
 
 import Theme from "../../styles/Theme";
 import { H1 } from "../atoms/Headlines";
@@ -55,6 +56,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
   });
   const history = useHistory();
 
+  const [addData, setAddData] = useState({});
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
       backRef.current.style.display = "none";
@@ -67,7 +69,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     push(user.surname !== undefined ? "/profile" : "/login");
   };
 
-  const openModal = (type, message, payload) => {    
+  const openModal = (type, message, payload) => {
     setModalData({
       type: type,
       visibility: true,
@@ -78,12 +80,32 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
   const onModalClose = (type) => setModalData({ visibility: false });
 
   const onAddFoodClicked = () => {
-    openModal(ModalTypeEnum.ADD_FOOD, "Add food.", {title:"", preparationTime: "", ingredients:[], direction: ""});
+    openModal(ModalTypeEnum.ADD_FOOD, "Add food.", {
+      title: "",
+      preparationTime: "",
+      ingredients: [],
+      direction: "",
+    });
   };
 
-const onAddFoodSubmit =(title, ingredients, directions, preparationTime, servingCOunt) => {
-  //TODO hook ktery posle data z formu na api
-}
+  const onAddFoodSubmit = (
+    title,
+    ingredients,
+    directions,
+    preparationTime,
+    servingCOunt
+  ) => {
+    setAddData({ ...addData, title: title, preparationTime: preparationTime });
+    handleAdd(addData);
+  };
+  const handleAdd = async (data) => {
+    try {
+      await axios.post("https://exercise.cngroup.dk/api/recipes", data);
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   const onSearchClicked = () => {
     openModal(ModalTypeEnum.SEARCH, "Search.", data);
@@ -118,7 +140,11 @@ const onAddFoodSubmit =(title, ingredients, directions, preparationTime, serving
           </IconsWrapper>
         </Header>
         <ContentWrapper>
-          <FoodModal data={modalData} onClose={onModalClose} onAddNew={onAddFoodSubmit} />
+          <FoodModal
+            data={modalData}
+            onClose={onModalClose}
+            onAddNew={onAddFoodSubmit}
+          />
           {children}
         </ContentWrapper>
         <Footer>AV2MW 2020</Footer>

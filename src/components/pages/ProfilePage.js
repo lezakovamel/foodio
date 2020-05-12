@@ -8,14 +8,14 @@ import { useFavourites } from "../../hooks/HookFavourites";
 import NotFoundText from "../molecules/NotFoundText";
 import firebase from "../../Firebase";
 import ThemeSwitcher from "../molecules/ThemeSwitcher";
+import Container from "../atoms/Container";
 
 const ProfilePage = () => {
   const { user, userId } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
 
-
-  let favourites = useFavourites( setLoading, setError);
+  let favourites = useFavourites(setLoading, setError);
 
   const fullName = user.name !== "" ? `${user.name} ${user.surname}` : null;
 
@@ -62,9 +62,9 @@ const ProfilePage = () => {
       pageType={PageTypeEnum.PROFILE}
     >
       {!error ? (
-        <div>
+        <>
           {!loading ? (
-            <div>
+            <>
               <ThemeSwitcher onSwitchTheme={onSwitchTheme} />
               <CardSection
                 title="Favourite foods"
@@ -72,11 +72,11 @@ const ProfilePage = () => {
                 isProfile={true}
                 onIconClick={onRemoveFromFavourites}
               />
-            </div>
+            </>
           ) : (
             <Loading />
           )}
-        </div>
+        </>
       ) : (
         <NotFoundText />
       )}

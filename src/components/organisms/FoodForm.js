@@ -10,7 +10,7 @@ import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import { Button } from "antd";
 import MultiSelect from "react-multi-select-component";
-import { useGetIngredients } from "../../hooks/HookGetIngredients";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 import Loading from "../atoms/Loading/Loading";
 
 const InputsWrapper = styled.div`
@@ -95,7 +95,7 @@ const FoodForm = ({
                 onChange={setSelected}
                 labelledBy={"Select"}
               />
-            )}
+            )}</InputsWrapper>
 
             <Button htmlType="submit"  >
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

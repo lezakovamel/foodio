@@ -4,11 +4,11 @@ import * as yup from "yup";
 import styled from "@emotion/styled";
 import { Formik } from "formik";
 
-import { Button } from "../atoms/Buttons";
 import { Input } from "../atoms/FormFields";
 import { Textarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
+import { Button } from "antd";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -27,10 +27,7 @@ const FoodForm = ({
   onAddNew,
   onEditSave,
   data,
-  //ingredients
 }) => {
-  console.log(data);
-
   const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState(data.preparationTime);
   const [directions, setDirections] = useState(data.directions);
@@ -47,10 +44,9 @@ const FoodForm = ({
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
-        console.log(`tu data: ${data}`);
         type === ModalTypeEnum.ADD_FOOD
           ? onAddNew(data)
-          : onEditSave(title, preparationTime, directions, ingredients);
+          : onEditSave(title, preparationTime, directions);
         setSubmitting(false);
         resetForm();
       }}
@@ -72,7 +68,6 @@ const FoodForm = ({
                 value={preparationTime}
                 setValue={setPreparationTime}
               />
-              {console.log(`tu prep time: ${preparationTime}`)}
               <Textarea
                 name="directions"
                 type="text"
@@ -90,7 +85,7 @@ const FoodForm = ({
 
             </InputsWrapper>
 
-            <Button type="submit" onClick={handleSubmit}>
+            <Button htmlType="submit" >
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
             </Button>
           </FormWrapper>

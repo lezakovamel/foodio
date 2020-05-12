@@ -116,7 +116,6 @@ const FoodDetail = ({
               preparationTime={preparationTime}
               onDeleteClicked={onDeleteClicked}
             />
-            {console.log(preparationTime)}
             <Wrapper>
               <ImgWrapper>
                 <Img

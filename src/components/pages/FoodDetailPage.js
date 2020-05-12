@@ -95,7 +95,6 @@ const FoodDetailPage = () => {
         preparationTime,
         directions,
         ingredients
-
       );
       push("/");
     } catch (error) {
@@ -103,10 +102,9 @@ const FoodDetailPage = () => {
     }
   };
 
-  const onEditSubmit = (title, preparationTime, directions, ingredients) => {
-    //odeslani na api
+  const onEditSubmit = (title, preparationTime, directions) => {
 
-    console.log(`nejaky title: ${title}`);
+    console.log(`data: ${title} ${preparationTime} ${directions}`);
   };
 
   return (

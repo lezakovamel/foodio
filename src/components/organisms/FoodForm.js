@@ -23,7 +23,6 @@ const FoodForm = ({
   data,
   //ingredients
 }) => {
-  console.log(data);
 
   const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState(data.preparationTime);

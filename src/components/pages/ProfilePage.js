@@ -4,11 +4,10 @@ import BaseTemplate from "../templates/BaseTemplate";
 import { PageTypeEnum, ThemeTypeEnum } from "../../tools/Enums";
 import CardSection from "../organisms/CardSection";
 import Loading from "../atoms/Loading/Loading";
-import { useFavourites } from "../../hooks/HookFavourites";
+import { useFavourites } from "../../hooks/useFavourites";
 import NotFoundText from "../molecules/NotFoundText";
 import firebase from "../../Firebase";
 import ThemeSwitcher from "../molecules/ThemeSwitcher";
-import Container from "../atoms/Container";
 
 const ProfilePage = () => {
   const { user, userId } = useContext(UserContext);

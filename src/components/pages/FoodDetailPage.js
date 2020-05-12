@@ -10,8 +10,8 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
-import { useGetData } from "../../hooks/HookGetDetail";
-import { useGetIngredients } from "../../hooks/HookGetIngredients";
+import { useGetData } from "../../hooks/useGetDetail";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
@@ -75,16 +75,35 @@ const FoodDetailPage = () => {
     try {
       //http 500?
       await axios.delete(
-        `https://exercise.cngroup.dk/api/recipes/${recipeData.id}`
+        `https://exercise.cngroup.dk/api/recipes/${recipeData._id}`
       );
       push("/");
     } catch (error) {
       console.log("error", error);
     }
   };
-
+  const handleEdit = async (
+    title,
+    preparationTime,
+    directions,
+    ingredients
+  ) => {
+    try {
+      await axios.put(
+        "https://exercise.cngroup.dk/api/recipes",
+        title,
+        preparationTime,
+        directions,
+        ingredients
+      );
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
   const onEditSubmit = (title, preparationTime, directions, ingredients) => {
     //odeslani na api
+    handleEdit(title, preparationTime, directions, ingredients);
     console.log(`nejaky title: ${title}`);
   };
 

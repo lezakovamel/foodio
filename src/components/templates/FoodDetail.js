@@ -82,6 +82,7 @@ const Steps = styled.div`
 const FoodDetail = ({
   onEditClicked,
   onFavouriteClicked,
+  onDeleteClicked,
   key,
   title,
   slug,
@@ -112,6 +113,7 @@ const FoodDetail = ({
               openEdit={onEditClicked}
               onFavouriteClicked={onFavouriteClicked}
               preparationTime={preparationTime}
+              onDeleteClicked={onDeleteClicked}
             />
             {console.log(preparationTime)}
             <Wrapper>

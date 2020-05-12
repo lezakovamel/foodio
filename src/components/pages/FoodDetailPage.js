@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 
 import BaseTemplate from "../templates/BaseTemplate";
+import axios from "axios";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
 import { ModalTypeEnum, PageTypeEnum } from "../../tools/Enums";
 import { UserContext } from "../../Control";
+import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
@@ -24,6 +26,8 @@ const FoodDetailPage = () => {
   const [loading, setLoading] = useState(false);
 
   const recipeData = useGetData(slug);
+  const history = useHistory();
+  const { push } = useHistory();
 
   useGetIngredients();
 
@@ -64,9 +68,19 @@ const FoodDetailPage = () => {
       setLoading(false);
     }
   };
-
   const onEditClicked = () => {
     openModal(ModalTypeEnum.EDIT_FOOD, "", recipeData);
+  };
+  const onDeleteClicked = async () => {
+    try {
+      //http 500?
+      await axios.delete(
+        `https://exercise.cngroup.dk/api/recipes/${recipeData.id}`
+      );
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   const onEditSubmit = (title, preparationTime, directions, ingredients) => {
@@ -93,6 +107,7 @@ const FoodDetailPage = () => {
             lastModifiedDate={recipeData.lastModifiedDate}
             onEditClicked={onEditClicked}
             onFavouriteClicked={onFavouriteClicked}
+            onDeleteClicked={onDeleteClicked}
           />
         </>
       ) : (

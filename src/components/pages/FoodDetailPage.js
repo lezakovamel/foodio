@@ -82,29 +82,14 @@ const FoodDetailPage = () => {
       console.log("error", error);
     }
   };
-  const handleEdit = async (
-    title,
-    preparationTime,
-    directions,
-    ingredients
-  ) => {
+
+  const onEditSubmit = async (data) => {
     try {
-      await axios.put(
-        "https://exercise.cngroup.dk/api/recipes",
-        title,
-        preparationTime,
-        directions,
-        ingredients
-      );
+      await axios.put("https://exercise.cngroup.dk/api/recipes", data);
       push("/");
     } catch (error) {
       console.log("error", error);
     }
-  };
-
-  const onEditSubmit = (title, preparationTime, directions) => {
-
-    console.log(`data: ${title} ${preparationTime} ${directions}`);
   };
 
   return (
@@ -117,7 +102,7 @@ const FoodDetailPage = () => {
       {!loading ? (
         <>
           <FoodDetail
-            key={recipeData.slug}
+            keyId={recipeData.slug}
             title={recipeData.title}
             preparationTime={recipeData.preparationTime}
             ingredients={recipeData.ingredients}

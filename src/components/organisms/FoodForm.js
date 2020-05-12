@@ -46,7 +46,7 @@ const FoodForm = ({
         setSubmitting(true);
         type === ModalTypeEnum.ADD_FOOD
           ? onAddNew(data)
-          : onEditSave(title, preparationTime, directions);
+          : onEditSave(data);
         setSubmitting(false);
         resetForm();
       }}

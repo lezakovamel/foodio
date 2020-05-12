@@ -59,7 +59,7 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
         <H1>{title()}</H1>
         <Icon icon={faTimes} onClick={onClose} />
       </Modal.Header>
-      <Modal.Body>{body()}</Modal.Body>
+      <Modal.Body dialogClassName="modalBody">{body()}</Modal.Body>
     </Modal>
   );
 };

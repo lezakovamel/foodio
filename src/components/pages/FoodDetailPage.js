@@ -74,12 +74,14 @@ const FoodDetailPage = () => {
     try {
       await axios.delete(
         `https://exercise.cngroup.dk/api/recipes/${recipeData._id}`
+
       );
       push("/");
     } catch (error) {
       console.log("error", error);
     }
   };
+
 
   const onEditSubmit = async (data) => {
     try {

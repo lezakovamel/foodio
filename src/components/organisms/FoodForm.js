@@ -4,6 +4,10 @@ import * as yup from "yup";
 import styled from "@emotion/styled";
 import { Formik } from "formik";
 
+
+import { Button } from "../atoms/Buttons";
+import { Form } from "../atoms/Form";
+
 import { Input } from "../atoms/FormFields";
 import { Textarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
@@ -14,6 +18,17 @@ const InputsWrapper = styled.div`
   display: flex;
   width: 50vw;
   flex-wrap: wrap;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-right: ${(props) => props.theme.padding.primary};
+  button {
+    margin-left: auto;
+  }
 `;
 
 const validationSchema = yup.object({
@@ -52,10 +67,11 @@ const FoodForm = ({
       }}
     >
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} name="form">
-          <FormWrapper>
 
+        <Form onSubmit={handleSubmit}>
+          <FormWrapper>
             <InputsWrapper>
+
               <Input
                 name="title"
                 type="text"
@@ -83,16 +99,17 @@ const FoodForm = ({
               //options ={ingredients}
             />*/}
 
+            <ButtonWrapper>
+              <Button type="submit" onClick={handleSubmit}>
+                {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
+              </Button>
+            </ButtonWrapper>
+
             </InputsWrapper>
 
-                {
-                  //button is not submiting for some reason
-                }
-            <Button htmlType="submit"  >
-              {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
-            </Button>
+
           </FormWrapper>
-        </form>
+        </Form>
       )}
     </Formik>
   );

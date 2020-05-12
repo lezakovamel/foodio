@@ -71,7 +71,9 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
           <Icon icon={faTimes} onClick={onClose} />
         </IconWrapper>
       </Modal.Header>
+
       <Modal.Body className="modalBody">{body()}</Modal.Body>
+
     </Modal>
   );
 };

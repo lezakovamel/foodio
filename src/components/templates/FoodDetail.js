@@ -83,8 +83,8 @@ const FoodDetail = ({
   onEditClicked,
   onFavouriteClicked,
   onDeleteClicked,
-  key,
   title,
+  keyId,
   slug,
   preparationTime,
   lastModifiedDate,
@@ -102,7 +102,7 @@ const FoodDetail = ({
   const renderIngredients = () =>
     ingredients &&
     ingredients.map((ingredient) => (
-      <Ingredient ingredient={ingredient.name} />
+      <Ingredient ingredient={ingredient.name} key={ingredient._id} />
     ));
   return (
     <Container>
@@ -116,7 +116,6 @@ const FoodDetail = ({
               preparationTime={preparationTime}
               onDeleteClicked={onDeleteClicked}
             />
-            {console.log(preparationTime)}
             <Wrapper>
               <ImgWrapper>
                 <Img

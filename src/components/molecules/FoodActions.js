@@ -5,7 +5,6 @@ import { faEdit, faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import styled from "@emotion/styled";
 import { Icon } from "../atoms/Icon";
 import { P } from "../atoms/TextFields";
-import { ModalTypeEnum } from "../../tools/Enums";
 
 const Actions = styled.div`
   margin-left: auto;

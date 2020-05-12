@@ -4,7 +4,6 @@ import BaseTemplate from "../templates/BaseTemplate";
 import axios from "axios";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
-import { MobH1 } from "../atoms/Headlines";
 import { ModalTypeEnum, PageTypeEnum } from "../../tools/Enums";
 import { UserContext } from "../../Control";
 import { useHistory } from "react-router";
@@ -27,7 +26,6 @@ const FoodDetailPage = () => {
   const [loading, setLoading] = useState(false);
 
   const recipeData = useGetData(slug);
-  const history = useHistory();
   const { push } = useHistory();
 
   useGetIngredients();
@@ -82,31 +80,14 @@ const FoodDetailPage = () => {
       console.log("error", error);
     }
   };
-  const handleEdit = async (
-    title,
-    preparationTime,
-    directions,
-    ingredients
-  ) => {
-    try {
-      await axios.put(
-        "https://exercise.cngroup.dk/api/recipes",
-        title,
-        preparationTime,
-        directions,
-        ingredients
 
-      );
+  const onEditSubmit = async (data) => {
+    try {
+      await axios.put("https://exercise.cngroup.dk/api/recipes", data);
       push("/");
     } catch (error) {
       console.log("error", error);
     }
-  };
-
-  const onEditSubmit = (title, preparationTime, directions, ingredients) => {
-    //odeslani na api
-
-    console.log(`nejaky title: ${title}`);
   };
 
   return (
@@ -119,7 +100,7 @@ const FoodDetailPage = () => {
       {!loading ? (
         <>
           <FoodDetail
-            key={recipeData.slug}
+            keyId={recipeData.slug}
             title={recipeData.title}
             preparationTime={recipeData.preparationTime}
             ingredients={recipeData.ingredients}

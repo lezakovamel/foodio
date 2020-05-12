@@ -8,7 +8,6 @@ import { useFavourites } from "../../hooks/useFavourites";
 import NotFoundText from "../molecules/NotFoundText";
 import firebase from "../../Firebase";
 import ThemeSwitcher from "../molecules/ThemeSwitcher";
-import Container from "../atoms/Container";
 
 const ProfilePage = () => {
   const { user, userId } = useContext(UserContext);

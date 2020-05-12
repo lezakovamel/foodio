@@ -1,7 +1,6 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import { TitleWrapper } from "../atoms/TitleWrapper";
 import { Icon } from "../atoms/Icon";
 import { H3 } from "../atoms/Headlines";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";

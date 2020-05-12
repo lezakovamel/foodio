@@ -23,7 +23,6 @@ const FoodDetailPage = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  //Data se v hooku nesetnou je pouzit mock json
   const recipeData = useGetData(slug);
 
   useGetIngredients();
@@ -56,7 +55,7 @@ const FoodDetailPage = () => {
         .collection("users")
         .doc(userId)
         .update({
-          favourite: firebase.firestore.FieldValue.arrayUnion("__food_id__"),
+          favourite: firebase.firestore.FieldValue.arrayUnion(recipeData._id),
         });
       openModal(ModalTypeEnum.FAV_ADDED, "Food was added to favourites!");
       setLoading(false);

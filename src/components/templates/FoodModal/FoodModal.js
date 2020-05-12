@@ -12,7 +12,7 @@ import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
 
-const FoodModal = ({ data, onClose ,onAddNew, onEditSave}) => {
+const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
   const title = () => {
     switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
@@ -33,7 +33,9 @@ const FoodModal = ({ data, onClose ,onAddNew, onEditSave}) => {
   const body = () => {
     switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
-        return <FoodForm type={data.type} onAddNew={onAddNew}/>;
+        return (
+          <FoodForm type={data.type} data={data.payload} onAddNew={onAddNew} />
+        );
       case ModalTypeEnum.EDIT_FOOD:
         return <FoodForm type={data.type} data={data.payload} onEditSave={onEditSave} />;
       case ModalTypeEnum.NOT_LOGGED:

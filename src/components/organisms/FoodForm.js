@@ -4,7 +4,6 @@ import * as yup from "yup";
 import styled from "@emotion/styled";
 import { Formik } from "formik";
 
-
 import { Button } from "../atoms/Buttons";
 import { Form } from "../atoms/Form";
 
@@ -12,7 +11,6 @@ import { Input } from "../atoms/FormFields";
 import { Textarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
-import { Button } from "antd";
 import MultiSelect from "react-multi-select-component";
 import { useGetIngredients } from "../../hooks/useGetIngredients";
 import Loading from "../atoms/Loading/Loading";
@@ -40,12 +38,7 @@ const validationSchema = yup.object({
   directions: yup.string().required("Directions are required"),
 });
 
-const FoodForm = ({
-  type,
-  onAddNew,
-  onEditSave,
-  data,
-}) => {
+const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
   const ingre = useGetIngredients();
 
   const [title, setTitle] = useState(data.title);
@@ -79,11 +72,9 @@ const FoodForm = ({
       }}
     >
       {({ handleSubmit }) => (
-
         <Form onSubmit={handleSubmit}>
           <FormWrapper>
             <InputsWrapper>
-
               <Input
                 name="title"
                 type="text"
@@ -102,24 +93,22 @@ const FoodForm = ({
                 value={directions}
                 setValue={setDirections}
               />
-            {ingre.isLoading ? (
-              <Loading />
-            ) : (
-              <MultiSelect
-                options={resolveIngredients()}
-                value={selected}
-                onChange={setSelected}
-                labelledBy={"Select"}
-              />
-            <ButtonWrapper>
-              <Button type="submit" onClick={handleSubmit}>
-                {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
-              </Button>
-            </ButtonWrapper>
-
+              {ingre.isLoading ? (
+                <Loading />
+              ) : (
+                <MultiSelect
+                  options={resolveIngredients()}
+                  value={selected}
+                  onChange={setSelected}
+                  labelledBy={"Select"}
+                />
+              )}
+              <ButtonWrapper>
+                <Button type="submit" onClick={handleSubmit}>
+                  {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
+                </Button>
+              </ButtonWrapper>
             </InputsWrapper>
-
-
           </FormWrapper>
         </Form>
       )}

@@ -26,3 +26,7 @@ For API calls use [Axios](https://github.com/axios/axios)
 ### Test account 
 Login: cnguys@utb.cz
 Pswd: OstravaSlovensko
+
+### Authors
+[David Sedlář](https://github.com/d3jw)  
+[Melánie Ležáková](https://github.com/lezakovamel)

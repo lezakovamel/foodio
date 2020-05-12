@@ -102,7 +102,7 @@ const FoodCard = ({
           <div />
         ) : (
           //is for removing from favourites e.g. ProfilePage onRemoveFromFavourites
-          <Icon icon={faTimes} onClick={() => onIconClick(slug)} />
+          <Icon icon={faTimes} onClick={() => onIconClick(id)} />
         )}
         <H4 centered>Preparation time</H4>
         <P centered> {prepTime} minutes</P>

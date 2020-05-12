@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import * as yup from "yup";
-
+import styled from "@emotion/styled";
 import { Formik } from "formik";
 
 import { Button } from "../atoms/Buttons";
@@ -9,6 +9,12 @@ import { Input } from "../atoms/FormFields";
 import { Textarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
+
+const InputsWrapper = styled.div`
+  display: flex;
+  width: 50vw;
+  flex-wrap: wrap;
+`;
 
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(15),
@@ -52,21 +58,29 @@ const FoodForm = ({
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <FormWrapper>
-            <Input name="title" type="text" value={title} setValue={setTitle} />
-            <Input
-              name="preparationTime"
-              type="text"
-              value={preparationTime}
-              setValue={setPreparationTime}
-            />
-            {console.log(`tu prep time: ${preparationTime}`)}
-            <Textarea
-              name="directions"
-              type="text"
-              value={directions}
-              setValue={setDirections}
-            />
-            {/*<Input
+
+            <InputsWrapper>
+              <Input
+                name="title"
+                type="text"
+                value={title}
+                setValue={setTitle}
+              />
+              <Input
+                name="preparationTime"
+                type="text"
+                value={preparationTime}
+                setValue={setPreparationTime}
+              />
+              {console.log(`tu prep time: ${preparationTime}`)}
+              <Textarea
+                name="directions"
+                type="text"
+                value={directions}
+                setValue={setDirections}
+              />
+              {/*<Input
+
               name="ingredients"
               type="text"
               value={ingredients}
@@ -74,11 +88,8 @@ const FoodForm = ({
               //options ={ingredients}
             />*/}
 
-            {/**
-             * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component
-             * handling is done via [type], this will tell you if you r going to Save edited or Add new
-             * [type] can also tell you wich properties fill onLoad, none if you r adding new food, all if you r going to edit food
-             */}
+            </InputsWrapper>
+
             <Button type="submit" onClick={handleSubmit}>
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
             </Button>

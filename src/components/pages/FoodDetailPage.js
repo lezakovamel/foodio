@@ -4,14 +4,15 @@ import BaseTemplate from "../templates/BaseTemplate";
 import axios from "axios";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
+import { MobH1 } from "../atoms/Headlines";
 import { ModalTypeEnum, PageTypeEnum } from "../../tools/Enums";
 import { UserContext } from "../../Control";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
-import { useGetData } from "../../hooks/HookGetDetail";
-import { useGetIngredients } from "../../hooks/HookGetIngredients";
+import { useGetData } from "../../hooks/useGetDetail";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
@@ -73,9 +74,28 @@ const FoodDetailPage = () => {
   };
   const onDeleteClicked = async () => {
     try {
-      //http 500?
       await axios.delete(
-        `https://exercise.cngroup.dk/api/recipes/${recipeData.id}`
+        `https://exercise.cngroup.dk/api/recipes/${recipeData._id}`
+      );
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  const handleEdit = async (
+    title,
+    preparationTime,
+    directions,
+    ingredients
+  ) => {
+    try {
+      await axios.put(
+        "https://exercise.cngroup.dk/api/recipes",
+        title,
+        preparationTime,
+        directions,
+        ingredients
+
       );
       push("/");
     } catch (error) {
@@ -85,6 +105,7 @@ const FoodDetailPage = () => {
 
   const onEditSubmit = (title, preparationTime, directions, ingredients) => {
     //odeslani na api
+
     console.log(`nejaky title: ${title}`);
   };
 

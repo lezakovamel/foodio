@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import { H1 } from "../atoms/Headlines";
+import { H1, MobH1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
@@ -80,10 +80,11 @@ const Steps = styled.div`
 `;
 
 const FoodDetail = ({
-  openModal,
+  onEditClicked,
   onFavouriteClicked,
-  key,
+  onDeleteClicked,
   title,
+  keyId,
   slug,
   preparationTime,
   lastModifiedDate,
@@ -101,19 +102,20 @@ const FoodDetail = ({
   const renderIngredients = () =>
     ingredients &&
     ingredients.map((ingredient) => (
-      <Ingredient ingredient={ingredient.name} />
+      <Ingredient ingredient={ingredient.name} key={ingredient._id} />
     ));
   return (
     <Container>
       <FoodWrapper>
         <FoodOverlay>
+          <MobH1>{title}</MobH1>
           <BaseInfo>
             <FoodActions
-              openEdit={openModal}
+              openEdit={onEditClicked}
               onFavouriteClicked={onFavouriteClicked}
               preparationTime={preparationTime}
+              onDeleteClicked={onDeleteClicked}
             />
-            {console.log(preparationTime)}
             <Wrapper>
               <ImgWrapper>
                 <Img

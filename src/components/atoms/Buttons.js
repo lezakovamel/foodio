@@ -13,10 +13,15 @@ export const Button = styled.button`
   color: ${(props) => props.theme.colors.primaryDark};
   font-weight: bold;
   border: 2px solid ${(props) => props.theme.colors.primary};
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 90%;
+    height: 7vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 export const TitleButton = styled.button`
   margin: auto;
-
   box-sizing: border-box;
   height: 5vh;
   margin-top: 3vh;

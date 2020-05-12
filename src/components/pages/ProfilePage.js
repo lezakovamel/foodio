@@ -4,7 +4,7 @@ import BaseTemplate from "../templates/BaseTemplate";
 import { PageTypeEnum, ThemeTypeEnum } from "../../tools/Enums";
 import CardSection from "../organisms/CardSection";
 import Loading from "../atoms/Loading/Loading";
-import { useFavourites } from "../../hooks/HookFavourites";
+import { useFavourites } from "../../hooks/useFavourites";
 import NotFoundText from "../molecules/NotFoundText";
 import firebase from "../../Firebase";
 import ThemeSwitcher from "../molecules/ThemeSwitcher";
@@ -14,8 +14,7 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
 
-
-  let favourites = useFavourites( setLoading, setError);
+  let favourites = useFavourites(setLoading, setError);
 
   const fullName = user.name !== "" ? `${user.name} ${user.surname}` : null;
 
@@ -62,9 +61,9 @@ const ProfilePage = () => {
       pageType={PageTypeEnum.PROFILE}
     >
       {!error ? (
-        <div>
+        <>
           {!loading ? (
-            <div>
+            <>
               <ThemeSwitcher onSwitchTheme={onSwitchTheme} />
               <CardSection
                 title="Favourite foods"
@@ -72,11 +71,11 @@ const ProfilePage = () => {
                 isProfile={true}
                 onIconClick={onRemoveFromFavourites}
               />
-            </div>
+            </>
           ) : (
             <Loading />
           )}
-        </div>
+        </>
       ) : (
         <NotFoundText />
       )}

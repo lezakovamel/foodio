@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Modal } from "react-bootstrap";
+import styled from "@emotion/styled";
 
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./FoodModal.scss";
@@ -12,13 +13,16 @@ import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
 
+const IconWrapper = styled.div`
+  margin-left: auto;
+`;
 const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
   const title = () => {
     switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
         return "Add food";
       case ModalTypeEnum.EDIT_FOOD:
-        return "__food_name__";
+        return data.payload.title;
       case ModalTypeEnum.NOT_LOGGED:
         return "Error";
       case ModalTypeEnum.FAV_ADDED:
@@ -37,7 +41,13 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
           <FoodForm type={data.type} data={data.payload} onAddNew={onAddNew} />
         );
       case ModalTypeEnum.EDIT_FOOD:
-        return <FoodForm type={data.type} />;
+        return (
+          <FoodForm
+            type={data.type}
+            data={data.payload}
+            onEditSave={onEditSave}
+          />
+        );
       case ModalTypeEnum.NOT_LOGGED:
         return <P>{data.message}</P>;
       case ModalTypeEnum.FAV_ADDED:
@@ -57,9 +67,13 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
     >
       <Modal.Header>
         <H1>{title()}</H1>
-        <Icon icon={faTimes} onClick={onClose} />
+        <IconWrapper>
+          <Icon icon={faTimes} onClick={onClose} />
+        </IconWrapper>
       </Modal.Header>
-      <Modal.Body>{body()}</Modal.Body>
+
+      <Modal.Body className="modalBody">{body()}</Modal.Body>
+
     </Modal>
   );
 };

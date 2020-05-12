@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Label } from "./TextFields";
 
-const InputWrapper = styled.div`
+const TextareaWrapper = styled.div`
   width: 40%;
   height: fit-content;
   box-sizing: border-box;
@@ -12,9 +12,9 @@ const InputWrapper = styled.div`
   }
 `;
 
-const InputField = styled.input`
+const TextareaField = styled.textarea`
   width: 100%;
-  height: 40px;
+  height: 200px;
   box-sizing: border-box;
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};
@@ -25,12 +25,12 @@ const InputField = styled.input`
     background: ${(props) => props.theme.colors.primaryLight};
   }
 `;
-export const Input = ({ name, type, value, setValue, onChange }) => {
+export const Textarea = ({ name, type, value, setValue, onChange }) => {
   //TODO function for capitalizing first letter
   return (
-    <InputWrapper>
+    <TextareaWrapper>
       <Label>{name}</Label>
-      <InputField
+      <TextareaField
         name={name}
         type={type}
         value={value}
@@ -40,7 +40,7 @@ export const Input = ({ name, type, value, setValue, onChange }) => {
             onChange(event.target.value);
           }
         }}
-      ></InputField>
-    </InputWrapper>
+      ></TextareaField>
+    </TextareaWrapper>
   );
 };

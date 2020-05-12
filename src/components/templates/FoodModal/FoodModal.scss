@@ -1,5 +1,17 @@
 .modalWindow {
-  width: 90%;
+  width: 60%;
   max-width: none !important;
   max-height: none !important;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+.modalBody {
+  display: flex;
+  padding: 0rem !important;
+}
+.modalBody {
+  display: flex;
 }

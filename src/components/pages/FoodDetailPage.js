@@ -1,15 +1,17 @@
 import React, { useState, useContext } from "react";
 
 import BaseTemplate from "../templates/BaseTemplate";
+import axios from "axios";
 import FoodModal from "../templates/FoodModal/FoodModal";
 import FoodDetail from "../templates/FoodDetail";
 import { ModalTypeEnum, PageTypeEnum } from "../../tools/Enums";
 import { UserContext } from "../../Control";
+import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import firebase from "../../Firebase";
 import Loading from "../atoms/Loading/Loading";
-import { useGetData } from "../../hooks/HookGetDetail";
-import { useGetIngredients } from "../../hooks/HookGetIngredients";
+import { useGetData } from "../../hooks/useGetDetail";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
@@ -24,6 +26,7 @@ const FoodDetailPage = () => {
   const [loading, setLoading] = useState(false);
 
   const recipeData = useGetData(slug);
+  const { push } = useHistory();
 
   useGetIngredients();
 
@@ -64,22 +67,51 @@ const FoodDetailPage = () => {
       setLoading(false);
     }
   };
+  const onEditClicked = () => {
+    openModal(ModalTypeEnum.EDIT_FOOD, "", recipeData);
+  };
+  const onDeleteClicked = async () => {
+    try {
+      await axios.delete(
+        `https://exercise.cngroup.dk/api/recipes/${recipeData._id}`
+
+      );
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+
+  const onEditSubmit = async (data) => {
+    try {
+      await axios.put("https://exercise.cngroup.dk/api/recipes", data);
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
-      <FoodModal data={modalData} onClose={onModalClose} />
+      <FoodModal
+        data={modalData}
+        onClose={onModalClose}
+        onEditSave={onEditSubmit}
+      />
       {!loading ? (
         <>
           <FoodDetail
-            key={recipeData.slug}
+            keyId={recipeData.slug}
             title={recipeData.title}
             preparationTime={recipeData.preparationTime}
             ingredients={recipeData.ingredients}
             slug={recipeData.slug}
             directions={recipeData.directions}
             lastModifiedDate={recipeData.lastModifiedDate}
-            openModal={openModal}
+            onEditClicked={onEditClicked}
             onFavouriteClicked={onFavouriteClicked}
+            onDeleteClicked={onDeleteClicked}
           />
         </>
       ) : (

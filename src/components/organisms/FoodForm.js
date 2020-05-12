@@ -35,6 +35,8 @@ const FoodForm = ({
   data,
   //ingredients
 }) => {
+  console.log(data);
+
   const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState(data.preparationTime);
   const [directions, setDirections] = useState(data.directions);
@@ -62,21 +64,28 @@ const FoodForm = ({
       {({ handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
           <FormWrapper>
-            <Input name="title" type="text" value={title} setValue={setTitle} />
-            <Input
-              name="preparationTime"
-              type="text"
-              value={preparationTime}
-              setValue={setPreparationTime}
-            />
-            {console.log(`tu prep time: ${preparationTime}`)}
-            <Textarea
-              name="directions"
-              type="text"
-              value={directions}
-              setValue={setDirections}
-            />
-            {/*<Input
+
+              <Input
+                name="title"
+                type="text"
+                value={title}
+                setValue={setTitle}
+              />
+              <Input
+                name="preparationTime"
+                type="text"
+                value={preparationTime}
+                setValue={setPreparationTime}
+              />
+              {console.log(`tu prep time: ${preparationTime}`)}
+              <Textarea
+                name="directions"
+                type="text"
+                value={directions}
+                setValue={setDirections}
+              />
+              {/*<Input
+
               name="ingredients"
               type="text"
               value={ingredients}
@@ -84,11 +93,6 @@ const FoodForm = ({
               //options ={ingredients}
             />*/}
 
-            {/**
-             * At FoodDetailPage create relevant functions [onAddNew], [onEditSave] and send them to his component
-             * handling is done via [type], this will tell you if you r going to Save edited or Add new
-             * [type] can also tell you wich properties fill onLoad, none if you r adding new food, all if you r going to edit food
-             */}
             <ButtonWrapper>
               <Button type="submit" onClick={handleSubmit}>
                 {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

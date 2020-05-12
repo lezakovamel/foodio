@@ -13,6 +13,9 @@ import { Textarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import { Button } from "antd";
+import MultiSelect from "react-multi-select-component";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
+import Loading from "../atoms/Loading/Loading";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -43,25 +46,34 @@ const FoodForm = ({
   onEditSave,
   data,
 }) => {
+  const ingre = useGetIngredients();
+
   const [title, setTitle] = useState(data.title);
   const [preparationTime, setPreparationTime] = useState(data.preparationTime);
   const [directions, setDirections] = useState(data.directions);
-  const [ingredients, setIngredients] = useState([]);
 
+  const [selected, setSelected] = useState([]);
+
+  const resolveIngredients = () => {
+    return type === ModalTypeEnum.ADD_FOOD
+      ? ingre.options.map((ing) => {
+          return { label: ing, value: ing };
+        })
+      : data.ingredients.map((ing) => {
+          return { label: ing.name, value: ing.name };
+        });
+  };
   return (
     <Formik
       initialValues={{
         title: title,
         preparationTime: preparationTime,
         directions: directions,
-        ingredients: ingredients,
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
-        type === ModalTypeEnum.ADD_FOOD
-          ? onAddNew(data)
-          : onEditSave(data);
+        type === ModalTypeEnum.ADD_FOOD ? onAddNew(data) : onEditSave(data);
         setSubmitting(false);
         resetForm();
       }}
@@ -90,15 +102,15 @@ const FoodForm = ({
                 value={directions}
                 setValue={setDirections}
               />
-              {/*<Input
-
-              name="ingredients"
-              type="text"
-              value={ingredients}
-              setValue={setIngredients}
-              //options ={ingredients}
-            />*/}
-
+            {ingre.isLoading ? (
+              <Loading />
+            ) : (
+              <MultiSelect
+                options={resolveIngredients()}
+                value={selected}
+                onChange={setSelected}
+                labelledBy={"Select"}
+              />
             <ButtonWrapper>
               <Button type="submit" onClick={handleSubmit}>
                 {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

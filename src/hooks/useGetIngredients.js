@@ -24,5 +24,6 @@ export function useGetIngredients() {
     };
     fetchData();
   }, []);
+
   return ingredientsData;
 }

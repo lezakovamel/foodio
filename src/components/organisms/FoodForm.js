@@ -43,6 +43,8 @@ const FoodForm = ({
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
+        console.log("pls");
+        
         setSubmitting(true);
         type === ModalTypeEnum.ADD_FOOD
           ? onAddNew(data)

@@ -18,11 +18,10 @@ const FoodForm = ({
   type,
   onAddNew,
   onEditSave,data
-  //ingredients
 }) => {
   const [title, setTitle] = useState(data.title);
-  const [preparationTime, setPreparationTime] = useState("");
-  const [directions, setDirections] = useState("");
+  const [preparationTime, setPreparationTime] = useState(data.preparationTime);
+  const [directions, setDirections] = useState(data.directions);
   const [ingredients, setIngredients] = useState([]);
 
   return (

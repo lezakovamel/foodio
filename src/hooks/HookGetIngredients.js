@@ -14,8 +14,6 @@ export function useGetIngredients() {
         const result = await axios(url);
         const data = result.data;
         setIngredientsData({ options: data, isLoading: false });
-        console.log(data);
-        console.log(ingredientsData);
       } catch ({ message }) {
         setIngredientsData({
           ...ingredientsData,

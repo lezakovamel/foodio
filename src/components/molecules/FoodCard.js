@@ -17,7 +17,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-content: center;
   background-color: ${(props) => props.theme.colors.white};
-  z-index: 1;
+  z-index: 80;
   position: absolute;
   /*border-radius: 10px;*/
   visibility: hidden;
@@ -49,8 +49,8 @@ const Card = styled.div`
   }
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     margin-bottom: ${(props) => props.theme.padding.medium};
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
   }
 `;
 
@@ -84,7 +84,6 @@ const Info = styled.div`
   }
 `;
 
-//TODO on hover create white ovrelay with opacity, at overlay show cooking time
 const FoodCard = ({
   id,
   title,
@@ -103,7 +102,7 @@ const FoodCard = ({
           <div />
         ) : (
           //is for removing from favourites e.g. ProfilePage onRemoveFromFavourites
-          <Icon icon={faTimes} onClick={() => onIconClick(slug)} />
+          <Icon icon={faTimes} onClick={() => onIconClick(id)} />
         )}
         <H4 centered>Preparation time</H4>
         <P centered> {prepTime} minutes</P>

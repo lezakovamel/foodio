@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
+
 export function useGetData() {
   const url = "https://exercise.cngroup.dk/api/recipes";
   const [recipeData, setRecipeData] = useState({

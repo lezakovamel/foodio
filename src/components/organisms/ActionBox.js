@@ -3,20 +3,28 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { Icon } from "../atoms/Icon";
-import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPlus, faHome } from "@fortawesome/free-solid-svg-icons";
+import { PageTypeEnum } from "../../tools/Enums";
+import { useHistory } from "react-router";
 
 const ActionBoxWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
-  margin: auto 3vw auto 0;
 `;
 
-export const ActionBox = ({ onDispalySearchClicked, onAddFoodClicked }) => {
+export const ActionBox = ({ onSearchClicked, onAddFoodClicked, pageType }) => {
+  const { push } = useHistory();
   return (
     <ActionBoxWrapper>
-      <Icon icon={faSearch} onClick={onDispalySearchClicked} />
+      {pageType === PageTypeEnum.MAIN ? (
+        <Icon icon={faSearch} onClick={onSearchClicked} />
+      ) : pageType === PageTypeEnum.PROFILE ? (
+        <Icon icon={faHome} onClick={() => push("/")} />
+      ) : (
+        <div />
+      )}
       <Icon icon={faPlus} onClick={onAddFoodClicked} />
     </ActionBoxWrapper>
   );

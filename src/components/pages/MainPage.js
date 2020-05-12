@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";
@@ -21,7 +22,7 @@ const MainPage = () => {
     }
   };
   return (
-    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN}>
+    <BaseTemplate title="Foodio" pageType={PageTypeEnum.MAIN} data={recipeData.cards}>
       <FoodioIntro onExploreClick={onExploreFoodClicked} />
       {!recipeData.isLoading ? (
         <CardSection

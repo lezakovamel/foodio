@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-
-import axios from "axios";
+import React, { useState, useContext } from "react";
 
 import BaseTemplate from "../templates/BaseTemplate";
 import FoodModal from "../templates/FoodModal/FoodModal";
@@ -13,8 +11,6 @@ import Loading from "../atoms/Loading/Loading";
 import { useGetData } from "../../hooks/HookGetDetail";
 import { useGetIngredients } from "../../hooks/HookGetIngredients";
 
-import mock from '../../mock.json'
-
 const FoodDetailPage = () => {
   const { user, userId } = useContext(UserContext);
 
@@ -26,15 +22,18 @@ const FoodDetailPage = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  
-  //Data se v hooku nesetnou je pouzit mock json
+
   const recipeData = useGetData(slug);
 
-  const volani = useGetData(slug);
   useGetIngredients();
 
-  const openModal = (type, message) => {
-    setModalData({ type: type, visibility: true, message: message });
+  const openModal = (type, message, payload) => {
+    setModalData({
+      type: type,
+      visibility: true,
+      message: message,
+      payload: payload,
+    });
   };
   const onModalClose = (type) => setModalData({ visibility: false });
 
@@ -43,7 +42,8 @@ const FoodDetailPage = () => {
       ? addFoodToFavourite()
       : openModal(
           ModalTypeEnum.NOT_LOGGED,
-          "Please, log in for saving your favourite foods."
+          "Please, log in for saving your favourite foods.",
+          recipeData
         );
   };
 
@@ -55,7 +55,7 @@ const FoodDetailPage = () => {
         .collection("users")
         .doc(userId)
         .update({
-          favourite: firebase.firestore.FieldValue.arrayUnion("__food_id__"),
+          favourite: firebase.firestore.FieldValue.arrayUnion(recipeData._id),
         });
       openModal(ModalTypeEnum.FAV_ADDED, "Food was added to favourites!");
       setLoading(false);
@@ -66,19 +66,22 @@ const FoodDetailPage = () => {
   };
 
   return (
-    <BaseTemplate title="_food_name_" pageType={PageTypeEnum.DETAIL}>
+    <BaseTemplate title={recipeData.title} pageType={PageTypeEnum.DETAIL}>
       <FoodModal data={modalData} onClose={onModalClose} />
       {!loading ? (
-        //DOPLN V DETAIL KOMPONENTE TU TY FIELDY CO TADY PREDAVAS
-        <FoodDetail
-          key={mock.slug}
-          title={mock.title}
-          prepTime={mock.prepTime}
-          slug={mock.slug}
-          lastModifiedDate={mock.lastModifiedDate}
-          openModal={openModal}
-          onFavouriteClicked={onFavouriteClicked}
-        />
+        <>
+          <FoodDetail
+            key={recipeData.slug}
+            title={recipeData.title}
+            preparationTime={recipeData.preparationTime}
+            ingredients={recipeData.ingredients}
+            slug={recipeData.slug}
+            directions={recipeData.directions}
+            lastModifiedDate={recipeData.lastModifiedDate}
+            openModal={openModal}
+            onFavouriteClicked={onFavouriteClicked}
+          />
+        </>
       ) : (
         <Loading />
       )}

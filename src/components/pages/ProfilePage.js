@@ -12,9 +12,10 @@ import ThemeSwitcher from "../molecules/ThemeSwitcher";
 const ProfilePage = () => {
   const { user, userId } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(true);
 
-  let favourites = useFavourites(user, setLoading, setError);
+
+  let favourites = useFavourites( setLoading, setError);
 
   const fullName = user.name !== "" ? `${user.name} ${user.surname}` : null;
 

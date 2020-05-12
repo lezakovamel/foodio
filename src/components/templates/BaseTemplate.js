@@ -37,15 +37,21 @@ export const HeaderTitle = styled.div`
   }
 `;
 
-const BaseTemplate = ({ title, pageType, children }) => {
+const IconsWrapper = styled.div`
+  width: auto;
+  display: flex;
+  flex-direction: row;
+`;
+
+const BaseTemplate = ({ title, pageType, data, children }) => {
   const backRef = useRef();
-  const { push } = useHistory();
   const { user } = useContext(UserContext);
-  const [loginRoute, setLoginRoute] = useState("login");
+  const { push } = useHistory();
   const [modalData, setModalData] = useState({
     type: ModalTypeEnum.ADD_FOOD,
     visibility: false,
     message: "",
+    payload: null,
   });
   const history = useHistory();
 
@@ -57,21 +63,30 @@ const BaseTemplate = ({ title, pageType, children }) => {
     }
   }, []);
 
-  const onDispalySearchClicked = () => {
-    push("/search");
-  };
-
   const onLoginClicked = () => {
-    setLoginRoute(user.name !== "" ? "profile" : "login");
+    push(user.surname !== undefined ? "/profile" : "/login");
   };
 
-  const openModal = (type, message) => {
-    setModalData({ type: type, visibility: true, message: message });
+  const openModal = (type, message, payload) => {    
+    setModalData({
+      type: type,
+      visibility: true,
+      message: message,
+      payload: payload,
+    });
   };
   const onModalClose = (type) => setModalData({ visibility: false });
 
   const onAddFoodClicked = () => {
-    openModal(ModalTypeEnum.ADD_FOOD, "Add food.");
+    openModal(ModalTypeEnum.ADD_FOOD, "Add food.", {title:"", preparationTime: "", ingredients:[], direction: ""});
+  };
+
+const onAddFoodSubmit =(title, ingredients, directions, preparationTime, servingCOunt) => {
+  //TODO hook ktery posle data z formu na api
+}
+
+  const onSearchClicked = () => {
+    openModal(ModalTypeEnum.SEARCH, "Search.", data);
   };
 
   const onBackwardClicked = () => {
@@ -93,17 +108,17 @@ const BaseTemplate = ({ title, pageType, children }) => {
           <HeaderTitle>
             <H1>{title}</H1>
           </HeaderTitle>
-          <ActionBox
-            onAddFoodClicked={onAddFoodClicked}
-            onDispalySearchClicked={onDispalySearchClicked}
-          />
-          <AccountBox
-            onAccountClicked={onLoginClicked}
-            loginRoute={loginRoute}
-          />
+          <IconsWrapper>
+            <ActionBox
+              onAddFoodClicked={onAddFoodClicked}
+              onSearchClicked={onSearchClicked}
+              pageType={pageType}
+            />
+            <AccountBox onAccountClicked={onLoginClicked} />
+          </IconsWrapper>
         </Header>
         <ContentWrapper>
-          <FoodModal data={modalData} onClose={onModalClose} />
+          <FoodModal data={modalData} onClose={onModalClose} onAddNew={onAddFoodSubmit} />
           {children}
         </ContentWrapper>
         <Footer>AV2MW 2020</Footer>

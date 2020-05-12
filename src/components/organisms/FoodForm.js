@@ -43,8 +43,6 @@ const FoodForm = ({
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
-        console.log("pls");
-        
         setSubmitting(true);
         type === ModalTypeEnum.ADD_FOOD
           ? onAddNew(data)
@@ -54,7 +52,7 @@ const FoodForm = ({
       }}
     >
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} name="form">
           <FormWrapper>
 
             <InputsWrapper>
@@ -87,7 +85,10 @@ const FoodForm = ({
 
             </InputsWrapper>
 
-            <Button htmlType="submit" >
+                {
+                  //button is not submiting for some reason
+                }
+            <Button htmlType="submit"  >
               {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
             </Button>
           </FormWrapper>

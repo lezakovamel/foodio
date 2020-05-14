@@ -18,6 +18,7 @@ const TextareaField = styled.textarea`
   box-sizing: border-box;
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};
+  border-radius: 5px;
   &:focus {
     outline: 2px solid ${(props) => props.theme.colors.primary};
   }

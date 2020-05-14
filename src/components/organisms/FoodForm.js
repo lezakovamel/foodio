@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import * as yup from "yup";
 import styled from "@emotion/styled";
@@ -7,13 +7,10 @@ import { Formik } from "formik";
 import { Button } from "../atoms/Buttons";
 import { Form } from "../atoms/Form";
 
-import { Input, FormInput } from "../atoms/FormFields";
-import { Textarea, FormTextarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
-import MultiSelect from "react-multi-select-component";
-import { useGetIngredients } from "../../hooks/useGetIngredients";
-import Loading from "../atoms/Loading/Loading";
+import { FormInput, FormMultiselect } from "../atoms/FormFields";
+import { FormTextarea } from "../atoms/Textarea";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -39,19 +36,6 @@ const validationSchema = yup.object({
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
-  const ingre = useGetIngredients();
-
-  const [selected, setSelected] = useState([]);
-
-  const resolveIngredients = () => {
-    return type === ModalTypeEnum.ADD_FOOD
-      ? ingre.options.map((ing) => {
-          return { label: ing, value: ing };
-        })
-      : data.ingredients.map((ing) => {
-          return { label: ing.name, value: ing.name };
-        });
-  };
   return (
     <Formik
       initialValues={{
@@ -95,16 +79,7 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 onChange={handleChange}
                 error={errors.directions}
               />
-              {ingre.isLoading ? (
-                <Loading />
-              ) : (
-                <MultiSelect
-                  options={resolveIngredients()}
-                  value={selected}
-                  onChange={setSelected}
-                  labelledBy={"Select"}
-                />
-              )}
+              <FormMultiselect name="ingredients" foodIngredients={data.ingredients} />
               <ButtonWrapper>
                 <Button type="submit">
                   {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

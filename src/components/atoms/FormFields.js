@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { Label, ErrorText } from "./TextFields";
+import MultiSelect from "react-multi-select-component";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const InputWrapper = styled.div`
   width: 40%;
@@ -18,6 +20,7 @@ const InputField = styled.input`
   box-sizing: border-box;
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};
+  border-radius: 5px;
   &:focus {
     outline: 2px solid ${(props) => props.theme.colors.primary};
   }
@@ -44,7 +47,14 @@ export const Input = ({ name, type, value, setValue, onChange }) => {
     </InputWrapper>
   );
 };
-export const FormInput = ({ name, type, value, handleBlur,onChange,error }) => {
+export const FormInput = ({
+  name,
+  type,
+  value,
+  handleBlur,
+  onChange,
+  error,
+}) => {
   return (
     <InputWrapper>
       <Label>{name}</Label>
@@ -56,6 +66,29 @@ export const FormInput = ({ name, type, value, handleBlur,onChange,error }) => {
         onChange={onChange}
       />
       <ErrorText>{error}</ErrorText>
+    </InputWrapper>
+  );
+};
+
+export const FormMultiselect = ({ name, foodIngredients }) => {
+  const ingre = useGetIngredients().options.map((ing) => {
+    return { label: ing, value: ing };
+  });
+
+  const [selected, setSelected] = useState(
+    foodIngredients.map((ing) => {
+      return { label: ing.name, value: ing.name };
+    })
+  );
+  return (
+    <InputWrapper>
+      <Label>{name}</Label>
+      <MultiSelect
+        options={ingre}
+        value={selected}
+        onChange={setSelected}
+        labelledBy={"Select"}
+      />
     </InputWrapper>
   );
 };

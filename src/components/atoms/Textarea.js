@@ -44,3 +44,23 @@ export const Textarea = ({ name, type, value, setValue, onChange }) => {
     </TextareaWrapper>
   );
 };
+export const FormTextarea = ({
+  name,
+  type,
+  value,
+  handleChange,
+  handleBlur,
+}) => {
+  return (
+    <TextareaWrapper>
+      <Label>{name}</Label>
+      <TextareaField
+        name={name}
+        type={type}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      ></TextareaField>
+    </TextareaWrapper>
+  );
+};

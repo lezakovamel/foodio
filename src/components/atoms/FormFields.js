@@ -44,3 +44,17 @@ export const Input = ({ name, type, value, setValue, onChange }) => {
     </InputWrapper>
   );
 };
+export const FormInput = ({ name, type, value, handleBlur,onChange }) => {
+  return (
+    <InputWrapper>
+      <Label>{name}</Label>
+      <InputField
+        name={name}
+        type={type}
+        value={value}
+        onBlur={handleBlur}
+        onChange={onChange}
+      ></InputField>
+    </InputWrapper>
+  );
+};

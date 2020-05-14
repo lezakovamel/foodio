@@ -70,21 +70,12 @@ export const FormInput = ({
   );
 };
 
-export const FormMultiselect = ({ name, foodIngredients }) => {
-  const ingre = useGetIngredients().options.map((ing) => {
-    return { label: ing, value: ing };
-  });
-
-  const [selected, setSelected] = useState(
-    foodIngredients.map((ing) => {
-      return { label: ing.name, value: ing.name };
-    })
-  );
+export const FormMultiselect = ({ name, ingredients, selected, setSelected }) => {
   return (
     <InputWrapper>
       <Label>{name}</Label>
       <MultiSelect
-        options={ingre}
+        options={ingredients}
         value={selected}
         onChange={setSelected}
         labelledBy={"Select"}

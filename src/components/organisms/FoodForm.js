@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as yup from "yup";
 import styled from "@emotion/styled";
@@ -11,6 +11,7 @@ import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import { FormInput, FormMultiselect } from "../atoms/FormFields";
 import { FormTextarea } from "../atoms/Textarea";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -36,12 +37,23 @@ const validationSchema = yup.object({
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
+  const ingre = useGetIngredients().options.map((ing) => {
+    return { label: ing, value: ing };
+  });
+
+  const [selectedIngredients, setSelectedIngredients] = useState(
+    data.ingredients.map((ing) => {
+      return { label: ing.name, value: ing.name };
+    })
+  );
+
   return (
     <Formik
       initialValues={{
         title: data.title,
         preparationTime: data.preparationTime,
         directions: data.directions,
+        ingredients: selectedIngredients,
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -79,7 +91,12 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 onChange={handleChange}
                 error={errors.directions}
               />
-              <FormMultiselect name="ingredients" foodIngredients={data.ingredients} />
+              <FormMultiselect
+                name="ingredients"
+                ingredients={ingre}
+                selected={selectedIngredients}
+                setSelected={setSelectedIngredients}
+              />
               <ButtonWrapper>
                 <Button type="submit">
                   {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

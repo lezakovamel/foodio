@@ -7,13 +7,11 @@ import { Formik } from "formik";
 import { Button } from "../atoms/Buttons";
 import { Form } from "../atoms/Form";
 
-import { Input, FormInput } from "../atoms/FormFields";
-import { Textarea, FormTextarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
-import MultiSelect from "react-multi-select-component";
+import { FormInput, FormMultiselect } from "../atoms/FormFields";
+import { FormTextarea } from "../atoms/Textarea";
 import { useGetIngredients } from "../../hooks/useGetIngredients";
-import Loading from "../atoms/Loading/Loading";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -39,25 +37,23 @@ const validationSchema = yup.object({
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
-  const ingre = useGetIngredients();
+  const ingre = useGetIngredients().options.map((ing) => {
+    return { label: ing, value: ing };
+  });
 
-  const [selected, setSelected] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState(
+    data.ingredients.map((ing) => {
+      return { label: ing.name, value: ing.name };
+    })
+  );
 
-  const resolveIngredients = () => {
-    return type === ModalTypeEnum.ADD_FOOD
-      ? ingre.options.map((ing) => {
-          return { label: ing, value: ing };
-        })
-      : data.ingredients.map((ing) => {
-          return { label: ing.name, value: ing.name };
-        });
-  };
   return (
     <Formik
       initialValues={{
         title: data.title,
         preparationTime: data.preparationTime,
         directions: data.directions,
+        ingredients: selectedIngredients,
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -77,13 +73,15 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 value={values.title}
                 handleBlur={handleBlur}
                 onChange={handleChange}
+                error={errors.title}
               />
               <FormInput
                 name="preparationTime"
-                type="text"
+                type="number"
                 value={values.preparationTime}
                 handleBlur={handleBlur}
                 onChange={handleChange}
+                error={errors.preparationTime}
               />
               <FormTextarea
                 name="directions"
@@ -91,17 +89,14 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 value={values.directions}
                 handleBlur={handleBlur}
                 onChange={handleChange}
+                error={errors.directions}
               />
-              {ingre.isLoading ? (
-                <Loading />
-              ) : (
-                <MultiSelect
-                  options={resolveIngredients()}
-                  value={selected}
-                  onChange={setSelected}
-                  labelledBy={"Select"}
-                />
-              )}
+              <FormMultiselect
+                name="ingredients"
+                ingredients={ingre}
+                selected={selectedIngredients}
+                setSelected={setSelectedIngredients}
+              />
               <ButtonWrapper>
                 <Button type="submit">
                   {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

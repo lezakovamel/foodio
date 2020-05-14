@@ -7,8 +7,8 @@ import { Formik } from "formik";
 import { Button } from "../atoms/Buttons";
 import { Form } from "../atoms/Form";
 
-import { Input } from "../atoms/FormFields";
-import { Textarea } from "../atoms/Textarea";
+import { Input, FormInput } from "../atoms/FormFields";
+import { Textarea, FormTextarea } from "../atoms/Textarea";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import MultiSelect from "react-multi-select-component";
@@ -41,10 +41,6 @@ const validationSchema = yup.object({
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
   const ingre = useGetIngredients();
 
-  const [title, setTitle] = useState(data.title);
-  const [preparationTime, setPreparationTime] = useState(data.preparationTime);
-  const [directions, setDirections] = useState(data.directions);
-
   const [selected, setSelected] = useState([]);
 
   const resolveIngredients = () => {
@@ -59,9 +55,9 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
   return (
     <Formik
       initialValues={{
-        title: title,
-        preparationTime: preparationTime,
-        directions: directions,
+        title: data.title,
+        preparationTime: data.preparationTime,
+        directions: data.directions,
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -71,27 +67,30 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
         resetForm();
       }}
     >
-      {({ handleSubmit }) => (
+      {({ handleSubmit, errors, handleBlur, handleChange, values }) => (
         <Form onSubmit={handleSubmit}>
           <FormWrapper>
             <InputsWrapper>
-              <Input
+              <FormInput
                 name="title"
                 type="text"
-                value={title}
-                setValue={setTitle}
+                value={values.title}
+                handleBlur={handleBlur}
+                onChange={handleChange}
               />
-              <Input
+              <FormInput
                 name="preparationTime"
                 type="text"
-                value={preparationTime}
-                setValue={setPreparationTime}
+                value={values.preparationTime}
+                handleBlur={handleBlur}
+                onChange={handleChange}
               />
-              <Textarea
+              <FormTextarea
                 name="directions"
                 type="text"
-                value={directions}
-                setValue={setDirections}
+                value={values.directions}
+                handleBlur={handleBlur}
+                onChange={handleChange}
               />
               {ingre.isLoading ? (
                 <Loading />
@@ -104,7 +103,7 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 />
               )}
               <ButtonWrapper>
-                <Button type="submit" onClick={handleSubmit}>
+                <Button type="submit">
                   {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}
                 </Button>
               </ButtonWrapper>

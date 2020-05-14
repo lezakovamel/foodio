@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Label } from "./TextFields";
+import { Label, ErrorText } from "./TextFields";
 
 const InputWrapper = styled.div`
   width: 40%;
@@ -40,11 +40,11 @@ export const Input = ({ name, type, value, setValue, onChange }) => {
             onChange(event.target.value);
           }
         }}
-      ></InputField>
+      />
     </InputWrapper>
   );
 };
-export const FormInput = ({ name, type, value, handleBlur,onChange }) => {
+export const FormInput = ({ name, type, value, handleBlur,onChange,error }) => {
   return (
     <InputWrapper>
       <Label>{name}</Label>
@@ -54,7 +54,8 @@ export const FormInput = ({ name, type, value, handleBlur,onChange }) => {
         value={value}
         onBlur={handleBlur}
         onChange={onChange}
-      ></InputField>
+      />
+      <ErrorText>{error}</ErrorText>
     </InputWrapper>
   );
 };

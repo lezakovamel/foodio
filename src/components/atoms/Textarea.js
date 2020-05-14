@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Label } from "./TextFields";
+import { Label, ErrorText } from "./TextFields";
 
 const TextareaWrapper = styled.div`
   width: 40%;
@@ -50,6 +50,7 @@ export const FormTextarea = ({
   value,
   handleChange,
   handleBlur,
+  error,
 }) => {
   return (
     <TextareaWrapper>
@@ -60,7 +61,9 @@ export const FormTextarea = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-      ></TextareaField>
+        error={error}
+      />
+      <ErrorText>{error}</ErrorText>
     </TextareaWrapper>
   );
 };

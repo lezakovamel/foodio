@@ -77,13 +77,15 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 value={values.title}
                 handleBlur={handleBlur}
                 onChange={handleChange}
+                error={errors.title}
               />
               <FormInput
                 name="preparationTime"
-                type="text"
+                type="number"
                 value={values.preparationTime}
                 handleBlur={handleBlur}
                 onChange={handleChange}
+                error={errors.preparationTime}
               />
               <FormTextarea
                 name="directions"
@@ -91,6 +93,7 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 value={values.directions}
                 handleBlur={handleBlur}
                 onChange={handleChange}
+                error={errors.directions}
               />
               {ingre.isLoading ? (
                 <Loading />

@@ -74,7 +74,6 @@ const FoodDetailPage = () => {
     try {
       await axios.delete(
         `https://exercise.cngroup.dk/api/recipes/${recipeData._id}`
-
       );
       push("/");
     } catch (error) {
@@ -82,14 +81,16 @@ const FoodDetailPage = () => {
     }
   };
 
-
   const onEditSubmit = async (data) => {
+    //TODO poslat data pres put na API
+    console.log(data);
+    /*
     try {
       await axios.put("https://exercise.cngroup.dk/api/recipes", data);
       push("/");
     } catch (error) {
       console.log("error", error);
-    }
+    }*/
   };
 
   return (

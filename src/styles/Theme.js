@@ -12,6 +12,7 @@ const theme = {
     background: "#ffffff",
     backgroundLight: "#fcebca",
     white: "#ffffff",
+    error: "#f2716d"
   },
   padding: {
     primary: "10px",
@@ -37,6 +38,7 @@ const darkTheme = {
     background: "#474747",
     backgroundLight: "#fcebca",
     white: "#fffffff",
+    error: "#f2716d"
   },
   padding: {
     primary: "10px",

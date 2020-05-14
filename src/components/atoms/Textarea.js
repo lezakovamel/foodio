@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Label } from "./TextFields";
+import { Label, ErrorText } from "./TextFields";
 
 const TextareaWrapper = styled.div`
   width: 40%;
@@ -18,6 +18,7 @@ const TextareaField = styled.textarea`
   box-sizing: border-box;
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};
+  border-radius: 5px;
   &:focus {
     outline: 2px solid ${(props) => props.theme.colors.primary};
   }
@@ -41,6 +42,29 @@ export const Textarea = ({ name, type, value, setValue, onChange }) => {
           }
         }}
       ></TextareaField>
+    </TextareaWrapper>
+  );
+};
+export const FormTextarea = ({
+  name,
+  type,
+  value,
+  handleChange,
+  handleBlur,
+  error,
+}) => {
+  return (
+    <TextareaWrapper>
+      <Label>{name}</Label>
+      <TextareaField
+        name={name}
+        type={type}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={error}
+      />
+      <ErrorText>{error}</ErrorText>
     </TextareaWrapper>
   );
 };

@@ -14,6 +14,7 @@ import { ActionBox } from "../organisms/ActionBox";
 import FoodModal from "./FoodModal/FoodModal";
 import { useHistory } from "react-router";
 import { BackButton } from "../atoms/Buttons";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const Base = styled.div`
   margin: auto;
@@ -56,7 +57,8 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
   });
   const history = useHistory();
 
-  const [addData, setAddData] = useState({});
+  const ingreForCompare = useGetIngredients().options;
+
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
       backRef.current.style.display = "none";
@@ -84,29 +86,34 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
       title: "",
       preparationTime: "",
       ingredients: [],
-      direction: "",
+      directions: "",
     });
   };
 
-  const onAddFoodSubmit = (data) => {
-    handleAdd(data);
-    console.log(data);
-  };
+  const onAddFoodSubmit = async (data, selectedIngre) => {
+    console.log(selectedIngre);
+    const now = new Date();
 
-  const handleAdd = async (data) => {
+    const ingreToSubmit = selectedIngre.map((ing) => {
+      return {
+        _id: 1515151,
+        name: ing.label,
+        amount: 60,
+        amountUnit: "g",
+        isGroup: false,
+      };
+    });
     try {
-      await axios
-        .post("https://exercise.cngroup.dk/api/recipes", {
-          title: data.title,
-          preparationTime: data.preparationTime,
-          ingredients: data.ingredients,
-          directions: data.directions,
-        })
-        .then((resp) => {
-          console.log("status: " + resp.status + "statustext: " + resp.message);
-        });
+      await axios.post("https://exercise.cngroup.dk/api/recipes", {
+        title: data.title,
+        preparationTime: data.preparationTime,
+        //ingredients: ingreToSubmit,
+        directions: data.directions,
+        //slug:data.title,
+        //lastModifiedDate: now
+      });
+
       push("/");
-      console.log(data);
     } catch (error) {
       console.log("error", error);
     }

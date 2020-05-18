@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { Label, ErrorText } from "./TextFields";
 import MultiSelect from "react-multi-select-component";
-import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const InputWrapper = styled.div`
   width: 40%;

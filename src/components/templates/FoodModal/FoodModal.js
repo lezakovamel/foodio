@@ -6,12 +6,12 @@ import styled from "@emotion/styled";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./FoodModal.scss";
 
-import FoodForm from "../../organisms/FoodForm";
 import { H1 } from "../../atoms/Headlines";
 import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
+import FormTemplate from "../FormTemplate";
 
 const IconWrapper = styled.div`
   margin-left: auto;
@@ -29,6 +29,8 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
         return "Yuch";
       case ModalTypeEnum.SEARCH:
         return "Search foods";
+      case ModalTypeEnum.INGREDIENTS:
+        return "Ingredients";
       default:
         break;
     }
@@ -38,11 +40,11 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
     switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
         return (
-          <FoodForm type={data.type} data={data.payload} onAddNew={onAddNew} />
+          <FormTemplate type={data.type} data={data.payload} onAddNew={onAddNew} />
         );
       case ModalTypeEnum.EDIT_FOOD:
         return (
-          <FoodForm
+          <FormTemplate
             type={data.type}
             data={data.payload}
             onEditSave={onEditSave}
@@ -53,6 +55,8 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
       case ModalTypeEnum.FAV_ADDED:
         return <P>{data.message}</P>;
       case ModalTypeEnum.SEARCH:
+        return <SearchComponent data={data.payload} />;
+      case ModalTypeEnum.INGREDIENTS:
         return <SearchComponent data={data.payload} />;
       default:
         break;

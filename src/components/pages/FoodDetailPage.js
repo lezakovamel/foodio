@@ -84,13 +84,18 @@ const FoodDetailPage = () => {
   const onEditSubmit = async (data) => {
     //TODO poslat data pres put na API
     console.log(data);
-    /*
     try {
-      await axios.put("https://exercise.cngroup.dk/api/recipes", data);
+      await axios
+        .put("https://exercise.cngroup.dk/api/recipes", data)
+        .then((resp) => {
+          console.log(
+            "status: " + resp.status + "statustext: " + resp.statusText
+          );
+        });
       push("/");
     } catch (error) {
       console.log("error", error);
-    }*/
+    }
   };
 
   return (

@@ -88,20 +88,25 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     });
   };
 
-  const onAddFoodSubmit = (
-    title,
-    ingredients,
-    directions,
-    preparationTime,
-    servingCOunt
-  ) => {
-    setAddData({ ...addData, title: title, preparationTime: preparationTime });
-    handleAdd(addData);
+  const onAddFoodSubmit = (data) => {
+    handleAdd(data);
+    console.log(data);
   };
+
   const handleAdd = async (data) => {
     try {
-      await axios.post("https://exercise.cngroup.dk/api/recipes", data);
+      await axios
+        .post("https://exercise.cngroup.dk/api/recipes", {
+          title: data.title,
+          preparationTime: data.preparationTime,
+          ingredients: data.ingredients,
+          directions: data.directions,
+        })
+        .then((resp) => {
+          console.log("status: " + resp.status + "statustext: " + resp.message);
+        });
       push("/");
+      console.log(data);
     } catch (error) {
       console.log("error", error);
     }

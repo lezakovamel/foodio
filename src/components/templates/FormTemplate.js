@@ -20,30 +20,21 @@ const FormTemplate = ({ type, onAddNew, onEditSave, data }) => {
   };
   const onModalClose = (type) => setModalData({ visibility: false });
 
-  const onEditSubmit = async (data) => {
-    //TODO poslat data pres put na API
-    console.log(data);
-    /*
-    try {
-      await axios.put("https://exercise.cngroup.dk/api/recipes", data);
-      push("/");
-    } catch (error) {
-      console.log("error", error);
-    }*/
+  const onOpenIngre = () => {
+      console.log(data);
+      
+    openModal(ModalTypeEnum.INGREDIENTS, "Ingredients", data.ingredients);
   };
 
   return (
     <>
-      <FoodModal
-        data={modalData}
-        onClose={onModalClose}
-        onEditSave={onEditSubmit}
-      />
+      <FoodModal data={modalData} onClose={onModalClose} />
       <FoodForm
         type={data.type}
         data={data}
         onAddNew={onAddNew}
         onEditSave={onEditSave}
+        onOpenIngre={onOpenIngre}
       />
     </>
   );

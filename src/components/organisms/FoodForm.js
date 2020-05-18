@@ -34,10 +34,7 @@ const validationSchema = yup.object({
   preparationTime: yup.number().required("Please fill preparation time"),
 });
 
-const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
-
-  console.log(data);
-  
+const FoodForm = ({ type, onAddNew, onEditSave,onOpenIngre, data }) => {
   return (
     <Formik
       initialValues={{
@@ -83,7 +80,7 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 error={errors.directions}
               />
               <ButtonWrapper>
-                <Button>
+                <Button onClick={onOpenIngre}>
                   {type === ModalTypeEnum.ADD_FOOD
                     ? "ADD INGREDIENTS"
                     : "UPDATE INGREDIENTS"}

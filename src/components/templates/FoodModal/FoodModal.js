@@ -12,6 +12,7 @@ import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
 import FormTemplate from "../FormTemplate";
+import IngredientsComponent from "../../molecules/IngredientsComponent";
 
 const IconWrapper = styled.div`
   margin-left: auto;
@@ -57,7 +58,7 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
       case ModalTypeEnum.SEARCH:
         return <SearchComponent data={data.payload} />;
       case ModalTypeEnum.INGREDIENTS:
-        return <SearchComponent data={data.payload} />;
+        return <IngredientsComponent data={data.payload} />;
       default:
         break;
     }

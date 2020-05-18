@@ -28,8 +28,6 @@ const FoodDetailPage = () => {
   const recipeData = useGetData(slug);
   const { push } = useHistory();
 
-  const ingreForCompare = useGetIngredients().options;
-
   const openModal = (type, message, payload) => {
     setModalData({
       type: type,
@@ -85,13 +83,7 @@ const FoodDetailPage = () => {
     //TODO poslat data pres put na API
     //console.log(data);
 
-    const ingreToSubmit = data.ingredients.map((ing) => {
-      if (ingreForCompare.includes(ing.label)) {
-        return ingreForCompare.find((ingre) => ingre === ing.label);
-      }
-    });
-
-    console.log(ingreToSubmit);
+    const ingreToSubmit = data.ingredients.map((ing) => ing.label);
 
     /*
     try {

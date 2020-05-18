@@ -33,7 +33,6 @@ const ButtonWrapper = styled.div`
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(15),
   preparationTime: yup.number().required("Please fill preparation time"),
-
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
@@ -58,7 +57,9 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
-        type === ModalTypeEnum.ADD_FOOD ? onAddNew(data) : onEditSave(data);
+        type === ModalTypeEnum.ADD_FOOD
+          ? onAddNew(data, selectedIngredients)
+          : onEditSave(data);
         setSubmitting(false);
         resetForm();
       }}

@@ -88,17 +88,8 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     });
   };
 
-  const onAddFoodSubmit = (
-    title,
-    ingredients,
-    directions,
-    preparationTime,
-    servingCOunt
-  ) => {
-    setAddData({ ...addData, title: title, preparationTime: preparationTime });
-    handleAdd(addData);
-  };
-  const handleAdd = async (data) => {
+  const onAddFoodSubmit = async (data, selectedIngre) => {
+    const ingreToSubmit = selectedIngre.map((ing) => ing.label);
     try {
       await axios.post("https://exercise.cngroup.dk/api/recipes", data);
       push("/");

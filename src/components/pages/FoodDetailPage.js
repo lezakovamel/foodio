@@ -28,7 +28,7 @@ const FoodDetailPage = () => {
   const recipeData = useGetData(slug);
   const { push } = useHistory();
 
-  useGetIngredients();
+  const ingreForCompare = useGetIngredients().options;
 
   const openModal = (type, message, payload) => {
     setModalData({
@@ -83,7 +83,16 @@ const FoodDetailPage = () => {
 
   const onEditSubmit = async (data) => {
     //TODO poslat data pres put na API
-    console.log(data);
+    //console.log(data);
+
+    const ingreToSubmit = data.ingredients.map((ing) => {
+      if (ingreForCompare.includes(ing.label)) {
+        return ingreForCompare.find((ingre) => ingre === ing.label);
+      }
+    });
+
+    console.log(ingreToSubmit);
+
     /*
     try {
       await axios.put("https://exercise.cngroup.dk/api/recipes", data);

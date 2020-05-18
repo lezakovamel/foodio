@@ -76,11 +76,23 @@ const Info = styled.div`
   display: flex;
   justify-content: center;
   margin:auto;
+  text-overflow: ellipsis;
+  box-sizing:border-box;
+  
+  padding: ${(props) => props.theme.padding.medium};
+  overflow: hidden; 
+  white-space: nowrap;
 
   h3{
+    margin-top:auto;
+    
     color:white !important;
     margin-bottom:none !important;
     margin:auto !important;
+    
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
   }
 `;
 

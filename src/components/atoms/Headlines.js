@@ -9,6 +9,21 @@ export const H2 = styled.h2`
 export const H3 = styled.h3`
   color: ${(props) => props.theme.colors.primaryDark};
 `;
+
+export const CardH3 = styled.h1`
+  color: ${(props) => props.theme.colors.white};
+  margin-top: auto;
+  color: white !important;
+  margin-bottom: none !important;
+  margin: auto !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1.5em;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    font-size: 1em;
+  }
+`;
 export const H4 = styled.h4`
   color: ${(props) => props.theme.colors.primaryDark};
   text-align: ${(props) => (props.centered ? `center` : `left`)};

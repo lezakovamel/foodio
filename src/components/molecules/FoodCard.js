@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled/macro";
 import "./FoodCard.scss";
-import { H3, H4 } from "../atoms/Headlines";
+import { CardH3, H4 } from "../atoms/Headlines";
 import { useHistory } from "react-router-dom";
 import { P } from "../atoms/TextFields";
 import { Icon } from "@material-ui/core";
@@ -85,7 +85,6 @@ const Info = styled.div`
 
   h3{
     margin-top:auto;
-    
     color:white !important;
     margin-bottom:none !important;
     margin:auto !important;
@@ -121,7 +120,7 @@ const FoodCard = ({
       </Overlay>
       <Placeholder />
       <Info>
-        <H3>{title}</H3>
+        <CardH3>{title}</CardH3>
       </Info>
     </Card>
   );

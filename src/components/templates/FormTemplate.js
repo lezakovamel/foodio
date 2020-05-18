@@ -21,9 +21,10 @@ const FormTemplate = ({ type, onAddNew, onEditSave, data }) => {
   const onModalClose = (type) => setModalData({ visibility: false });
 
   const onOpenIngre = () => {
-      console.log(data);
-      
-    openModal(ModalTypeEnum.INGREDIENTS, "Ingredients", data.ingredients);
+    openModal(ModalTypeEnum.INGREDIENTS, "Ingredients", {
+      ingredients: data.ingredients,
+      type: type,
+    });
   };
 
   return (

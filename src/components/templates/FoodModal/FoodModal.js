@@ -58,7 +58,7 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
       case ModalTypeEnum.SEARCH:
         return <SearchComponent data={data.payload} />;
       case ModalTypeEnum.INGREDIENTS:
-        return <IngredientsComponent data={data.payload} />;
+        return <IngredientsComponent  data={data.payload} />;
       default:
         break;
     }

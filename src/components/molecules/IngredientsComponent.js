@@ -2,15 +2,15 @@ import React from "react";
 import { ModalTypeEnum } from "../../tools/Enums";
 import { useState } from "react";
 import { Grid } from "../atoms/Grid";
+import IngredientField from "./IngredientField";
 
 const IngredientsComponent = ({ data }) => {
   const [ingredients, setIngredients] = useState(data.ingredients);
 
   const renderIngre = () =>
-    ingredients && ingredients.map((ingre) => <div>{ingre.name}</div>);
+    ingredients && ingredients.map((ingre) => <IngredientField ingredient={ingre}/>);
 
 
-    console.log(data);
     console.log(ingredients);
     
   //---------- VIEWS ----------

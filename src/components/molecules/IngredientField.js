@@ -3,9 +3,12 @@ import Container from "../atoms/Container";
 import { Input } from "../atoms/FormFields";
 
 const IngredientField = ({ ingredient }) => {
-  const [name, setName] = useState(ingredient.name);
+  const [name, setName] = useState(
+    ingredient.name === undefined ? ingredient : ingredient.name
+  );
   const [amount, setAmount] = useState(ingredient.amount);
   const [amountUnit, setAmountUnit] = useState(ingredient.amountUnit);
+  console.log(name);
 
   return (
     <Container>

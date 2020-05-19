@@ -7,25 +7,45 @@ import Container from "../atoms/Container";
 import { H3 } from "../atoms/Headlines";
 import { Icon } from "../atoms/Icon";
 import { faLevelDownAlt } from "@fortawesome/free-solid-svg-icons";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const IngredientsComponent = ({ type, data }) => {
   const [ingredients, setIngredients] = useState(data.ingredients);
   const [visibility, setVisibility] = useState(false);
+  const [selected, setSelected] = useState("");
+
+  const allIngredients = useGetIngredients().options;
 
   const onOpenIngre = () => {
     setVisibility(!visibility);
   };
 
-  console.log(ingredients);
-
   const renderIngre = () =>
     ingredients &&
     ingredients.map((ingre) => <IngredientField ingredient={ingre} />);
 
+  const renderOptions = () =>
+    allIngredients &&
+    allIngredients.map((ingre) => <option value={ingre}>{ingre}</option>);
+
   //---------- VIEWS ----------
 
   const add = () => {
-    return <Grid>ADD</Grid>;
+    return (
+      <Grid>
+        <select
+          value={selected}
+          onChange={(e) => {
+            setSelected(e.target.value);
+            setIngredients([...ingredients, e.target.value]);
+            console.log(ingredients);
+          }}
+        >
+          {renderOptions()}
+        </select>
+        {renderIngre()}
+      </Grid>
+    );
   };
   const edit = () => {
     return <Grid>{renderIngre()}</Grid>;

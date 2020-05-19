@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Container from "../atoms/Container";
+
 import { Input } from "../atoms/FormFields";
 
 const IngredientField = ({ ingredient, onIngreChange }) => {
@@ -10,7 +10,7 @@ const IngredientField = ({ ingredient, onIngreChange }) => {
   const [amountUnit, setAmountUnit] = useState(ingredient.amountUnit);
 
   return (
-    <Container>
+    <>
       <Input
         type="text"
         setValue={setName}
@@ -34,7 +34,7 @@ const IngredientField = ({ ingredient, onIngreChange }) => {
           onIngreChange(changed, "amountUnit", ingredient._id)
         }
       />
-    </Container>
+      </>
   );
 };
 

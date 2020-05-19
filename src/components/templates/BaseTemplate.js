@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
+
 import styled from "@emotion/styled";
 import axios from "axios";
 
@@ -6,7 +7,6 @@ import Theme from "../../styles/Theme";
 import { DeskH1 } from "../atoms/Headlines";
 import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
-
 import { AccountBox } from "../organisms/AccountBox";
 import { UserContext } from "../../Control";
 import { PageTypeEnum, ThemeTypeEnum, ModalTypeEnum } from "../../tools/Enums";
@@ -14,7 +14,6 @@ import { ActionBox } from "../organisms/ActionBox";
 import FoodModal from "./FoodModal/FoodModal";
 import { useHistory } from "react-router";
 import { BackButton } from "../atoms/Buttons";
-import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const Base = styled.div`
   margin: auto;
@@ -88,13 +87,15 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     });
   };
 
-  const onAddFoodSubmit = (data, ingredients) => {
-    //data - soubor dat z fieldu (preprTime, title, etc..)
-    //ingredients - list ingredienci, nutno sloucit do jednoho objektu pred odeslanim na api
-
-    //TODO
-    //ajax call
-
+  const onAddFoodSubmit = async (data, ingredients) => {
+    const dataToSubmit = { ...data };
+    dataToSubmit.ingredients = ingredients;
+    try {
+      await axios.post("https://exercise.cngroup.dk/api/recipes", dataToSubmit);
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   const onSearchClicked = () => {

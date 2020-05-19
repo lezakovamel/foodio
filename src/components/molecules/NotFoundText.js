@@ -1,5 +1,7 @@
 import React from "react";
+
 import styled from "@emotion/styled";
+
 import { LogoTitle } from "../atoms/TextFields";
 
 const NotFoundWrapper = styled.div`

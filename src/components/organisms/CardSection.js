@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
+
 import FoodCard from "../molecules/FoodCard";
 import { H2 } from "../atoms/Headlines";
 import { Grid } from "../atoms/Grid";

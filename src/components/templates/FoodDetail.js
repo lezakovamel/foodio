@@ -1,7 +1,8 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import { H1, MobH1 } from "../atoms/Headlines";
+
+import { H1, H3, MobH1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
 import IngredientsList from "../molecules/IngredientsList";
@@ -74,6 +75,12 @@ const Steps = styled.div`
   @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
     padding: ${(props) => props.theme.padding.medium};
   }
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: ${(props) => props.theme.padding.medium};
+    p {
+      text-align: justify;
+    }
+  }
   @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     padding: ${(props) => props.theme.padding.extended};
   }
@@ -91,7 +98,6 @@ const FoodDetail = ({
   directions,
   ingredients,
 }) => {
-  //const steps = directions.replace(/.(?=\d. )/g,"SICKDOPE");
 
   const linedDirections = () => {
     return directions !== undefined
@@ -102,7 +108,12 @@ const FoodDetail = ({
   const renderIngredients = () =>
     ingredients &&
     ingredients.map((ingredient) => (
-      <Ingredient ingredient={ingredient.name} key={ingredient._id} />
+      <Ingredient
+        ingredient={ingredient.name}
+        key={ingredient._id}
+        amount={ingredient.amount}
+        unit={ingredient.amountUnit}
+      />
     ));
   return (
     <Container>
@@ -126,12 +137,13 @@ const FoodDetail = ({
 
               <Ingredients>
                 <H1>Ingredients</H1>
+                <P>(Toggle to show amount)</P>
                 <IngredientsList>{renderIngredients()}</IngredientsList>
               </Ingredients>
             </Wrapper>
           </BaseInfo>
           <Steps>
-            <P>Steps</P>
+            <H3>Steps</H3>
             <P>{linedDirections(directions)}</P>
           </Steps>
         </FoodOverlay>

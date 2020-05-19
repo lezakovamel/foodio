@@ -88,13 +88,27 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     });
   };
 
-  const onAddFoodSubmit = (data, ingredients) => {
+  const onAddFoodSubmit = async (data, ingredients) => {
     //data - soubor dat z fieldu (preprTime, title, etc..)
     //ingredients - list ingredienci, nutno sloucit do jednoho objektu pred odeslanim na api
+    const dataToSubmit = { ...data };
+    dataToSubmit.ingredients = ingredients;
+    console.log(dataToSubmit);
+    try {
+      await axios
+        .post("https://exercise.cngroup.dk/api/recipes", dataToSubmit)
+        .then((resp) => {
+          console.log("statuscode:  " + resp.status);
+        });
 
+      console.log("to submit" + dataToSubmit);
+
+      push("/");
+    } catch (error) {
+      console.log("error", error);
+    }
     //TODO
     //ajax call
-
   };
 
   const onSearchClicked = () => {

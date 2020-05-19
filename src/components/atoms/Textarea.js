@@ -52,7 +52,7 @@ export const FormTextarea = ({
   name,
   type,
   value,
-  handleChange,
+  onChange,
   handleBlur,
   error,
 }) => {
@@ -63,7 +63,7 @@ export const FormTextarea = ({
         name={name}
         type={type}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         onBlur={handleBlur}
         error={error}
       />

@@ -40,6 +40,7 @@ const ButtonWrapper = styled.div`
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(25),
   preparationTime: yup.number().required("Please fill preparation time"),
+  directions: yup.string().required("Directions are required"),
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {

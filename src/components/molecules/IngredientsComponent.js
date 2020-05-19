@@ -63,7 +63,7 @@ const IngredientsComponent = ({ type, ingredients, setIngredients }) => {
 
   const add = () => {
     return (
-      <Grid>
+      <>
         <Select
           name="Choose ingredients"
           options={renderOptions}
@@ -71,15 +71,15 @@ const IngredientsComponent = ({ type, ingredients, setIngredients }) => {
           setIngredients={setIngredients}
         />
         {renderIngre()}
-      </Grid>
+      </>
     );
   };
   const edit = () => {
-    return <Grid>{renderIngre()}</Grid>;
+    return <>{renderIngre()}</>;
   };
 
   return (
-    <Container>
+    <>
       <H3>
         {type === ModalTypeEnum.ADD_FOOD
           ? "ADD INGREDIENTS"
@@ -91,7 +91,7 @@ const IngredientsComponent = ({ type, ingredients, setIngredients }) => {
       ) : (
         <div />
       )}
-    </Container>
+    </>
   );
 };
 

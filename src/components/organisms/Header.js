@@ -41,19 +41,14 @@ const Header = ({ children }, props) => {
       html.scrollHeight,
       html.offsetHeight
     );
-    console.log("tu height" + height);
     return height;
   };
 
   const [scrollPosition, setSrollPosition] = useState(0);
-
-  const [widthDiv, setWidthDiv] = useState(0);
   const width = (scrollPosition / size()) * 100;
-  console.log("tu width" + width);
   const handleScroll = () => {
     const position = window.pageYOffset;
     setSrollPosition(position);
-    console.log(position);
     return position;
   };
 
@@ -67,7 +62,6 @@ const Header = ({ children }, props) => {
   return (
     <HeaderWrapper data-testid="testHeader">
       {children}
-      {console.log("tu zase sirka: " + width)}
       <DivLine width={width} />
     </HeaderWrapper>
   );

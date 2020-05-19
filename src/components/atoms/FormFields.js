@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "@emotion/styled";
 import { Label, ErrorText } from "./TextFields";
@@ -15,6 +15,21 @@ const InputWrapper = styled.div`
 `;
 
 const InputField = styled.input`
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  border: 2px solid ${(props) => props.theme.colors.primary};
+  border-radius: 5px;
+  &:focus {
+    outline: 2px solid ${(props) => props.theme.colors.primary};
+  }
+  &::selection {
+    background: ${(props) => props.theme.colors.primaryLight};
+  }
+`;
+
+const SelectField = styled.select`
   width: 100%;
   height: 40px;
   box-sizing: border-box;
@@ -70,7 +85,12 @@ export const FormInput = ({
   );
 };
 
-export const FormMultiselect = ({ name, ingredients, selected, setSelected }) => {
+export const FormMultiselect = ({
+  name,
+  ingredients,
+  selected,
+  setSelected,
+}) => {
   return (
     <InputWrapper>
       <Label>{name}</Label>
@@ -80,6 +100,24 @@ export const FormMultiselect = ({ name, ingredients, selected, setSelected }) =>
         onChange={setSelected}
         labelledBy={"Select"}
       />
+    </InputWrapper>
+  );
+};
+
+export const Select = ({ name, options, ingredients, setIngredients }) => {
+  const [selected, setSelected] = useState("");
+  return (
+    <InputWrapper>
+      <Label>{name}</Label>
+      <SelectField
+        value={selected}
+        onChange={(e) => {
+          setSelected(e.target.value);
+          setIngredients([...ingredients, e.target.value]);
+        }}
+      >
+        {options()}
+      </SelectField>
     </InputWrapper>
   );
 };

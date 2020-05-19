@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as yup from "yup";
 import styled from "@emotion/styled";
@@ -36,6 +36,7 @@ const validationSchema = yup.object({
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
+  const [ingredients, setIngredients] = useState(data.ingredients);
   return (
     <Formik
       initialValues={{
@@ -80,7 +81,11 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 onChange={handleChange}
                 error={errors.directions}
               />
-              <IngredientsComponent type={type} data={data} />
+              <IngredientsComponent
+                type={type}
+                ingredients={ingredients}
+                setIngredients={setIngredients}
+              />
 
               <ButtonWrapper>
                 <Button type="submit">

@@ -8,9 +8,9 @@ import { H3 } from "../atoms/Headlines";
 import { Icon } from "../atoms/Icon";
 import { faLevelDownAlt } from "@fortawesome/free-solid-svg-icons";
 import { useGetIngredients } from "../../hooks/useGetIngredients";
+import { Select } from "../atoms/FormFields";
 
-const IngredientsComponent = ({ type, data }) => {
-  const [ingredients, setIngredients] = useState(data.ingredients);
+const IngredientsComponent = ({ type, ingredients, setIngredients }) => {
   const [visibility, setVisibility] = useState(false);
   const [selected, setSelected] = useState("");
 
@@ -33,16 +33,12 @@ const IngredientsComponent = ({ type, data }) => {
   const add = () => {
     return (
       <Grid>
-        <select
-          value={selected}
-          onChange={(e) => {
-            setSelected(e.target.value);
-            setIngredients([...ingredients, e.target.value]);
-            console.log(ingredients);
-          }}
-        >
-          {renderOptions()}
-        </select>
+        <Select
+          name="Ingredients"
+          options={renderOptions}
+          ingredients={ingredients}
+          setIngredients={setIngredients}
+        />
         {renderIngre()}
       </Grid>
     );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Grid } from "../atoms/Grid";
 import FoodCard from "./FoodCard";
 import SearchBar from "./SearchBar";

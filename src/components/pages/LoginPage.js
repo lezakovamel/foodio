@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 
+import { useHistory } from "react-router";
+
 import BaseTemplate from "../templates/BaseTemplate";
 import LoginForm from "../organisms/LoginForm";
 import firebase from "../../Firebase";
 import { UserContext } from "../../Control";
-import { useHistory } from "react-router";
 import { PageTypeEnum } from "../../tools/Enums";
 
 const LoginPage = () => {

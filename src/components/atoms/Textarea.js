@@ -1,5 +1,7 @@
 import React from "react";
+
 import styled from "@emotion/styled";
+
 import { Label, ErrorText } from "./TextFields";
 
 const TextareaWrapper = styled.div`
@@ -22,7 +24,6 @@ const TextareaField = styled.textarea`
   resize:none;
   overflow-y: scroll;
   &:focus {
-    /*outline: 2px solid ${(props) => props.theme.colors.primary};*/
     outline: none;
   }
   &::selection {
@@ -52,8 +53,8 @@ export const FormTextarea = ({
   name,
   type,
   value,
-  handleChange,
   handleBlur,
+  onChange,
   error,
 }) => {
   return (
@@ -63,7 +64,7 @@ export const FormTextarea = ({
         name={name}
         type={type}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         onBlur={handleBlur}
         error={error}
       />

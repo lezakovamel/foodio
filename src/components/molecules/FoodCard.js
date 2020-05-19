@@ -1,12 +1,13 @@
 import React from "react";
 
 import styled from "@emotion/styled/macro";
-import "./FoodCard.scss";
-import { CardH3, H4 } from "../atoms/Headlines";
 import { useHistory } from "react-router-dom";
-import { P } from "../atoms/TextFields";
 import { Icon } from "@material-ui/core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import "./FoodCard.scss";
+import { CardH3, H4 } from "../atoms/Headlines";
+import { P } from "../atoms/TextFields";
 
 const Overlay = styled.div`
   width: 100%;

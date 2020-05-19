@@ -2,10 +2,9 @@ import React from "react";
 
 import { Modal } from "react-bootstrap";
 import styled from "@emotion/styled";
-
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import "./FoodModal.scss";
 
+import "./FoodModal.scss";
 import { H1 } from "../../atoms/Headlines";
 import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";

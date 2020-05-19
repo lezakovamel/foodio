@@ -6,10 +6,9 @@ import { Formik } from "formik";
 
 import { Button } from "../atoms/Buttons";
 import { Form } from "../atoms/Form";
-
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
-import { FormInput, FormMultiselect } from "../atoms/FormFields";
+import { FormInput } from "../atoms/FormFields";
 import { FormTextarea } from "../atoms/Textarea";
 import IngredientsComponent from "../molecules/IngredientsComponent";
 
@@ -40,6 +39,7 @@ const ButtonWrapper = styled.div`
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(25),
   preparationTime: yup.number().required("Please fill preparation time"),
+  directions: yup.string().required("Directions are required"),
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {

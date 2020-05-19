@@ -108,7 +108,12 @@ const FoodDetail = ({
   const renderIngredients = () =>
     ingredients &&
     ingredients.map((ingredient) => (
-      <Ingredient ingredient={ingredient.name} key={ingredient._id} />
+      <Ingredient
+        ingredient={ingredient.name}
+        key={ingredient._id}
+        amount={ingredient.amount}
+        unit={ingredient.amountUnit}
+      />
     ));
   return (
     <Container>
@@ -132,6 +137,7 @@ const FoodDetail = ({
 
               <Ingredients>
                 <H1>Ingredients</H1>
+                <P>(Toggle to show amount)</P>
                 <IngredientsList>{renderIngredients()}</IngredientsList>
               </Ingredients>
             </Wrapper>

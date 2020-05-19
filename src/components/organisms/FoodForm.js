@@ -11,6 +11,7 @@ import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import { FormInput, FormMultiselect } from "../atoms/FormFields";
 import { FormTextarea } from "../atoms/Textarea";
+import IngredientsComponent from "../molecules/IngredientsComponent";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const validationSchema = yup.object({
   preparationTime: yup.number().required("Please fill preparation time"),
 });
 
-const FoodForm = ({ type, onAddNew, onEditSave,onOpenIngre, data }) => {
+const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
   return (
     <Formik
       initialValues={{
@@ -79,13 +80,7 @@ const FoodForm = ({ type, onAddNew, onEditSave,onOpenIngre, data }) => {
                 onChange={handleChange}
                 error={errors.directions}
               />
-              <ButtonWrapper>
-                <Button onClick={onOpenIngre}>
-                  {type === ModalTypeEnum.ADD_FOOD
-                    ? "ADD INGREDIENTS"
-                    : "UPDATE INGREDIENTS"}
-                </Button>
-              </ButtonWrapper>
+              <IngredientsComponent type={type} data={data} />
 
               <ButtonWrapper>
                 <Button type="submit">

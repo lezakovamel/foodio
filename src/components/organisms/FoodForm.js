@@ -6,10 +6,9 @@ import { Formik } from "formik";
 
 import { Button } from "../atoms/Buttons";
 import { Form } from "../atoms/Form";
-
 import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
-import { FormInput, FormMultiselect } from "../atoms/FormFields";
+import { FormInput } from "../atoms/FormFields";
 import { FormTextarea } from "../atoms/Textarea";
 import IngredientsComponent from "../molecules/IngredientsComponent";
 

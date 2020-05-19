@@ -1,11 +1,12 @@
 import React from "react";
 
 import styled from "@emotion/styled";
+import { useHistory } from "react-router";
+import { faSearch, faPlus, faHome } from "@fortawesome/free-solid-svg-icons";
 
 import { Icon } from "../atoms/Icon";
-import { faSearch, faPlus, faHome } from "@fortawesome/free-solid-svg-icons";
 import { PageTypeEnum } from "../../tools/Enums";
-import { useHistory } from "react-router";
+
 
 const ActionBoxWrapper = styled.div`
   display: flex;

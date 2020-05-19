@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+
 import { Formik } from "formik";
+import styled from "@emotion/styled";
+
 import { FormWrapper } from "../atoms/FormWrapper";
 import { Input } from "../atoms/FormFields";
 import { Button } from "../atoms/Buttons";
 import Loading from "../atoms/Loading/Loading";
-import styled from "@emotion/styled";
 import { SizedBox } from "../atoms/SizedBox";
 import { ErrorBox } from "../atoms/ErrorBox";
 

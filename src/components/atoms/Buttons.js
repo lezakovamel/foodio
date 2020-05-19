@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import { faBackward } from "@fortawesome/free-solid-svg-icons";
+
 import { Icon } from "./Icon";
 
 export const Button = styled.button`

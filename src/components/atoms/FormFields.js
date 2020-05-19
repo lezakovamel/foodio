@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import styled from "@emotion/styled";
-import { Label, ErrorText } from "./TextFields";
 import MultiSelect from "react-multi-select-component";
+
+import { Label, ErrorText } from "./TextFields";
 
 const InputWrapper = styled.div`
   width: 40%;
@@ -22,7 +23,6 @@ const InputField = styled.input`
   border: 2px solid ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   &:focus {
-    /*outline: 2px solid ${(props) => props.theme.colors.primary};*/
     outline: none;
   }
   &::selection {

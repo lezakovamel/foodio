@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
 import BackToTop from "react-back-to-top-button";
 import styled from "@emotion/styled";
+
 import { Icon } from "../atoms/Icon";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const FooterWrapper = styled.footer`
   width: 100%;
   height: 10vh;

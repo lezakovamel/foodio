@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+
 import { UserContext } from "../../Control";
 import BaseTemplate from "../templates/BaseTemplate";
 import { PageTypeEnum, ThemeTypeEnum } from "../../tools/Enums";

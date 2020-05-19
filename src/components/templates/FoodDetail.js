@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
+
 import { H1, H3, MobH1 } from "../atoms/Headlines";
 import { P } from "../atoms/TextFields";
 import FoodActions from "../molecules/FoodActions";
@@ -97,7 +98,6 @@ const FoodDetail = ({
   directions,
   ingredients,
 }) => {
-  //const steps = directions.replace(/.(?=\d. )/g,"SICKDOPE");
 
   const linedDirections = () => {
     return directions !== undefined

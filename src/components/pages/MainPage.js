@@ -4,7 +4,6 @@ import BaseTemplate from "../templates/BaseTemplate";
 import FoodioIntro from "../organisms/FoodioIntro";
 import CardSection from "../organisms/CardSection";
 import Loading from "../atoms/Loading/Loading";
-
 import { useGetData } from "../../hooks/useGetRecipes";
 import { PageTypeEnum } from "../../tools/Enums";
 

@@ -113,7 +113,16 @@ export const Select = ({ name, options, ingredients, setIngredients }) => {
         value={selected}
         onChange={(e) => {
           setSelected(e.target.value);
-          setIngredients([...ingredients, e.target.value]);
+          setIngredients([
+            ...ingredients,
+            {
+              _id: `${Math.floor(Math.random() * 150000)}`,
+              name: e.target.value,
+              amount: 0,
+              amountUnit: "g",
+              isGroup: false,
+            },
+          ]);
         }}
       >
         {options()}

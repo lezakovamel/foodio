@@ -37,6 +37,7 @@ const validationSchema = yup.object({
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
   const [ingredients, setIngredients] = useState(data.ingredients);
+
   return (
     <Formik
       initialValues={{
@@ -48,7 +49,9 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
-        type === ModalTypeEnum.ADD_FOOD ? onAddNew(data) : onEditSave(data);
+        type === ModalTypeEnum.ADD_FOOD
+          ? onAddNew(data, ingredients)
+          : onEditSave(data);
         setSubmitting(false);
         resetForm();
       }}

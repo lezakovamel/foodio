@@ -83,7 +83,6 @@ const FoodDetailPage = () => {
 
   const onEditSubmit = async (data) => {
     //TODO poslat data pres put na API
-    console.log(data);
     /*
     try {
       await axios.put("https://exercise.cngroup.dk/api/recipes", data);

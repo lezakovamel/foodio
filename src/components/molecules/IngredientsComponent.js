@@ -20,13 +20,44 @@ const IngredientsComponent = ({ type, ingredients, setIngredients }) => {
     setVisibility(!visibility);
   };
 
+  const onIngreChange = (value, type, id) => {
+    let index, editedIngre;
+    index = ingredients.findIndex((obj) => obj._id === id);
+    editedIngre = ingredients[index];
+    switch (type) {
+      case "name":
+        editedIngre.name = value;
+        break;
+      case "amount":
+        editedIngre.amount = value;
+        break;
+      case "amountUnit":
+        editedIngre.amountUnit = value;
+        break;
+      default:
+        break;
+    }
+
+    setIngredients([
+      ...ingredients.slice(0, index),
+      editedIngre,
+      ...ingredients.slice(index + 1),
+    ]);
+  };
+
   const renderIngre = () =>
     ingredients &&
-    ingredients.map((ingre) => <IngredientField ingredient={ingre} />);
+    ingredients.map((ingre) => (
+      <IngredientField
+        key={ingre._id}
+        ingredient={ingre}
+        onIngreChange={onIngreChange}
+      />
+    ));
 
   const renderOptions = () =>
     allIngredients &&
-    allIngredients.map((ingre) => <option value={ingre}>{ingre}</option>);
+    allIngredients.map((ingre) => <option key={ingre} value={ingre}>{ingre}</option>);
 
   //---------- VIEWS ----------
 
@@ -34,7 +65,7 @@ const IngredientsComponent = ({ type, ingredients, setIngredients }) => {
     return (
       <Grid>
         <Select
-          name="Ingredients"
+          name="Choose ingredients"
           options={renderOptions}
           ingredients={ingredients}
           setIngredients={setIngredients}

@@ -1,5 +1,6 @@
 # Foodio 🍔
-Seminar project for AV2MW at Thomas Bata University, Faculty of Applied Informatics
+Seminar project for AV2MW at Thomas Bata University, Faculty of Applied Informatics  
+Page can be seen live [here](https://foodioapp.netlify.app/).
 
 ## Minimum requirements
 Create CRUD using pure react and given API. Any other added functionality is up to you.

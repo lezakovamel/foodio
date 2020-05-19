@@ -57,8 +57,6 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
   });
   const history = useHistory();
 
-  const ingreForCompare = useGetIngredients().options;
-
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
       backRef.current.style.display = "none";
@@ -90,33 +88,13 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     });
   };
 
-  const onAddFoodSubmit = async (data, selectedIngre) => {
-    console.log(selectedIngre);
-    const now = new Date();
+  const onAddFoodSubmit = (data, ingredients) => {
+    //data - soubor dat z fieldu (preprTime, title, etc..)
+    //ingredients - list ingredienci, nutno sloucit do jednoho objektu pred odeslanim na api
 
-    const ingreToSubmit = selectedIngre.map((ing) => {
-      return {
-        _id: 1515151,
-        name: ing.label,
-        amount: 60,
-        amountUnit: "g",
-        isGroup: false,
-      };
-    });
-    try {
-      await axios.post("https://exercise.cngroup.dk/api/recipes", {
-        title: data.title,
-        preparationTime: data.preparationTime,
-        //ingredients: ingreToSubmit,
-        directions: data.directions,
-        //slug:data.title,
-        //lastModifiedDate: now
-      });
+    //TODO
+    //ajax call
 
-      push("/");
-    } catch (error) {
-      console.log("error", error);
-    }
   };
 
   const onSearchClicked = () => {

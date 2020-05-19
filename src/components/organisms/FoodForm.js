@@ -11,7 +11,7 @@ import { ModalTypeEnum } from "../../tools/Enums";
 import { FormWrapper } from "../atoms/FormWrapper";
 import { FormInput, FormMultiselect } from "../atoms/FormFields";
 import { FormTextarea } from "../atoms/Textarea";
-import { useGetIngredients } from "../../hooks/useGetIngredients";
+import IngredientsComponent from "../molecules/IngredientsComponent";
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -40,19 +40,10 @@ const ButtonWrapper = styled.div`
 const validationSchema = yup.object({
   title: yup.string().required("Name of the food is required").max(25),
   preparationTime: yup.number().required("Please fill preparation time"),
-  /*directions: yup.string().required("Directions are required"),*/
 });
 
 const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
-  const ingre = useGetIngredients().options.map((ing) => {
-    return { label: ing, value: ing };
-  });
-
-  const [selectedIngredients, setSelectedIngredients] = useState(
-    data.ingredients.map((ing) => {
-      return { label: ing.name, value: ing.name };
-    })
-  );
+  const [ingredients, setIngredients] = useState(data.ingredients);
 
   return (
     <Formik
@@ -60,13 +51,15 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
         title: data.title,
         preparationTime: data.preparationTime,
         directions: data.directions,
-        ingredients: selectedIngredients,
+        ingredients: data.ingredients,
       }}
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
+        //Do edit funkce se ti posle cely balik dat
+        //Do add funkce se poslou data, ale ingredience zvlast, mysli na to pred ajax callem
         type === ModalTypeEnum.ADD_FOOD
-          ? onAddNew(data, selectedIngredients)
+          ? onAddNew(data, ingredients)
           : onEditSave(data);
         setSubmitting(false);
         resetForm();
@@ -100,12 +93,12 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
                 onChange={handleChange}
                 error={errors.directions}
               />
-              <FormMultiselect
-                name="ingredients"
-                ingredients={ingre}
-                selected={selectedIngredients}
-                setSelected={setSelectedIngredients}
+              <IngredientsComponent
+                type={type}
+                ingredients={ingredients}
+                setIngredients={setIngredients}
               />
+
               <ButtonWrapper>
                 <Button type="submit">
                   {type === ModalTypeEnum.ADD_FOOD ? "ADD FOOD" : "UPDATE FOOD"}

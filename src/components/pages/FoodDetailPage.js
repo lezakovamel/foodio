@@ -83,9 +83,6 @@ const FoodDetailPage = () => {
 
   const onEditSubmit = async (data) => {
     //TODO poslat data pres put na API, data obsahuji i ingredience
-    const ingreToSubmit = data.ingredients.map((ing) => ing.label);
-
-    console.log(ingreToSubmit);
     try {
       await axios
         .put("https://exercise.cngroup.dk/api/recipes", {

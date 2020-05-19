@@ -6667,6 +6667,11 @@ is-symbol@^1.0.2:
   dependencies:
     has-symbols "^1.0.1"
 
+is-touch-device@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-touch-device/-/is-touch-device-1.0.1.tgz#9a2fd59f689e9a9bf6ae9a86924c4ba805a42eab"
+  integrity sha512-LAYzo9kMT1b2p19L/1ATGt2XcSilnzNlyvq6c0pbPRVisLbAPpLqr53tIJS00kvrTkj0HtR8U7+u8X0yR8lPSw==
+
 is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
@@ -10487,6 +10492,15 @@ react-transition-group@^4.0.0, react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-window-decorators@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-window-decorators/-/react-window-decorators-1.0.6.tgz#04111668b35f52908f0ccb623ebc986f45c54bba"
+  integrity sha512-oyuFQdLdvtapFWKUg38g2b8LPir/RXNeMdqPxqyTrYmqZdhwKLDYiEo5Ntx3W3xSfQ4+SHcv3cL92WQJhqS+fA==
+  dependencies:
+    is-touch-device "^1.0.1"
+    prop-types "^15.5.8"
+    window-scroll-manager "^1.1.4"
+
 react@^15.5.4:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
@@ -12709,6 +12723,11 @@ wide-align@^1.1.0:
   integrity sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==
   dependencies:
     string-width "^1.0.2 || 2"
+
+window-scroll-manager@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/window-scroll-manager/-/window-scroll-manager-1.1.4.tgz#7033c12edf778cb85fe545d3a1c37e1f1a7870c9"
+  integrity sha512-Oj916sD6Daigs128qtksCcBGvwXcuTuMn65m1FEp/QINBwbkval43p0qfZna2GFExXZFdoMTT3/s1of0szsG7A==
 
 window-size@0.1.0:
   version "0.1.0"

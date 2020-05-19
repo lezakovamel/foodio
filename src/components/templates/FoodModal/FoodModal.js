@@ -11,8 +11,7 @@ import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
-import FormTemplate from "../FormTemplate";
-import IngredientsComponent from "../../molecules/IngredientsComponent";
+import FoodForm from "../../organisms/FoodForm";
 
 const IconWrapper = styled.div`
   margin-left: auto;
@@ -39,11 +38,11 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
     switch (data.type) {
       case ModalTypeEnum.ADD_FOOD:
         return (
-          <FormTemplate type={data.type} data={data.payload} onAddNew={onAddNew} />
+          <FoodForm type={data.type} data={data.payload} onAddNew={onAddNew} />
         );
       case ModalTypeEnum.EDIT_FOOD:
         return (
-          <FormTemplate
+          <FoodForm
             type={data.type}
             data={data.payload}
             onEditSave={onEditSave}
@@ -74,7 +73,6 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
       </Modal.Header>
 
       <Modal.Body className="modalBody">{body()}</Modal.Body>
-
     </Modal>
   );
 };

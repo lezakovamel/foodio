@@ -21,7 +21,8 @@ const InputField = styled.input`
   border: 2px solid ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   &:focus {
-    outline: 2px solid ${(props) => props.theme.colors.primary};
+    /*outline: 2px solid ${(props) => props.theme.colors.primary};*/
+    outline: none;
   }
   &::selection {
     background: ${(props) => props.theme.colors.primaryLight};

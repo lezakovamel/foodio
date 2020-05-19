@@ -13,7 +13,6 @@ export const H3 = styled.h3`
 export const CardH3 = styled.h1`
   color: ${(props) => props.theme.colors.white};
   margin-top: auto;
-  color: white !important;
   margin-bottom: none !important;
   margin: auto !important;
   text-overflow: ellipsis;

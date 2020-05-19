@@ -1,7 +1,11 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
+import BackToTop from "react-back-to-top-button";
 import styled from "@emotion/styled";
+import { Icon } from "../atoms/Icon";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const FooterWrapper = styled.footer`
   width: 100%;
   height: 10vh;
@@ -14,12 +18,40 @@ export const FooterWrapper = styled.footer`
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  margin:auto;
-  box-sizing:border-box;
+  margin: auto;
+  box-sizing: border-box;
+`;
+
+const BackWrapper = styled.div`
+  button {
+    font-size: 30px;
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    button {
+      font-size: 20px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 `;
 
 const Footer = ({ children }) => (
-  <FooterWrapper data-testid="testFooter">{children}</FooterWrapper>
+  <>
+    <BackWrapper>
+      <BackToTop
+        showOnScrollUp
+        showAt={100}
+        speed={1500}
+        easing="easeInOutQuint"
+      >
+        <Icon icon={faArrowCircleUp} color="#ffffff" />
+      </BackToTop>
+    </BackWrapper>
+
+    <FooterWrapper data-testid="testFooter">{children}</FooterWrapper>
+  </>
 );
 
 export default Footer;

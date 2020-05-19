@@ -14,6 +14,7 @@ import { ActionBox } from "../organisms/ActionBox";
 import FoodModal from "./FoodModal/FoodModal";
 import { useHistory } from "react-router";
 import { BackButton } from "../atoms/Buttons";
+import { useGetIngredients } from "../../hooks/useGetIngredients";
 
 const Base = styled.div`
   margin: auto;
@@ -55,6 +56,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     payload: null,
   });
   const history = useHistory();
+
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
       backRef.current.style.display = "none";
@@ -82,7 +84,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
       title: "",
       preparationTime: "",
       ingredients: [],
-      direction: "",
+      directions: "",
     });
   };
 
@@ -92,6 +94,7 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
 
     //TODO
     //ajax call
+
   };
 
   const onSearchClicked = () => {

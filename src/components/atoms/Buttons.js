@@ -13,11 +13,19 @@ export const Button = styled.button`
   color: ${(props) => props.theme.colors.primaryDark};
   font-weight: bold;
   border: 2px solid ${(props) => props.theme.colors.primary};
+
+  transition: 0.3s ease-in-out;
   @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
     width: 90%;
     height: 7vh;
     margin-left: auto;
     margin-right: auto;
+  }
+  &:hover {
+    background-color: ${(props) => props.theme.colors.primaryLight};
+    color: white;
+    transition: 0.3s ease-in-out;
+    border-color: ${(props) => props.theme.colors.white};
   }
 `;
 export const TitleButton = styled.button`

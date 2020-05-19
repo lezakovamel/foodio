@@ -17,6 +17,13 @@ const InputsWrapper = styled.div`
   display: flex;
   width: 50vw;
   flex-wrap: wrap;
+  margin-left: auto;
+  justify-content: space-between;
+  margin-right: auto;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    width: 100%;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -24,14 +31,14 @@ const ButtonWrapper = styled.div`
   width: 100%;
   flex-wrap: wrap;
   box-sizing: border-box;
-  margin-right: ${(props) => props.theme.padding.primary};
   button {
     margin-left: auto;
+    border-radius: 5px;
   }
 `;
 
 const validationSchema = yup.object({
-  title: yup.string().required("Name of the food is required").max(15),
+  title: yup.string().required("Name of the food is required").max(25),
   preparationTime: yup.number().required("Please fill preparation time"),
 });
 

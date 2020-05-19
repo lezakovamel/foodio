@@ -6,12 +6,12 @@ import styled from "@emotion/styled";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./FoodModal.scss";
 
-import FoodForm from "../../organisms/FoodForm";
 import { H1 } from "../../atoms/Headlines";
 import { Icon } from "../../atoms/Icon";
 import { ModalTypeEnum } from "../../../tools/Enums";
 import { P } from "../../atoms/TextFields";
 import SearchComponent from "../../molecules/SearchComponent";
+import FoodForm from "../../organisms/FoodForm";
 
 const IconWrapper = styled.div`
   margin-left: auto;
@@ -73,7 +73,6 @@ const FoodModal = ({ data, onClose, onAddNew, onEditSave }) => {
       </Modal.Header>
 
       <Modal.Body className="modalBody">{body()}</Modal.Body>
-
     </Modal>
   );
 };

@@ -28,7 +28,7 @@ const FoodDetailPage = () => {
   const recipeData = useGetData(slug);
   const { push } = useHistory();
 
-  useGetIngredients();
+  const ingreForCompare = useGetIngredients().options;
 
   const openModal = (type, message, payload) => {
     setModalData({
@@ -82,15 +82,23 @@ const FoodDetailPage = () => {
   };
 
   const onEditSubmit = async (data) => {
-    //TODO poslat data pres put na API
-    console.log(data);
-    /*
+    //TODO poslat data pres put na API, data obsahuji i ingredience
     try {
-      await axios.put("https://exercise.cngroup.dk/api/recipes", data);
+      await axios
+        .put("https://exercise.cngroup.dk/api/recipes", {
+          title: data.title,
+          preparationTime: data.preparationTime,
+          directions: data.directions,
+        })
+        .then((resp) => {
+          console.log(
+            "status: " + resp.status + "statustext: " + resp.statusText + "preptime" + data.preparationTime
+          );
+        });
       push("/");
     } catch (error) {
       console.log("error", error);
-    }*/
+    }
   };
 
   return (

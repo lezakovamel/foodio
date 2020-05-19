@@ -19,8 +19,11 @@ const TextareaField = styled.textarea`
   padding: 0px 10px;
   border: 2px solid ${(props) => props.theme.colors.primary};
   border-radius: 5px;
+  resize:none;
+  overflow-y: scroll;
   &:focus {
-    outline: 2px solid ${(props) => props.theme.colors.primary};
+    /*outline: 2px solid ${(props) => props.theme.colors.primary};*/
+    outline: none;
   }
   &::selection {
     background: ${(props) => props.theme.colors.primaryLight};

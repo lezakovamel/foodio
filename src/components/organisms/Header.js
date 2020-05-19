@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withScroll } from "react-window-decorators";
 import styled from "@emotion/styled";
 const divWidth = () => {
@@ -9,7 +9,7 @@ const divWidth = () => {
 export const HeaderWrapper = styled.header`
   width: 100vw;
   height: 10vh;
-  border-bottom: 2px solid ${(props) => props.theme.colors.primaryLight};
+  /*border-bottom: 2px solid ${(props) => props.theme.colors.primaryLight};*/
   color: ${(props) => props.theme.colors.primaryDark};
   background-color: ${(props) => props.theme.colors.background};
   display: flex;
@@ -21,20 +21,54 @@ export const HeaderWrapper = styled.header`
   top: 0;
   margin: auto;
   box-sizing: border-box;
+  box-shadow: 0 8px 6px -6px lightgrey;
 `;
 const DivLine = styled.div`
   position: absolute;
   bottom: 0;
-  height: 2px;
-  width: ${divWidth()};
-  background: green;
+  height: 4px;
+  width: ${(props) => props.width}%;
+  background: ${(props) => props.theme.colors.primaryLight};
 `;
-const Header = ({ children }) => {
+const Header = ({ children }, props) => {
+  const size = () => {
+    const body = document.body,
+      html = document.documentElement;
+    const height = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    console.log("tu height" + height);
+    return height;
+  };
+
+  const [scrollPosition, setSrollPosition] = useState(0);
+
+  const [widthDiv, setWidthDiv] = useState(0);
+  const width = (scrollPosition / size()) * 100;
+  console.log("tu width" + width);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setSrollPosition(position);
+    console.log(position);
+    return position;
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <HeaderWrapper data-testid="testHeader">
       {children}
-      <p>Vertical scroll position is: </p>
-      <DivLine />
+      {console.log("tu zase sirka: " + width)}
+      <DivLine width={width} />
     </HeaderWrapper>
   );
 };

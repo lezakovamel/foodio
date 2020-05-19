@@ -10,8 +10,20 @@ const IconWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const Icon = ({ icon, onClick }) => (
-  <IconWrapper>
-    <FontAwesomeIcon icon={icon} size="2x" color="#F2C12E" onClick={onClick} />
-  </IconWrapper>
-);
+export const Icon = ({ icon, onClick, color }) => {
+  const iconColor = () => {
+    if (color == null) {
+      return (color = "#F2C12E");
+    } else return color;
+  };
+  return (
+    <IconWrapper>
+      <FontAwesomeIcon
+        icon={icon}
+        size="2x"
+        color={iconColor()}
+        onClick={onClick}
+      />
+    </IconWrapper>
+  );
+};

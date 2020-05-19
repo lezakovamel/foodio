@@ -88,10 +88,9 @@ const Info = styled.div`
     color:white !important;
     margin-bottom:none !important;
     margin:auto !important;
-    
-  text-overflow: ellipsis;
-  overflow: hidden; 
-  white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
   }
 `;
 

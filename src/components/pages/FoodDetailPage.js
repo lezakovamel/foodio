@@ -82,7 +82,7 @@ const FoodDetailPage = () => {
   };
 
   const onEditSubmit = async (data) => {
-    //TODO poslat data pres put na API
+    //TODO poslat data pres put na API, data obsahuji i ingredience
     /*
     try {
       await axios.put("https://exercise.cngroup.dk/api/recipes", data);

@@ -55,8 +55,6 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     payload: null,
   });
   const history = useHistory();
-
-  const [addData, setAddData] = useState({});
   useEffect(() => {
     if (pageType === PageTypeEnum.MAIN) {
       backRef.current.style.display = "none";
@@ -88,23 +86,12 @@ const BaseTemplate = ({ title, pageType, data, children }) => {
     });
   };
 
-  const onAddFoodSubmit = (
-    title,
-    ingredients,
-    directions,
-    preparationTime,
-    servingCOunt
-  ) => {
-    setAddData({ ...addData, title: title, preparationTime: preparationTime });
-    handleAdd(addData);
-  };
-  const handleAdd = async (data) => {
-    try {
-      await axios.post("https://exercise.cngroup.dk/api/recipes", data);
-      push("/");
-    } catch (error) {
-      console.log("error", error);
-    }
+  const onAddFoodSubmit = (data, ingredients) => {
+    //data - soubor dat z fieldu (preprTime, title, etc..)
+    //ingredients - list ingredienci, nutno sloucit do jednoho objektu pred odeslanim na api
+
+    //TODO
+    //ajax call
   };
 
   const onSearchClicked = () => {

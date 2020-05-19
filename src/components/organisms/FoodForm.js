@@ -49,6 +49,8 @@ const FoodForm = ({ type, onAddNew, onEditSave, data }) => {
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
+        //Do edit funkce se ti posle cely balik dat
+        //Do add funkce se poslou data, ale ingredience zvlast, mysli na to pred ajax callem
         type === ModalTypeEnum.ADD_FOOD
           ? onAddNew(data, ingredients)
           : onEditSave(data);
